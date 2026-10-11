@@ -1,0 +1,534 @@
+{
+  "type": "turn",
+  "tick": 0,
+  "player_view": {
+    "my_id": 1,
+    "game": {
+      "current_tick": 0,
+      "players": [
+        {
+          "id": 1,
+          "score": 0
+        },
+        {
+          "id": 2,
+          "score": 0
+        }
+      ],
+      "units": [
+        {
+          "player_id": 1,
+          "id": 3,
+          "health": 100,
+          "position": {
+            "x": 1.5,
+            "y": 1.0
+          },
+          "size": {
+            "x": 0.9,
+            "y": 1.8
+          },
+          "jump_state": {
+            "can_jump": false,
+            "speed": 0.0,
+            "max_time": 0.0,
+            "can_cancel": false
+          },
+          "walked_right": true,
+          "stand": true,
+          "on_ground": false,
+          "on_ladder": false,
+          "mines": 0,
+          "weapon": null
+        },
+        {
+          "player_id": 2,
+          "id": 4,
+          "health": 100,
+          "position": {
+            "x": 38.5,
+            "y": 1.0
+          },
+          "size": {
+            "x": 0.9,
+            "y": 1.8
+          },
+          "jump_state": {
+            "can_jump": false,
+            "speed": 0.0,
+            "max_time": 0.0,
+            "can_cancel": false
+          },
+          "walked_right": true,
+          "stand": true,
+          "on_ground": false,
+          "on_ladder": false,
+          "mines": 0,
+          "weapon": null
+        },
+        {
+          "player_id": 1,
+          "id": 5,
+          "health": 100,
+          "position": {
+            "x": 2.5,
+            "y": 1.0
+          },
+          "size": {
+            "x": 0.9,
+            "y": 1.8
+          },
+          "jump_state": {
+            "can_jump": false,
+            "speed": 0.0,
+            "max_time": 0.0,
+            "can_cancel": false
+          },
+          "walked_right": true,
+          "stand": true,
+          "on_ground": false,
+          "on_ladder": false,
+          "mines": 0,
+          "weapon": null
+        },
+        {
+          "player_id": 2,
+          "id": 6,
+          "health": 100,
+          "position": {
+            "x": 37.5,
+            "y": 1.0
+          },
+          "size": {
+            "x": 0.9,
+            "y": 1.8
+          },
+          "jump_state": {
+            "can_jump": false,
+            "speed": 0.0,
+            "max_time": 0.0,
+            "can_cancel": false
+          },
+          "walked_right": true,
+          "stand": true,
+          "on_ground": false,
+          "on_ladder": false,
+          "mines": 0,
+          "weapon": null
+        }
+      ],
+      "bullets": [],
+      "mines": [],
+      "loot_boxes": [
+        {
+          "position": {
+            "x": 15.5,
+            "y": 26.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Weapon",
+            "weapon_type": "PISTOL"
+          }
+        },
+        {
+          "position": {
+            "x": 24.5,
+            "y": 26.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Weapon",
+            "weapon_type": "PISTOL"
+          }
+        },
+        {
+          "position": {
+            "x": 19.5,
+            "y": 21.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Weapon",
+            "weapon_type": "ASSAULT_RIFLE"
+          }
+        },
+        {
+          "position": {
+            "x": 20.5,
+            "y": 21.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Weapon",
+            "weapon_type": "ASSAULT_RIFLE"
+          }
+        },
+        {
+          "position": {
+            "x": 18.5,
+            "y": 21.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Weapon",
+            "weapon_type": "ROCKET_LAUNCHER"
+          }
+        },
+        {
+          "position": {
+            "x": 21.5,
+            "y": 21.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Weapon",
+            "weapon_type": "ROCKET_LAUNCHER"
+          }
+        },
+        {
+          "position": {
+            "x": 9.5,
+            "y": 1.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "HealthPack",
+            "health": 50
+          }
+        },
+        {
+          "position": {
+            "x": 30.5,
+            "y": 1.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "HealthPack",
+            "health": 50
+          }
+        },
+        {
+          "position": {
+            "x": 11.5,
+            "y": 6.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "HealthPack",
+            "health": 50
+          }
+        },
+        {
+          "position": {
+            "x": 28.5,
+            "y": 6.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "HealthPack",
+            "health": 50
+          }
+        },
+        {
+          "position": {
+            "x": 17.5,
+            "y": 21.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "HealthPack",
+            "health": 50
+          }
+        },
+        {
+          "position": {
+            "x": 22.5,
+            "y": 21.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "HealthPack",
+            "health": 50
+          }
+        },
+        {
+          "position": {
+            "x": 3.5,
+            "y": 1.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "HealthPack",
+            "health": 50
+          }
+        },
+        {
+          "position": {
+            "x": 36.5,
+            "y": 1.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "HealthPack",
+            "health": 50
+          }
+        },
+        {
+          "position": {
+            "x": 12.5,
+            "y": 6.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Mine"
+          }
+        },
+        {
+          "position": {
+            "x": 27.5,
+            "y": 6.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Mine"
+          }
+        },
+        {
+          "position": {
+            "x": 15.5,
+            "y": 1.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Mine"
+          }
+        },
+        {
+          "position": {
+            "x": 24.5,
+            "y": 1.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Mine"
+          }
+        },
+        {
+          "position": {
+            "x": 16.5,
+            "y": 21.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Mine"
+          }
+        },
+        {
+          "position": {
+            "x": 23.5,
+            "y": 21.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Mine"
+          }
+        },
+        {
+          "position": {
+            "x": 11.5,
+            "y": 21.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "HealthPack",
+            "health": 50
+          }
+        },
+        {
+          "position": {
+            "x": 28.5,
+            "y": 21.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "HealthPack",
+            "health": 50
+          }
+        },
+        {
+          "position": {
+            "x": 10.5,
+            "y": 26.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Mine"
+          }
+        },
+        {
+          "position": {
+            "x": 29.5,
+            "y": 26.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Mine"
+          }
+        },
+        {
+          "position": {
+            "x": 11.5,
+            "y": 11.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "HealthPack",
+            "health": 50
+          }
+        },
+        {
+          "position": {
+            "x": 28.5,
+            "y": 11.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "HealthPack",
+            "health": 50
+          }
+        },
+        {
+          "position": {
+            "x": 9.5,
+            "y": 21.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Mine"
+          }
+        },
+        {
+          "position": {
+            "x": 30.5,
+            "y": 21.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Mine"
+          }
+        },
+        {
+          "position": {
+            "x": 4.5,
+            "y": 11.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Mine"
+          }
+        },
+        {
+          "position": {
+            "x": 35.5,
+            "y": 11.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Mine"
+          }
+        }
+      ]
+    }
+  }
+}

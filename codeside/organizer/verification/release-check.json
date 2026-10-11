@@ -1,0 +1,19 @@
+{
+  "all_manifest_files_match": 175,
+  "targeted_regression_tests": 7,
+  "clean_extract_six_short_matches_passed": true,
+  "unfilled_submission_name_rejected": true,
+  "submission_archive_hashes_match": true,
+  "existing_submission_not_overwritten": true,
+  "changed_bot_requires_new_check": true,
+  "default_full_match_actual_ticks": 289,
+  "default_full_match_scores": [
+    1100,
+    85
+  ],
+  "full_replay_generated": true,
+  "real_paired_tournament_same_seed": true,
+  "source_and_examples_parse": true,
+  "rules_source_placeholders_expanded": true,
+  "platform": "3.12.6 (tags/v3.12.6:a4a2d2b, Sep  6 2024, 20:11:23) [MSC v.1940 64 bit (AMD64)]"
+}

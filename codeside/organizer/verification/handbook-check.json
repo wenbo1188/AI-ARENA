@@ -1,0 +1,14 @@
+{
+  "handbook_version": "1.4",
+  "runtime_version": "1.2-dev",
+  "main_chapters": 10,
+  "appendices": 3,
+  "manifest_files_verified": 178,
+  "overall_scoring": "mean of three stage-average W3-D1-L0 points",
+  "stage_explanations_synced": true,
+  "markdown_and_package_identical": true,
+  "toc_links_and_json_examples_valid": true,
+  "new_competition_wording_only": true,
+  "handbook_sha256": "6ad6f61ecdba7ba2ee63964ffda17084779af8dc2f9422c8c86250c8c4104a16",
+  "package_sha256": "77aaadf64ac0e7dc53aaee6d7082d3fea326647370c31be82a648fbb2ef7562c"
+}

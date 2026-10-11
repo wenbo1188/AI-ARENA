@@ -1,0 +1,491 @@
+--- a/arena/bot.py
++++ b/arena/bot.py
+@@ -2,12 +2,12 @@
+ 
+ 协议（每行一个 JSON 对象）：
+   arena -> bot  {"type": "init", ...游戏信息}
+-  bot  -> arena {"ready": true}                      （可选，任何一行都视为就绪）
++  bot  -> arena {"ready": true}
+   arena -> bot  {"type": "turn", "tick": t, ...观测}
+   bot  -> arena {"tick": t, ...动作}                 （必须回显 tick）
+   arena -> bot  {"type": "end", "scores": [...]}
+ 
+-超时的回复会被丢弃（下回合按 tick 对不上过滤掉），该回合动作记为 None。
++任一时间限制超出后终止进程，不再控制单位。
+ 机器人写到 stderr 的内容会被收集到日志里，便于调试。
+ """
+ from __future__ import annotations
+@@ -21,6 +21,7 @@
+ import threading
+ import time
+ from dataclasses import dataclass, field
++from .resources import MEMORY_LIMIT, ProcessResources
+ 
+ 
+ @dataclass
+@@ -64,15 +65,11 @@
+     invalid: int = 0
+     max_ms: float = 0.0
+     total_ms: float = 0.0     # 按时回复的 tick 的总用时
+-    used_ms: float = 0.0      # 整局实际占用的思考时间（含超时），用于总时间预算
++    used_ms: float = 0.0      # 进程累计 CPU 时间（用户态 + 内核态），包含启动
+     turns: int = 0
+     crashed: bool = False
+     crash_reason: str = ""
+     stderr_tail: list[str] = field(default_factory=list)
+-
+-
+-#: 机器人进程的内存上限（字节），0 表示不限制
+-MEMORY_LIMIT = int(os.environ.get("ARENA_BOT_MEMORY_MB", "1024")) * 1024 * 1024
+ 
+ 
+ def _bot_env() -> dict:
+@@ -84,23 +81,16 @@
+     return env
+ 
+ 
+-def _limit_resources(pid: int) -> None:
+-    """Linux 上限制进程内存（其他系统忽略）。真正的隔离请在容器/沙箱里运行竞技场。"""
+-    if not MEMORY_LIMIT:
+-        return
+-    try:
+-        import resource
+-        resource.prlimit(pid, resource.RLIMIT_AS, (MEMORY_LIMIT, MEMORY_LIMIT))
+-    except (ImportError, AttributeError, ValueError, OSError):
+-        pass
+-
+-
+ class BotProcess:
+-    def __init__(self, spec: BotSpec, seat: int):
++    def __init__(self, spec: BotSpec, seat: int, total_time_ms: float = 92000):
+         self.spec = spec
+         self.seat = seat
+         self.stats = BotStats()
+-        self._lines: "queue.Queue[tuple[str | None, float]]" = queue.Queue()
++        self.total_time_ms = total_time_ms
++        self._stop = threading.Event()
++        self._sample_lock = threading.Lock()
++        self._lines: "queue.Queue[tuple[str | None, float]]" = queue.Queue(maxsize=16)
++        self._writes = queue.Queue(maxsize=4)
+         self.last_arrival = 0.0  # 最近一条被接受的回复到达的时间（time.monotonic）
+         self.proc = subprocess.Popen(
+             spec.command,
+@@ -111,46 +101,111 @@
+             bufsize=1,
+             cwd=spec.cwd,
+             env=_bot_env(),
++            start_new_session=sys.platform.startswith("linux"),
+         )
+-        _limit_resources(self.proc.pid)
++        try:
++            self.resources = ProcessResources(self.proc)
++        except Exception:
++            self.proc.kill()
++            self.proc.wait()
++            raise
+         threading.Thread(target=self._read_stdout, daemon=True).start()
+         threading.Thread(target=self._read_stderr, daemon=True).start()
++        self._writer = threading.Thread(target=self._write_stdin, daemon=True)
++        self._writer.start()
++        self._monitor = threading.Thread(target=self._monitor_cpu, daemon=True)
++        self._monitor.start()
++
++    def sample_cpu(self):
++        with self._sample_lock:
++            try:
++                self.stats.used_ms = max(self.stats.used_ms, self.resources.cpu_ms())
++            except (OSError, ValueError):
++                # Linux /proc disappears once a process has been reaped.
++                if self.proc.poll() is None:
++                    self.kill("无法读取进程 CPU 时间")
++            if self.stats.used_ms > self.total_time_ms:
++                self.kill(f"超出整局 CPU 时间预算 {self.total_time_ms:g} ms")
++
++    def _monitor_cpu(self):
++        while not self._stop.wait(0.005):
++            self.sample_cpu()
++            if self.stats.crashed:
++                break
++
++    def _enqueue(self, line):
++        try:
++            self._lines.put_nowait((line, time.monotonic()))
++        except queue.Full:
++            self.kill("stdout 输出队列超限")
+ 
+     def _read_stdout(self):
+-        for line in self.proc.stdout:
+-            self._lines.put((line, time.monotonic()))
+-        self._lines.put((None, time.monotonic()))  # EOF
++        try:
++            while not self._stop.is_set():
++                line = self.proc.stdout.readline(65537)
++                if not line:
++                    break
++                if len(line) > 65536:
++                    self.kill("stdout 单行超出 65536 字符")
++                    break
++                self._enqueue(line)
++        except (OSError, UnicodeError):
++            self.kill("stdout 读取失败")
++        self._enqueue(None)
+ 
+     def _read_stderr(self):
+-        for line in self.proc.stderr:
++        while not self._stop.is_set():
++            line = self.proc.stderr.readline(4096)
++            if not line:
++                break
+             tail = self.stats.stderr_tail
+             tail.append(line.rstrip("\n"))
+             if len(tail) > 50:
+                 del tail[0]
+ 
+-    def send(self, msg: dict) -> None:
++    def _write_stdin(self):
++        try:
++            while not self._stop.is_set():
++                try:
++                    msg = self._writes.get(timeout=0.05)
++                except queue.Empty:
++                    continue
++                self.proc.stdin.write(json.dumps(msg, separators=(",", ":")) + "\n")
++                self.proc.stdin.flush()
++        except (BrokenPipeError, OSError, ValueError):
++            if not self._stop.is_set():
++                self.kill("stdin 管道关闭")
++
++    def send(self, msg: dict) -> float:
++        start = time.monotonic()
+         if self.stats.crashed:
+-            return
+-        try:
+-            self.proc.stdin.write(json.dumps(msg, separators=(",", ":")) + "\n")
+-            self.proc.stdin.flush()
+-        except (BrokenPipeError, OSError, ValueError):
+-            self.stats.crashed = True
++            return start
++        try:
++            self._writes.put_nowait(msg)
++        except queue.Full:
++            self.kill("输入消息积压")
++        return start
+ 
+     def receive(self, deadline: float, tick: int | None) -> dict | None:
+         """等待到 deadline（time.monotonic 时间）为止，返回 tick 匹配的回复。"""
+         while not self.stats.crashed:
+-            remaining = deadline - time.monotonic()
+-            if remaining <= 0:
+-                return None
+-            try:
+-                line, arrived = self._lines.get(timeout=remaining)
++            try:
++                # 另一位选手可能占用了等待时间；先检查已经按时抵达的回复。
++                line, arrived = self._lines.get_nowait()
+             except queue.Empty:
+-                return None
++                remaining = deadline - time.monotonic()
++                if remaining <= 0:
++                    return None
++                try:
++                    line, arrived = self._lines.get(timeout=remaining)
++                except queue.Empty:
++                    return None
+             if line is None:
+                 self.stats.crashed = True
+                 self.stats.crash_reason = self.stats.crash_reason or "进程退出"
+                 return None
++            if arrived > deadline:
++                return None
+             line = line.strip()
+             if not line:
+                 continue
+@@ -158,33 +213,53 @@
+                 msg = json.loads(line)
+             except json.JSONDecodeError:
+                 self.stats.invalid += 1
+-                continue
++                self.kill("协议错误：stdout 不是合法 JSON")
++                return None
+             if not isinstance(msg, dict):
+                 self.stats.invalid += 1
+-                continue
+-            if tick is None or msg.get("tick") == tick:
++                self.kill("协议错误：回复必须为 JSON 对象")
++                return None
++            if tick is None or (type(msg.get("tick")) is int and msg["tick"] == tick):
++                if tick is None and msg.get("ready") is not True:
++                    self.stats.invalid += 1
++                    self.kill("init 回复缺少 ready:true")
++                    return None
++                self.sample_cpu()
++                if self.stats.crashed:
++                    return None
+                 self.last_arrival = arrived
+                 return msg
+-            # 上一回合迟到的回复，丢弃
++            self.stats.invalid += 1
++            self.kill("协议错误：tick 缺失或不匹配")
++            return None
+         return None
+ 
+     def kill(self, reason: str) -> None:
+         """判定崩溃并结束进程（例如超出总时间预算）。"""
++        if self.stats.crashed:
++            return
+         self.stats.crashed = True
+         self.stats.crash_reason = reason
+         try:
+-            self.proc.kill()
++            self.resources.terminate()
+         except OSError:
+             pass
+ 
+     def close(self) -> None:
+-        try:
+-            if self.proc.stdin:
+-                self.proc.stdin.close()
+-        except OSError:
+-            pass
++        self._stop.set()
++        self._monitor.join(timeout=1)
++        self.sample_cpu()
++        # Kill first: closing stdin while its writer is blocked can deadlock.
++        self.resources.terminate()
+         try:
+             self.proc.wait(timeout=1)
+         except subprocess.TimeoutExpired:
+             self.proc.kill()
+             self.proc.wait()
++        self._writer.join(timeout=1)
++        for stream in (self.proc.stdin, self.proc.stdout, self.proc.stderr):
++            try:
++                stream.close()
++            except OSError:
++                pass
++        self.resources.close()
+--- a/arena/runner.py
++++ b/arena/runner.py
+@@ -3,6 +3,7 @@
+ 
+ import itertools
+ import json
++import math
+ import os
+ import time
+ from concurrent.futures import ProcessPoolExecutor
+@@ -10,6 +11,7 @@
+ 
+ from .bot import BotProcess, BotSpec
+ from .games import get_game
++from .protocol import action_errors
+ 
+ 
+ @dataclass
+@@ -32,61 +34,80 @@
+     game_name: str,
+     specs: list[BotSpec],
+     seed: int = 0,
+-    time_limit_ms: float = 100,
+-    init_time_limit_ms: float = 3000,
++    time_limit_ms: float = 1000,
++    init_time_limit_ms: float | None = None,
+     total_time_ms: float | str | None = None,
+     verbose: bool = False,
+     **game_options,
+ ) -> MatchResult:
+-    """time_limit_ms 是单个 tick 的思考时限；total_time_ms 是整局的总时间预算（超出判为崩溃），
+-    传 "official" 表示按游戏自己的官方规则计算（足球：20 ms × tick 数 + 20 秒，单 tick 最多 20 秒）。"""
++    """每 tick 现实时间上限 + 每进程整局 CPU 预算；None 自动采用游戏预算。
++
++    init 与首个 tick 共用首次响应窗口。init_time_limit_ms 仅保留旧调用兼容，
++    不允许额外初始化宽限；自定义时限用于本地压力测试。
++    """
+     game = get_game(game_name)(seed=seed, **game_options)
+     if len(specs) != game.num_players:
+         raise ValueError(f"{game_name} 需要 {game.num_players} 个机器人，给了 {len(specs)} 个")
+-    if total_time_ms == "official":
++    if total_time_ms is None or total_time_ms == "official":
+         if not hasattr(game, "official_time_budget_ms"):
+             raise ValueError(f"{game_name} 没有官方的总时间规则")
++        if total_time_ms == "official":
++            time_limit_ms = game.official_tick_limit_ms()
+         total_time_ms = game.official_time_budget_ms()
+-        time_limit_ms = game.official_tick_limit_ms()
+-
+-    bots = [BotProcess(spec, seat) for seat, spec in enumerate(specs)]
++    if any(not math.isfinite(v) or v <= 0 for v in (time_limit_ms, total_time_ms)):
++        raise ValueError("单 tick 时限和 CPU 总预算必须为正的有限数值")
++    if init_time_limit_ms is not None and init_time_limit_ms != time_limit_ms:
++        raise ValueError("init 与首个 tick 共用时限，不能另设初始化宽限")
++
++    bots = []
+     frames = []
+     try:
+-        # 开局：发送规则信息，等待就绪（时限更宽）
++        for seat, spec in enumerate(specs):
++            bots.append(BotProcess(spec, seat, total_time_ms=total_time_ms))
++        initial_deadlines = []
+         for i, bot in enumerate(bots):
+-            bot.send({"type": "init", "time_limit_ms": time_limit_ms, "total_time_ms": total_time_ms,
++            start = bot.send({"type": "init", "time_limit_ms": time_limit_ms, "total_time_ms": total_time_ms,
++                      "time_budget_type": "cpu_user_system", "memory_limit_bytes": 256 * 1024 * 1024,
+                       **game.init_message(i)})
+-        deadline = time.monotonic() + init_time_limit_ms / 1000
+-        for bot in bots:
+-            bot.receive(deadline, tick=None)
++            initial_deadlines.append(start + time_limit_ms / 1000)
++            # Queue the first turn immediately: a slow opponent's ready response
++            # must not consume this bot's first response window.
++            bot.send({"type": "turn", "tick": 0, **game.observe(i)})
++        for bot, deadline in zip(bots, initial_deadlines):
++            if bot.receive(deadline, tick=None) is None and not bot.stats.crashed:
++                bot.stats.timeouts += 1
++                bot.kill("初始化超出首次响应窗口")
+ 
+         frames.append(game.frame())
+         while not game.is_over():
+             t = game.tick
+             sent_at = []
+             for i, bot in enumerate(bots):
+-                bot.send({"type": "turn", "tick": t, **game.observe(i)})
+-                sent_at.append(time.monotonic())
++                sent_at.append(initial_deadlines[i] - time_limit_ms / 1000 if t == 0 else
++                               bot.send({"type": "turn", "tick": t, **game.observe(i)}))
+             # 所有机器人并行思考，各自从收到消息起计时
+             actions = []
+             for i, (bot, start) in enumerate(zip(bots, sent_at)):
+                 st = bot.stats
+-                limit = time_limit_ms
+-                if total_time_ms is not None:
+-                    limit = min(limit, max(0.0, total_time_ms - st.used_ms))
+-                deadline = start + limit / 1000
++                deadline = start + time_limit_ms / 1000
++                if t == 0:
++                    deadline = min(deadline, initial_deadlines[i])
+                 msg = bot.receive(deadline, tick=t)
++                if msg is not None and game_name == "codeside":
++                    view = game.observe(i)["player_view"]
++                    owned = {str(u["id"]) for u in view["game"]["units"] if u["player_id"] == view["my_id"]}
++                    errors = action_errors(msg, owned)
++                    if errors:
++                        st.invalid += 1
++                        bot.kill("协议错误：" + errors[0])
++                        msg = None
+                 # 按回复实际到达的时间计时（各机器人并行思考，这里只是依次收取）
+                 end = bot.last_arrival if msg is not None else min(time.monotonic(), deadline)
+                 elapsed = max(0.0, (end - start) * 1000)
+-                if not st.crashed:
+-                    st.used_ms += elapsed
+                 if msg is None:
+                     if not st.crashed:
+-                        if total_time_ms is not None and st.used_ms >= total_time_ms:
+-                            bot.kill(f"超出整局总时间预算 {total_time_ms / 1000:g} 秒")
+-                        else:
+-                            st.timeouts += 1
++                        st.timeouts += 1
++                        bot.kill(f"tick {t} 超出单 tick 现实时间上限 {time_limit_ms:g} ms")
+                 else:
+                     st.turns += 1
+                     st.total_ms += elapsed
+@@ -116,6 +137,8 @@
+             "crashed": s.crashed,
+             "crash_reason": s.crash_reason,
+             "used_ms": round(s.used_ms),
++            "cpu_ms": round(s.used_ms, 3),
++            "cpu_backend": bot.resources.backend,
+             "avg_ms": round(s.total_ms / s.turns, 2) if s.turns else None,
+             "max_ms": round(s.max_ms, 2),
+             "stderr_tail": s.stderr_tail[-10:],
+@@ -127,6 +150,8 @@
+         "scores": scores,
+         "time_limit_ms": time_limit_ms,
+         "total_time_ms": total_time_ms,
++        "time_budget_type": "cpu_user_system",
++        "memory_limit_bytes": 256 * 1024 * 1024,
+         "meta": game.replay_meta(),
+         "stats": stats,
+         "frames": frames,
+@@ -170,6 +195,10 @@
+     game_cls = get_game(game_name)
+     if game_cls.num_players != 2:
+         raise ValueError("循环赛目前只支持两方对抗的游戏")
++    if len(specs) < 2 or rounds < 1:
++        raise ValueError("循环赛至少需要两位选手，rounds 至少为 1")
++    if len({s.name for s in specs}) != len(specs):
++        raise ValueError("循环赛选手名称不能重复")
+ 
+     if out_dir:
+         out_dir = os.path.abspath(out_dir)
+@@ -177,20 +206,24 @@
+     fixtures = []
+     for r in range(rounds):
+         for a, b in itertools.permutations(range(len(specs)), 2):
+-            fixtures.append((len(fixtures), a, b))
++            fixtures.append((len(fixtures), a, b, seed + r))
+ 
+     table = {s.name: {"bot": s.name, "played": 0, "win": 0, "draw": 0, "loss": 0,
+                       "for": 0.0, "against": 0.0, "points": 0, "timeouts": 0} for s in specs}
+     results = []
+ 
+-    jobs = [(game_name, specs[a], specs[b], seed + idx, idx, out_dir, match_kwargs) for idx, a, b in fixtures]
++    # 同一轮所有对阵使用同一个种子，换边仍使用同一张地图。
++    jobs = [(game_name, specs[a], specs[b], map_seed, idx, out_dir, match_kwargs)
++            for idx, a, b, map_seed in fixtures]
++    fixture_seeds = {idx: map_seed for idx, _, _, map_seed in fixtures}
+     # 物理模拟是纯 Python 计算，用多进程才能真正并行
+     with ProcessPoolExecutor(max_workers=max(1, parallel)) as pool:
+         for idx, res in pool.map(_play_fixture, jobs):
+             na, nb = res.bots
+             sa, sb = res.scores
+             print(f"[{idx + 1}/{len(fixtures)}] {na} {sa:g} : {sb:g} {nb}", flush=True)
+-            results.append({"match": idx, "bots": res.bots, "scores": res.scores, "stats": res.stats})
++            results.append({"match": idx, "seed": fixture_seeds[idx], "bots": res.bots,
++                            "scores": res.scores, "stats": res.stats})
+             for name, mine, theirs, st in ((na, sa, sb, res.stats[0]), (nb, sb, sa, res.stats[1])):
+                 row = table[name]
+                 row["played"] += 1
+--- a/arena/__main__.py
++++ b/arena/__main__.py
+@@ -64,12 +64,12 @@
+     sub = ap.add_subparsers(dest="cmd", required=True)
+ 
+     def common(p):
+-        p.add_argument("--game", default="football", help="游戏名（默认 football）")
+-        p.add_argument("--time-limit-ms", type=float, default=100, help="每回合思考时限，毫秒（默认 100）")
+-        p.add_argument("--init-time-limit-ms", type=float, default=3000, help="开局准备时限，毫秒")
+-        p.add_argument("--total-time-ms", type=float, help="整局总思考时间预算，毫秒，超出判为崩溃（默认不限）")
++        p.add_argument("--game", default="codeside", help="游戏名（默认 codeside）")
++        p.add_argument("--time-limit-ms", type=float, default=1000, help="每回合思考时限，毫秒（默认 1000）")
++        p.add_argument("--init-time-limit-ms", type=float, default=None, help=argparse.SUPPRESS)
++        p.add_argument("--total-time-ms", type=float, help="整局 CPU 时间预算，毫秒；默认 20×最大 tick 数+20000")
+         p.add_argument("--official-time", action="store_true",
+-                       help="按游戏的原版计时（足球：单 tick 最多 20 秒，整局 20ms×tick 数+20 秒），超出判为崩溃")
++                       help=argparse.SUPPRESS)
+         p.add_argument("--seed", type=int, default=0)
+         p.add_argument("-o", "--opt", action="append", metavar="KEY=VALUE",
+                        help="覆盖游戏参数，例如 -o stage=finals -o ticks=3600")
+@@ -102,12 +102,12 @@
+     p.add_argument("name", help="参赛名")
+     p.add_argument("path", help="bot.py，或包含 bot.py / command.txt 的目录")
+     p.add_argument("--model", help="记录是哪个模型写的")
+-    p.add_argument("--time-limit-ms", type=float, default=100)
++    p.add_argument("--time-limit-ms", type=float, default=1000)
+ 
+     p = sub.add_parser("validate", help="重新校验已有的提交")
+     p.add_argument("game")
+     p.add_argument("names", nargs="*", help="不写则校验全部")
+-    p.add_argument("--time-limit-ms", type=float, default=100)
++    p.add_argument("--time-limit-ms", type=float, default=1000)
+ 
+     p = sub.add_parser("submissions", help="列出提交")
+     p.add_argument("game")
+@@ -123,7 +123,7 @@
+     p.add_argument("--api-key-env", help="密钥所在的环境变量名")
+     p.add_argument("--attempts", type=int, default=3, help="写代码+修复的最多次数")
+     p.add_argument("--improve", type=int, default=0, help="通过后再让模型根据比分自我改进几轮")
+-    p.add_argument("--time-limit-ms", type=float, default=100)
++    p.add_argument("--time-limit-ms", type=float, default=1000)
+ 
+     a = ap.parse_args(argv)
+     # 把输出路径都转成绝对路径（共享目录下当前目录句柄可能失效）

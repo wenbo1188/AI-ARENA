@@ -1,0 +1,188 @@
+{
+  "type": "turn",
+  "tick": 0,
+  "player_view": {
+    "my_id": 1,
+    "game": {
+      "current_tick": 0,
+      "players": [
+        {
+          "id": 1,
+          "score": 0
+        },
+        {
+          "id": 2,
+          "score": 0
+        }
+      ],
+      "units": [
+        {
+          "player_id": 1,
+          "id": 3,
+          "health": 100,
+          "position": {
+            "x": 1.5,
+            "y": 16.0
+          },
+          "size": {
+            "x": 0.9,
+            "y": 1.8
+          },
+          "jump_state": {
+            "can_jump": false,
+            "speed": 0.0,
+            "max_time": 0.0,
+            "can_cancel": false
+          },
+          "walked_right": true,
+          "stand": true,
+          "on_ground": false,
+          "on_ladder": false,
+          "mines": 0,
+          "weapon": null
+        },
+        {
+          "player_id": 2,
+          "id": 4,
+          "health": 100,
+          "position": {
+            "x": 38.5,
+            "y": 16.0
+          },
+          "size": {
+            "x": 0.9,
+            "y": 1.8
+          },
+          "jump_state": {
+            "can_jump": false,
+            "speed": 0.0,
+            "max_time": 0.0,
+            "can_cancel": false
+          },
+          "walked_right": true,
+          "stand": true,
+          "on_ground": false,
+          "on_ladder": false,
+          "mines": 0,
+          "weapon": null
+        }
+      ],
+      "bullets": [],
+      "mines": [],
+      "loot_boxes": [
+        {
+          "position": {
+            "x": 15.5,
+            "y": 17.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Weapon",
+            "weapon_type": "PISTOL"
+          }
+        },
+        {
+          "position": {
+            "x": 24.5,
+            "y": 17.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Weapon",
+            "weapon_type": "PISTOL"
+          }
+        },
+        {
+          "position": {
+            "x": 1.5,
+            "y": 16.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Weapon",
+            "weapon_type": "ASSAULT_RIFLE"
+          }
+        },
+        {
+          "position": {
+            "x": 38.5,
+            "y": 16.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Weapon",
+            "weapon_type": "ASSAULT_RIFLE"
+          }
+        },
+        {
+          "position": {
+            "x": 7.5,
+            "y": 9.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Weapon",
+            "weapon_type": "ROCKET_LAUNCHER"
+          }
+        },
+        {
+          "position": {
+            "x": 32.5,
+            "y": 9.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Weapon",
+            "weapon_type": "ROCKET_LAUNCHER"
+          }
+        },
+        {
+          "position": {
+            "x": 10.5,
+            "y": 17.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "HealthPack",
+            "health": 50
+          }
+        },
+        {
+          "position": {
+            "x": 29.5,
+            "y": 17.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "HealthPack",
+            "health": 50
+          }
+        }
+      ]
+    }
+  }
+}

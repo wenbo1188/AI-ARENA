@@ -1,0 +1,10 @@
+{
+  "test_data": "synthetic fixtures only; not actual competition results",
+  "cli_generates_json_and_html": true,
+  "exact_equal_weight_mean": "4/3",
+  "ties_share_rank": true,
+  "html_names_escaped": true,
+  "wrong_expected_round_count_rejected": true,
+  "scoring_unit_tests_passed": 7,
+  "existing_runner_tests_passed": 7
+}

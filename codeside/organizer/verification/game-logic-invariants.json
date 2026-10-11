@@ -1,0 +1,44 @@
+[
+  {
+    "file": "arena/games/codeside/sim.py",
+    "byte_identical": true,
+    "executable_ast_unchanged": true,
+    "included_in_participant_kit": true,
+    "sha256": "4452aa7ff4e912b36d982da5f163799469ccdb2fb5020103bd38ba8ebd3649a5"
+  },
+  {
+    "file": "arena/games/codeside/levels.py",
+    "byte_identical": true,
+    "executable_ast_unchanged": true,
+    "included_in_participant_kit": true,
+    "sha256": "11e3eea22c22b8d6e4c61ca74c2934112b2c4dadcb28fc74acc0d56d8e4ef07f"
+  },
+  {
+    "file": "arena/games/codeside/game.py",
+    "byte_identical": true,
+    "executable_ast_unchanged": true,
+    "included_in_participant_kit": true,
+    "sha256": "820a0f066ad3e8eba890a981758128b317cc7c8c01832c3a794fa69b48fcccd5"
+  },
+  {
+    "file": "bots/codeside/quickstart_bot.py",
+    "byte_identical": false,
+    "executable_ast_unchanged": true,
+    "included_in_participant_kit": true,
+    "sha256": "1de7a4e8af2ea8763d04e5974755bf7b0e03c5a9c179dfd291cdaf039b84f1fa"
+  },
+  {
+    "file": "bots/codeside/random_bot.py",
+    "byte_identical": true,
+    "executable_ast_unchanged": true,
+    "included_in_participant_kit": true,
+    "sha256": "6c6cd299156edcdc42a07e389457e05761321e12b27cd5ca5581bb18677b0e2e"
+  },
+  {
+    "file": "bots/codeside/tactic_bot.py",
+    "byte_identical": true,
+    "executable_ast_unchanged": true,
+    "included_in_participant_kit": false,
+    "sha256": "33b4f0d8b5e2d7311587504b4a3e95947e7236381bfa19e1e1254bb2ef392fc4"
+  }
+]

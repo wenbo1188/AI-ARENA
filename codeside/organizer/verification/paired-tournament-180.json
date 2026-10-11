@@ -1,0 +1,100 @@
+{
+  "leaderboard": [
+    {
+      "bot": "A",
+      "played": 2,
+      "win": 0,
+      "draw": 2,
+      "loss": 0,
+      "for": 0.0,
+      "against": 0.0,
+      "points": 2,
+      "timeouts": 0
+    },
+    {
+      "bot": "B",
+      "played": 2,
+      "win": 0,
+      "draw": 2,
+      "loss": 0,
+      "for": 0.0,
+      "against": 0.0,
+      "points": 2,
+      "timeouts": 0
+    }
+  ],
+  "matches": [
+    {
+      "match": 0,
+      "seed": 101,
+      "bots": [
+        "A",
+        "B"
+      ],
+      "scores": [
+        0,
+        0
+      ],
+      "stats": [
+        {
+          "name": "A",
+          "timeouts": 0,
+          "invalid_lines": 0,
+          "crashed": false,
+          "crash_reason": "",
+          "used_ms": 15,
+          "avg_ms": 0.08,
+          "max_ms": 15.0,
+          "stderr_tail": []
+        },
+        {
+          "name": "B",
+          "timeouts": 0,
+          "invalid_lines": 0,
+          "crashed": false,
+          "crash_reason": "",
+          "used_ms": 15,
+          "avg_ms": 0.08,
+          "max_ms": 15.0,
+          "stderr_tail": []
+        }
+      ]
+    },
+    {
+      "match": 1,
+      "seed": 101,
+      "bots": [
+        "B",
+        "A"
+      ],
+      "scores": [
+        0,
+        0
+      ],
+      "stats": [
+        {
+          "name": "B",
+          "timeouts": 0,
+          "invalid_lines": 0,
+          "crashed": false,
+          "crash_reason": "",
+          "used_ms": 0,
+          "avg_ms": 0.0,
+          "max_ms": 0.0,
+          "stderr_tail": []
+        },
+        {
+          "name": "A",
+          "timeouts": 0,
+          "invalid_lines": 0,
+          "crashed": false,
+          "crash_reason": "",
+          "used_ms": 0,
+          "avg_ms": 0.0,
+          "max_ms": 0.0,
+          "stderr_tail": []
+        }
+      ]
+    }
+  ]
+}

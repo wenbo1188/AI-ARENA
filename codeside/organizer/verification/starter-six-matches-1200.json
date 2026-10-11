@@ -1,0 +1,150 @@
+{
+  "kit_version": "1.2-dev",
+  "bot_sha256": "1de7a4e8af2ea8763d04e5974755bf7b0e03c5a9c179dfd291cdaf039b84f1fa",
+  "python": "3.12.6 (tags/v3.12.6:a4a2d2b, Sep  6 2024, 20:11:23) [MSC v.1940 64 bit (AMD64)]",
+  "ticks_per_match": 1200,
+  "time_ms": 1000,
+  "time_budget_type": "cpu_user_system",
+  "matches": [
+    {
+      "stage": "round1",
+      "seat": 0,
+      "seed": 12,
+      "ticks": 289,
+      "scores": [
+        1100,
+        85
+      ],
+      "stats": {
+        "name": "candidate",
+        "timeouts": 0,
+        "invalid_lines": 0,
+        "crashed": false,
+        "crash_reason": "",
+        "used_ms": 188,
+        "cpu_ms": 187.5,
+        "cpu_backend": "GetProcessTimes(user+kernel)",
+        "avg_ms": 0.97,
+        "max_ms": 62.0,
+        "stderr_tail": []
+      }
+    },
+    {
+      "stage": "round1",
+      "seat": 1,
+      "seed": 12,
+      "ticks": 289,
+      "scores": [
+        1100,
+        85
+      ],
+      "stats": {
+        "name": "candidate",
+        "timeouts": 0,
+        "invalid_lines": 0,
+        "crashed": false,
+        "crash_reason": "",
+        "used_ms": 172,
+        "cpu_ms": 171.875,
+        "cpu_backend": "GetProcessTimes(user+kernel)",
+        "avg_ms": 1.09,
+        "max_ms": 94.0,
+        "stderr_tail": []
+      }
+    },
+    {
+      "stage": "round2",
+      "seat": 0,
+      "seed": 21,
+      "ticks": 462,
+      "scores": [
+        2200,
+        1150
+      ],
+      "stats": {
+        "name": "candidate",
+        "timeouts": 0,
+        "invalid_lines": 0,
+        "crashed": false,
+        "crash_reason": "",
+        "used_ms": 250,
+        "cpu_ms": 250.0,
+        "cpu_backend": "GetProcessTimes(user+kernel)",
+        "avg_ms": 0.75,
+        "max_ms": 94.0,
+        "stderr_tail": []
+      }
+    },
+    {
+      "stage": "round2",
+      "seat": 1,
+      "seed": 21,
+      "ticks": 462,
+      "scores": [
+        2200,
+        1150
+      ],
+      "stats": {
+        "name": "candidate",
+        "timeouts": 0,
+        "invalid_lines": 0,
+        "crashed": false,
+        "crash_reason": "",
+        "used_ms": 422,
+        "cpu_ms": 421.875,
+        "cpu_backend": "GetProcessTimes(user+kernel)",
+        "avg_ms": 0.98,
+        "max_ms": 94.0,
+        "stderr_tail": []
+      }
+    },
+    {
+      "stage": "finals",
+      "seat": 0,
+      "seed": 34,
+      "ticks": 1200,
+      "scores": [
+        0,
+        0
+      ],
+      "stats": {
+        "name": "candidate",
+        "timeouts": 0,
+        "invalid_lines": 0,
+        "crashed": false,
+        "crash_reason": "",
+        "used_ms": 516,
+        "cpu_ms": 515.625,
+        "cpu_backend": "GetProcessTimes(user+kernel)",
+        "avg_ms": 1.2,
+        "max_ms": 94.0,
+        "stderr_tail": []
+      }
+    },
+    {
+      "stage": "finals",
+      "seat": 1,
+      "seed": 34,
+      "ticks": 1200,
+      "scores": [
+        0,
+        0
+      ],
+      "stats": {
+        "name": "candidate",
+        "timeouts": 0,
+        "invalid_lines": 0,
+        "crashed": false,
+        "crash_reason": "",
+        "used_ms": 547,
+        "cpu_ms": 546.875,
+        "cpu_backend": "GetProcessTimes(user+kernel)",
+        "avg_ms": 1.11,
+        "max_ms": 109.0,
+        "stderr_tail": []
+      }
+    }
+  ],
+  "problems": [],
+  "passed": true
+}

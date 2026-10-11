@@ -1,0 +1,64 @@
+{
+  "status": "DRAFT_NOT_FOR_OFFICIAL_SCORING",
+  "approved": false,
+  "game": "codeside",
+  "kit_version": "1.2-dev",
+  "participant_models_and_versions": [],
+  "generation": {
+    "identical_prompt": true,
+    "identical_materials": true,
+    "tool_access": null,
+    "token_or_time_budget": null,
+    "attempt_limit": null,
+    "test_feedback_policy": null,
+    "human_edit_policy": null,
+    "reuse_public_baselines_policy": null,
+    "prompt_freeze_sha256": null
+  },
+  "competition": {
+    "stages": [
+      "round1",
+      "round2",
+      "finals"
+    ],
+    "elimination": false,
+    "stage_weights": [
+      1,
+      1,
+      1
+    ],
+    "match_points": {
+      "win": 3,
+      "draw": 1,
+      "loss": 0
+    },
+    "stage_score": "points / matches_played",
+    "overall_score": "mean(stage_scores)",
+    "tie_policy": "shared rank by exact overall score",
+    "rounds_per_stage": null,
+    "hidden_base_seed_per_stage": null,
+    "same_seed_for_reversed_seats": true,
+    "max_tick_count": 3600,
+    "updates_per_tick": 100,
+    "tick_time_ms": 1000,
+    "total_time_ms": 92000,
+    "cpu_budget_formula_ms": "20 * max_tick_count + 20000",
+    "init_shares_first_tick": true,
+    "memory_limit_mib": 256,
+    "runtime_image_digest": null,
+    "runtime_python_version": null,
+    "host_hardware": null,
+    "parallel_matches": 1,
+    "same_code_all_stages": true,
+    "crash_timeout_and_rerun_policy": null
+  },
+  "operations": {
+    "submission_deadline": null,
+    "submission_destination": null,
+    "independent_bot_isolation_verified": false,
+    "output_and_match_watchdog_verified": false,
+    "organizer_qualification_recheck": true,
+    "source_and_material_review_completed": false
+  },
+  "note": "This is a planning form, not an executable runner config. Fill and publish the relevant terms before official scoring."
+}

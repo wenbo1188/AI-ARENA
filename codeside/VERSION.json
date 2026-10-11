@@ -1,0 +1,12 @@
+{
+  "version": "1.2-dev",
+  "date": "2026-10-07",
+  "handbook_version": "1.4",
+  "overall_scoring": "mean_stage_average_w3_d1_l0",
+  "status": "participant-development-kit; event rules pending",
+  "tested_platform": "Windows / Python 3.12.6",
+  "game": "Platform shooting AI competition",
+  "visual": "Tokyo 1987 retro pixel arcade",
+  "game_logic_changed": false,
+  "tournament_harness_changed": true
+}

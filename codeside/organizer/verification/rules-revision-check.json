@@ -1,0 +1,11 @@
+{
+  "participant_handouts_checked": 10,
+  "manifest_files_verified": 172,
+  "no_old_branding_or_added_tactics_in_handouts": true,
+  "advanced_bot_excluded": true,
+  "direct_text_and_package_match": true,
+  "new_budget_option_runs_from_extracted_zip": true,
+  "updated_legacy_links_match": true,
+  "six_stage_seat_matches_1200_passed": true,
+  "package_sha256": "d932c0a76458228fd4593dce54b82a3e48c8a380a5cc31946995ab6249cddf5c"
+}

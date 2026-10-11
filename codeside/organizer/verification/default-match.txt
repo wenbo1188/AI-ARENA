@@ -1,0 +1,32 @@
+{
+  "scores": [
+    1100,
+    85
+  ],
+  "ticks": 289,
+  "stats": [
+    {
+      "name": "candidate",
+      "timeouts": 0,
+      "invalid_lines": 0,
+      "crashed": false,
+      "crash_reason": "",
+      "used_ms": 78,
+      "avg_ms": 0.27,
+      "max_ms": 16.0,
+      "stderr_tail": []
+    },
+    {
+      "name": "baseline",
+      "timeouts": 0,
+      "invalid_lines": 0,
+      "crashed": false,
+      "crash_reason": "",
+      "used_ms": 93,
+      "avg_ms": 0.32,
+      "max_ms": 16.0,
+      "stderr_tail": []
+    }
+  ]
+}
+回放: D:\Codex\2026-10-07\zhe\work\kit smoke\选手资料\CodeSide-Participant-Kit-v1\results\round1-12-left.html

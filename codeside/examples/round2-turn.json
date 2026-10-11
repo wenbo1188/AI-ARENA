@@ -1,0 +1,236 @@
+{
+  "type": "turn",
+  "tick": 0,
+  "player_view": {
+    "my_id": 1,
+    "game": {
+      "current_tick": 0,
+      "players": [
+        {
+          "id": 1,
+          "score": 0
+        },
+        {
+          "id": 2,
+          "score": 0
+        }
+      ],
+      "units": [
+        {
+          "player_id": 1,
+          "id": 3,
+          "health": 100,
+          "position": {
+            "x": 1.5,
+            "y": 6.0
+          },
+          "size": {
+            "x": 0.9,
+            "y": 1.8
+          },
+          "jump_state": {
+            "can_jump": false,
+            "speed": 0.0,
+            "max_time": 0.0,
+            "can_cancel": false
+          },
+          "walked_right": true,
+          "stand": true,
+          "on_ground": false,
+          "on_ladder": false,
+          "mines": 0,
+          "weapon": null
+        },
+        {
+          "player_id": 2,
+          "id": 4,
+          "health": 100,
+          "position": {
+            "x": 38.5,
+            "y": 6.0
+          },
+          "size": {
+            "x": 0.9,
+            "y": 1.8
+          },
+          "jump_state": {
+            "can_jump": false,
+            "speed": 0.0,
+            "max_time": 0.0,
+            "can_cancel": false
+          },
+          "walked_right": true,
+          "stand": true,
+          "on_ground": false,
+          "on_ladder": false,
+          "mines": 0,
+          "weapon": null
+        },
+        {
+          "player_id": 1,
+          "id": 5,
+          "health": 100,
+          "position": {
+            "x": 2.5,
+            "y": 6.0
+          },
+          "size": {
+            "x": 0.9,
+            "y": 1.8
+          },
+          "jump_state": {
+            "can_jump": false,
+            "speed": 0.0,
+            "max_time": 0.0,
+            "can_cancel": false
+          },
+          "walked_right": true,
+          "stand": true,
+          "on_ground": false,
+          "on_ladder": false,
+          "mines": 0,
+          "weapon": null
+        },
+        {
+          "player_id": 2,
+          "id": 6,
+          "health": 100,
+          "position": {
+            "x": 37.5,
+            "y": 6.0
+          },
+          "size": {
+            "x": 0.9,
+            "y": 1.8
+          },
+          "jump_state": {
+            "can_jump": false,
+            "speed": 0.0,
+            "max_time": 0.0,
+            "can_cancel": false
+          },
+          "walked_right": true,
+          "stand": true,
+          "on_ground": false,
+          "on_ladder": false,
+          "mines": 0,
+          "weapon": null
+        }
+      ],
+      "bullets": [],
+      "mines": [],
+      "loot_boxes": [
+        {
+          "position": {
+            "x": 8.5,
+            "y": 14.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Weapon",
+            "weapon_type": "PISTOL"
+          }
+        },
+        {
+          "position": {
+            "x": 31.5,
+            "y": 14.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Weapon",
+            "weapon_type": "PISTOL"
+          }
+        },
+        {
+          "position": {
+            "x": 17.5,
+            "y": 10.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Weapon",
+            "weapon_type": "ASSAULT_RIFLE"
+          }
+        },
+        {
+          "position": {
+            "x": 22.5,
+            "y": 10.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Weapon",
+            "weapon_type": "ASSAULT_RIFLE"
+          }
+        },
+        {
+          "position": {
+            "x": 17.5,
+            "y": 13.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Weapon",
+            "weapon_type": "ROCKET_LAUNCHER"
+          }
+        },
+        {
+          "position": {
+            "x": 22.5,
+            "y": 13.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Weapon",
+            "weapon_type": "ROCKET_LAUNCHER"
+          }
+        },
+        {
+          "position": {
+            "x": 7.5,
+            "y": 14.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Mine"
+          }
+        },
+        {
+          "position": {
+            "x": 32.5,
+            "y": 14.0
+          },
+          "size": {
+            "x": 0.5,
+            "y": 0.5
+          },
+          "item": {
+            "type": "Mine"
+          }
+        }
+      ]
+    }
+  }
+}

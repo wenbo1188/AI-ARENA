@@ -1,0 +1,42 @@
+{
+  "runtime_version": "1.2-dev",
+  "platform": "win32",
+  "package_sha256": "77aaadf64ac0e7dc53aaee6d7082d3fea326647370c31be82a648fbb2ef7562c",
+  "extracted_path_with_chinese_and_spaces": true,
+  "six_stage_seat_checks_passed": true,
+  "submission_pack_passed": true,
+  "legacy_report_rejected": true,
+  "default_full_match_passed": true,
+  "early_finish_keeps_92000_cpu_ms": true,
+  "arena_cli_defaults_verified": true,
+  "init_fixtures_verified": true,
+  "full_match_stats": [
+    {
+      "name": "candidate",
+      "timeouts": 0,
+      "invalid_lines": 0,
+      "crashed": false,
+      "crash_reason": "",
+      "used_ms": 250,
+      "cpu_ms": 250.0,
+      "cpu_backend": "GetProcessTimes(user+kernel)",
+      "avg_ms": 1.41,
+      "max_ms": 79.0,
+      "stderr_tail": []
+    },
+    {
+      "name": "baseline",
+      "timeouts": 0,
+      "invalid_lines": 0,
+      "crashed": false,
+      "crash_reason": "",
+      "used_ms": 250,
+      "cpu_ms": 250.0,
+      "cpu_backend": "GetProcessTimes(user+kernel)",
+      "avg_ms": 1.95,
+      "max_ms": 125.0,
+      "stderr_tail": []
+    }
+  ],
+  "linux_runtime_tested": false
+}

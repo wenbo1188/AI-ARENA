@@ -1,0 +1,18 @@
+{
+  "tick": 0,
+  "actions": {
+    "3": {
+      "velocity": 0,
+      "jump": false,
+      "jump_down": false,
+      "aim": {
+        "x": 1,
+        "y": 0
+      },
+      "shoot": false,
+      "reload": false,
+      "swap_weapon": false,
+      "plant_mine": false
+    }
+  }
+}

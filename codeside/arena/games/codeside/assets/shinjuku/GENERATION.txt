@@ -1,0 +1,37 @@
+Shinjuku 1987 / CodeSide 新素材
+由内置 imagegen 生成，参考用户选定的 01 新宿霓虹概念图。
+city.png：远景城市；actors.png：红／蓝队各五种姿态；items.png：医疗包、地雷补给箱、三种枪械、已部署地雷、弹药与弹匣。
+透明图集的裁切在 viewer.js 加载时完成，源 PNG 保持完整。角色动作读取原回放的位置及状态，不修改模拟。
+原游戏没有独立弹药拾取规则：地面只绘制回放里已有的五类战利品；弹药数量和装填逻辑保持原样。
+
+完整生成提示词：
+
+background
+Use case: stylized-concept. Production game asset for CodeSide, the 1987 Tokyo Shinjuku neon pixel arcade style approved in reference image 1. Match its hand-crafted, crisp visible pixel clusters, dark ink-like pixel edges, selective highlights and rich but limited arcade palette. No smooth vector, no glossy 3D, no painterly blur. These are actual in-game assets, NOT a concept board. Do not copy the reference's HUD, labels, map, old yellow loot icons, or composition. Create ONLY the distant scenic backdrop, landscape 3:2, preferably 1536x1024. Fill the ENTIRE canvas with a richly detailed 1987 Tokyo Shinjuku night skyline: dense hotel/office buildings at multiple atmospheric depths, rooftop aerials, water tanks, narrow backstreets, red-orange and cyan Japanese neon tube signs, many warm windows, subtle rainy violet haze, cobalt night sky. Main action will be overlaid later. NO foreground platforms, no foreground floor, no foreground obstacles, no characters, no weapons, no pickups, no UI, no title, no framing. Tall skyscrapers have signage concentrated especially in the left and right thirds and distant middle upper third so the city remains visible behind a tall symmetric platform arena. Keep lower half richly filled with windows and streets, not empty sky. Authentic short signs ホテル, 喫茶, ゲーム, 新宿; no real brand logos and no Chinese text/slogans, no modern landmark Skytree or city-hall towers, no modern LED screen billboards. Dim atmospheric background, clear pixels, local luminous signs but no overexposed glow. Built-in pixel-art style at roughly 768x512 logical art resolution, with no tiny photographic texture.
+
+--------------------
+
+actors
+Use case: stylized-concept. Production game asset for CodeSide, the 1987 Tokyo Shinjuku neon pixel arcade style approved in reference image 1. Match its hand-crafted, crisp visible pixel clusters, dark ink-like pixel edges, selective highlights and rich but limited arcade palette. No smooth vector, no glossy 3D, no painterly blur. These are actual in-game assets, NOT a concept board. Do not copy the reference's HUD, labels, map, old yellow loot icons, or composition. A CLEAN TRANSPARENT production sprite atlas, exactly FIVE EQUAL COLUMNS by TWO EQUAL ROWS, 10 fully separate FULL-BODY human sprites. Canvas landscape 3:2, preferably 1536x1024. NO grid lines, NO labels, NO ground shadow, NO background, NO weapons at all, nothing between cells. Every sprite fully inside its own cell with at least 15% transparent gutter on every side. ALL sprites have the exact SAME character height and same apparent scale. Character faces RIGHT in side profile in columns 1-4. Pixel size consistent, large chunky precise pixel clusters as if each actor is a 48x80 sprite enlarged.
+Top row: same human red-team operative in all five cells: red cloth headband with short tails, short dark hair, tan rolled-sleeve field jacket, olive trousers, dark brown boots and simple canvas belt. Bottom row: same human blue-team operative in all five cells: navy cap, dark blue work jacket, off-white simple canvas vest, blue trousers and dark boots. Normal humans, expressive faces, sturdy five-heads-tall arcade proportions, no robot heads, no helmets hiding faces. Each row has poses in this exact order:
+column 1 standing ready, knees soft, empty hands held at chest as if ready to hold a weapon;
+column 2 running stride left leg forward right leg back, empty hands near chest;
+column 3 opposite running stride right leg forward left leg back, hands near chest;
+column 4 airborne jumping, knees tucked, empty hands near chest;
+column 5 climbing a ladder facing BACK toward viewer's plane, one hand up one down, legs alternating, but do NOT draw a ladder.
+No sprite touching another cell, no scenery, genuinely transparent alpha around all 10 characters.
+
+--------------------
+
+items
+Use case: stylized-concept. Production game asset for CodeSide, the 1987 Tokyo Shinjuku neon pixel arcade style approved in reference image 1. Match its hand-crafted, crisp visible pixel clusters, dark ink-like pixel edges, selective highlights and rich but limited arcade palette. No smooth vector, no glossy 3D, no painterly blur. These are actual in-game assets, NOT a concept board. Do not copy the reference's HUD, labels, map, old yellow loot icons, or composition. A CLEAN TRANSPARENT production sprite atlas, exactly FOUR EQUAL COLUMNS by TWO EQUAL ROWS, exactly EIGHT separate distinct item sprites. Landscape 3:2 preferably1536x1024. Every sprite centered inside its own equal grid cell with huge clear transparent padding of at least 15% on all sides. NO labels, NO grid lines, NO background, NO ground shadows, NO floor, NO border. Hand-drawn crisp pixel art with strong silhouette and enough simple detail for use at only 24-40 pixels wide in the actual game. ALL guns viewed exactly SIDE-ON pointing RIGHT, not diagonal and not perspective. No glow outlines. Important: ground pickups must use these newly-designed objects, not the yellow old rounded loot boxes.
+Exact order:
+top row col1: compact worn beige CANVAS MEDICAL BAG, dark brown leather straps, broad red cloth panel with large white cross, facing almost side-on.
+top row col2: olive rectangular military SUPPLY CASE, reinforced brass latches, carrying handle, subtle dark flat-mine symbol on the front, rugged squared edges, closed lid. Not a yellow chest.
+top row col3: compact period black/blued-steel semiautomatic PISTOL, warm brown textured grip, side-on barrel RIGHT.
+top row col4: period ASSAULT RIFLE, black steel receiver, short reddish-brown wooden stock and handguard, curved magazine, side-on barrel RIGHT.
+bottom row col1: period SHOULDER ROCKET LAUNCHER, olive steel tube with scuffed paint, dark shoulder pad and small grip, muzzle RIGHT, side-on.
+bottom row col2: low flat round olive PRESSURE MINE with a small dark red pressure cap, slightly above side-on enough to see round top, no spikes or sci-fi lights.
+bottom row col3: THREE BRASS CARTRIDGES of staggered heights, copper tips, compact readable gold silhouette.
+bottom row col4: a single dark curved RIFLE MAGAZINE with subtle steel highlights.
+Genuine transparent alpha outside objects. All objects fully inside their cell. No other objects.

@@ -1,0 +1,138 @@
+{
+  "kit_version": "1.0-dev",
+  "bot_sha256": "ca8e212a2fcbafe525830c3eab2985a88f4e3adc0db86cc152c600d3fd2be3af",
+  "python": "3.12.6 (tags/v3.12.6:a4a2d2b, Sep  6 2024, 20:11:23) [MSC v.1940 64 bit (AMD64)]",
+  "ticks_per_match": 180,
+  "time_ms": 100,
+  "official_time": false,
+  "matches": [
+    {
+      "stage": "round1",
+      "seat": 0,
+      "seed": 12,
+      "ticks": 180,
+      "scores": [
+        50,
+        35
+      ],
+      "stats": {
+        "name": "candidate",
+        "timeouts": 0,
+        "invalid_lines": 0,
+        "crashed": false,
+        "crash_reason": "",
+        "used_ms": 0,
+        "avg_ms": 0.0,
+        "max_ms": 0.0,
+        "stderr_tail": []
+      }
+    },
+    {
+      "stage": "round1",
+      "seat": 1,
+      "seed": 12,
+      "ticks": 180,
+      "scores": [
+        50,
+        35
+      ],
+      "stats": {
+        "name": "candidate",
+        "timeouts": 0,
+        "invalid_lines": 0,
+        "crashed": false,
+        "crash_reason": "",
+        "used_ms": 62,
+        "avg_ms": 0.34,
+        "max_ms": 16.0,
+        "stderr_tail": []
+      }
+    },
+    {
+      "stage": "round2",
+      "seat": 0,
+      "seed": 21,
+      "ticks": 180,
+      "scores": [
+        0,
+        0
+      ],
+      "stats": {
+        "name": "candidate",
+        "timeouts": 0,
+        "invalid_lines": 0,
+        "crashed": false,
+        "crash_reason": "",
+        "used_ms": 32,
+        "avg_ms": 0.18,
+        "max_ms": 16.0,
+        "stderr_tail": []
+      }
+    },
+    {
+      "stage": "round2",
+      "seat": 1,
+      "seed": 21,
+      "ticks": 180,
+      "scores": [
+        0,
+        0
+      ],
+      "stats": {
+        "name": "candidate",
+        "timeouts": 0,
+        "invalid_lines": 0,
+        "crashed": false,
+        "crash_reason": "",
+        "used_ms": 32,
+        "avg_ms": 0.18,
+        "max_ms": 16.0,
+        "stderr_tail": []
+      }
+    },
+    {
+      "stage": "finals",
+      "seat": 0,
+      "seed": 34,
+      "ticks": 180,
+      "scores": [
+        0,
+        0
+      ],
+      "stats": {
+        "name": "candidate",
+        "timeouts": 0,
+        "invalid_lines": 0,
+        "crashed": false,
+        "crash_reason": "",
+        "used_ms": 15,
+        "avg_ms": 0.08,
+        "max_ms": 15.0,
+        "stderr_tail": []
+      }
+    },
+    {
+      "stage": "finals",
+      "seat": 1,
+      "seed": 34,
+      "ticks": 180,
+      "scores": [
+        0,
+        0
+      ],
+      "stats": {
+        "name": "candidate",
+        "timeouts": 0,
+        "invalid_lines": 0,
+        "crashed": false,
+        "crash_reason": "",
+        "used_ms": 16,
+        "avg_ms": 0.09,
+        "max_ms": 16.0,
+        "stderr_tail": []
+      }
+    }
+  ],
+  "problems": [],
+  "passed": true
+}
