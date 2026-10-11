@@ -1,0 +1,101 @@
+{
+  "type": "turn",
+  "tick": 0,
+  "game": {
+    "current_tick": 0,
+    "players": [
+      {
+        "id": 1,
+        "me": true,
+        "strategy_crashed": false,
+        "score": 0
+      },
+      {
+        "id": 2,
+        "me": false,
+        "strategy_crashed": false,
+        "score": 0
+      }
+    ],
+    "robots": [
+      {
+        "id": 1,
+        "player_id": 1,
+        "is_teammate": true,
+        "x": -1.3223247081954987,
+        "y": 1.0,
+        "z": -25.77934006377413,
+        "velocity_x": 0.0,
+        "velocity_y": 0.0,
+        "velocity_z": 0.0,
+        "radius": 1.0,
+        "nitro_amount": 0.0,
+        "touch": true,
+        "touch_normal_x": 0.0,
+        "touch_normal_y": 1.0,
+        "touch_normal_z": 0.0
+      },
+      {
+        "id": 2,
+        "player_id": 1,
+        "is_teammate": true,
+        "x": 8.653344498491577,
+        "y": 1.0,
+        "z": -13.422408470208826,
+        "velocity_x": 0.0,
+        "velocity_y": 0.0,
+        "velocity_z": 0.0,
+        "radius": 1.0,
+        "nitro_amount": 0.0,
+        "touch": true,
+        "touch_normal_x": 0.0,
+        "touch_normal_y": 1.0,
+        "touch_normal_z": 0.0
+      },
+      {
+        "id": 3,
+        "player_id": 2,
+        "is_teammate": false,
+        "x": 1.3223247081954987,
+        "y": 1.0,
+        "z": 25.77934006377413,
+        "velocity_x": 0.0,
+        "velocity_y": 0.0,
+        "velocity_z": 0.0,
+        "radius": 1.0,
+        "nitro_amount": 0.0,
+        "touch": true,
+        "touch_normal_x": 0.0,
+        "touch_normal_y": 1.0,
+        "touch_normal_z": 0.0
+      },
+      {
+        "id": 4,
+        "player_id": 2,
+        "is_teammate": false,
+        "x": -8.653344498491577,
+        "y": 1.0,
+        "z": 13.422408470208826,
+        "velocity_x": 0.0,
+        "velocity_y": 0.0,
+        "velocity_z": 0.0,
+        "radius": 1.0,
+        "nitro_amount": 0.0,
+        "touch": true,
+        "touch_normal_x": 0.0,
+        "touch_normal_y": 1.0,
+        "touch_normal_z": 0.0
+      }
+    ],
+    "nitro_packs": [],
+    "ball": {
+      "x": 0.0,
+      "y": 2.065162658540408,
+      "z": 0.0,
+      "velocity_x": 0.0,
+      "velocity_y": 0.0,
+      "velocity_z": 0.0,
+      "radius": 2.0
+    }
+  }
+}

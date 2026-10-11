@@ -1,0 +1,19 @@
+{
+  "tick": 0,
+  "actions": {
+    "1": {
+      "target_velocity_x": 1.5367987288399418,
+      "target_velocity_y": 0.0,
+      "target_velocity_z": 29.96061163706502,
+      "jump_speed": 0.0,
+      "use_nitro": false
+    },
+    "2": {
+      "target_velocity_x": -16.255483420811583,
+      "target_velocity_y": 0.0,
+      "target_velocity_z": 25.214266968439112,
+      "jump_speed": 0.0,
+      "use_nitro": false
+    }
+  }
+}

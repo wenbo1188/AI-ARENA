@@ -1,0 +1,10 @@
+{
+  "game": "football",
+  "version": "1.1",
+  "date": "2026-10-11",
+  "python_tested": "3.12.6",
+  "platform_tested": "Windows",
+  "competition_sha256": "69d7c6a98675b1e2991da8277914e9c61c870234ed5b27cc3ac0f332385552dc",
+  "source": "用户提供的竞技场工程，经本次规则与工具修订",
+  "status": "ready_for_local_development; organizer_deployment_acceptance_required"
+}

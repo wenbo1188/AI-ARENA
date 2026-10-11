@@ -1,0 +1,75 @@
+{
+  "CodeBall": {
+    "manifest_verified": true,
+    "commands": [
+      {
+        "command": [
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ],
+        "exit": 0,
+        "output": "..............\n----------------------------------------------------------------------\nRan 14 tests in 4.228s\n\nOK\n"
+      },
+      {
+        "command": [
+          "kit.py",
+          "check"
+        ],
+        "exit": 0,
+        "output": "round1 seat=0 score=[0, 0] ticks=180\nround1 seat=1 score=[0, 0] ticks=180\nround2 seat=0 score=[0, 0] ticks=180\nround2 seat=1 score=[0, 0] ticks=180\nfinals seat=0 score=[0, 0] ticks=180\nfinals seat=1 score=[0, 0] ticks=180\nPASS\n"
+      },
+      {
+        "command": [
+          "kit.py",
+          "pack",
+          "--meta",
+          "D:\\Codex\\2026-10-07\\zhe\\work\\kit-release-check-1791704475\\CodeBall-test-meta.json"
+        ],
+        "exit": 0,
+        "output": "D:\\Codex\\2026-10-07\\zhe\\work\\kit-release-check-1791704475\\CodeBall-Participant-Kit-v1.1\\dist\\Release_Test-a9b31e0a1279.zip\n"
+      },
+      {
+        "command": [
+          "kit.py",
+          "pack",
+          "--meta",
+          "D:\\Codex\\2026-10-07\\zhe\\work\\kit-release-check-1791704475\\CodeBall-test-meta.json"
+        ],
+        "exit": 1,
+        "output": "ERROR: 请使用当前版本、当前代码重新完成自测\n"
+      },
+      {
+        "command": [
+          "kit.py",
+          "pack",
+          "--meta",
+          "D:\\Codex\\2026-10-07\\zhe\\work\\kit-release-check-1791704475\\CodeBall-test-meta.json"
+        ],
+        "exit": 1,
+        "output": "ERROR: 请使用当前版本、当前代码重新完成自测\n"
+      }
+    ],
+    "submission_sha_binding_verified": true
+  },
+  "version": "1.1",
+  "date": "2026-10-11",
+  "release_scope": "participant_material_cleanup_and_independent_delivery",
+  "archive_sha256": "b4d76924bdc929b2e5d6e615d42b10fcb99b4077cc87432a23beaefb51be5d9e",
+  "verified_scope": [
+    "fresh_archive_manifest",
+    "14_existing_regression_tests",
+    "three_stages_both_sides_180_tick_selfcheck",
+    "sha256_submission_binding",
+    "changed_code_rejection",
+    "old_version_report_rejection",
+    "cleaned_text_and_8_tick_example_consistency",
+    "unchanged_gameplay_budget_and_ranking_implementation"
+  ],
+  "not_run_in_this_release": [
+    "full_six_match_20000_tick_tournament",
+    "multi_seed_side_fairness_audit"
+  ]
+}
