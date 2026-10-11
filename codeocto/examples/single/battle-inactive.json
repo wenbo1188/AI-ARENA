@@ -1,0 +1,740 @@
+{
+  "type": "turn",
+  "tick": 3,
+  "phase": "battle",
+  "round": 1,
+  "your_turn": false,
+  "actor": null,
+  "me": [
+    {
+      "id": 0,
+      "traveler": "ochette",
+      "name": "欧修缇",
+      "alive": true,
+      "hp": 5447,
+      "max_hp": 5447,
+      "sp": 136,
+      "max_sp": 145,
+      "bp": 0,
+      "shields": 6,
+      "max_shields": 6,
+      "weaknesses": [
+        "sword",
+        "staff",
+        "fire",
+        "ice"
+      ],
+      "broken": false,
+      "broken_until_round": null,
+      "latent": 0.0,
+      "latent_capacity": 125,
+      "latent_ready": false,
+      "weapons": [
+        "bow",
+        "axe",
+        "dagger",
+        "sword"
+      ],
+      "stats": {
+        "pa": 348.0,
+        "pd": 228.0,
+        "ea": 285.0,
+        "ed": 228.0,
+        "spd": 307.0,
+        "crit": 378.0,
+        "acc": 359.0,
+        "eva": 338.0
+      },
+      "base_stats": {
+        "pa": 348,
+        "pd": 228,
+        "ea": 285,
+        "ed": 228,
+        "spd": 307,
+        "crit": 378,
+        "acc": 359,
+        "eva": 338
+      },
+      "buffs": {},
+      "debuffs": {},
+      "status": {},
+      "defending": false,
+      "spell_tier": 1,
+      "spell_tier_charges": 0,
+      "boosted_this_round": true,
+      "sub_job": "Thief",
+      "skills": [
+        "precise_shot",
+        "thunderbird",
+        "cleaving_blow",
+        "mercy_strike",
+        "take_aim",
+        "leghold_trap",
+        "abating_orb",
+        "draefendis_bow",
+        "darkest_night",
+        "surprise_attack",
+        "swift_step",
+        "armor_corrosive",
+        "shackle_foe"
+      ],
+      "supports": [
+        "eagle_eye",
+        "salt_the_wound"
+      ],
+      "rise_again_ready": false
+    },
+    {
+      "id": 1,
+      "traveler": "castti",
+      "name": "卡斯蒂",
+      "alive": true,
+      "hp": 6836,
+      "max_hp": 6836,
+      "sp": 214,
+      "max_sp": 214,
+      "bp": 1,
+      "shields": 6,
+      "max_shields": 6,
+      "weaknesses": [
+        "polearm",
+        "staff",
+        "lightning",
+        "light"
+      ],
+      "broken": false,
+      "broken_until_round": null,
+      "latent": 0.0,
+      "latent_capacity": 100,
+      "latent_ready": false,
+      "weapons": [
+        "axe",
+        "staff"
+      ],
+      "stats": {
+        "pa": 313.0,
+        "pd": 285.0,
+        "ea": 299.0,
+        "ed": 299.0,
+        "spd": 228.0,
+        "crit": 285.0,
+        "acc": 285.0,
+        "eva": 256.0
+      },
+      "base_stats": {
+        "pa": 313,
+        "pd": 285,
+        "ea": 299,
+        "ed": 299,
+        "spd": 228,
+        "crit": 285,
+        "acc": 285,
+        "eva": 256
+      },
+      "buffs": {},
+      "debuffs": {},
+      "status": {
+        "ward": 3
+      },
+      "defending": false,
+      "spell_tier": 1,
+      "spell_tier_charges": 0,
+      "boosted_this_round": false,
+      "sub_job": "Cleric",
+      "skills": [
+        "healing_touch",
+        "icicle",
+        "rehabilitate",
+        "sweeping_cleave",
+        "poison_axe",
+        "replenish_health",
+        "weak_to_poison",
+        "dohters_charity",
+        "heal_wounds",
+        "holy_light",
+        "luminescence"
+      ],
+      "supports": [
+        "hale_and_hearty",
+        "inspiriting_break",
+        "preventative_measures"
+      ],
+      "rise_again_ready": false,
+      "materials": 4
+    },
+    {
+      "id": 2,
+      "traveler": "osvald",
+      "name": "奥兹巴尔多",
+      "alive": true,
+      "hp": 4557,
+      "max_hp": 4557,
+      "sp": 218,
+      "max_sp": 218,
+      "bp": 1,
+      "shields": 5,
+      "max_shields": 5,
+      "weaknesses": [
+        "sword",
+        "dagger",
+        "fire",
+        "lightning"
+      ],
+      "broken": false,
+      "broken_until_round": null,
+      "latent": 0.0,
+      "latent_capacity": 100,
+      "latent_ready": false,
+      "weapons": [
+        "staff",
+        "bow",
+        "axe"
+      ],
+      "stats": {
+        "pa": 276.0,
+        "pd": 256.0,
+        "ea": 420.0,
+        "ed": 342.0,
+        "spd": 268.0,
+        "crit": 241.0,
+        "acc": 302.0,
+        "eva": 293.0
+      },
+      "base_stats": {
+        "pa": 276,
+        "pd": 256,
+        "ea": 420,
+        "ed": 342,
+        "spd": 268,
+        "crit": 241,
+        "acc": 302,
+        "eva": 293
+      },
+      "buffs": {},
+      "debuffs": {},
+      "status": {},
+      "defending": false,
+      "spell_tier": 1,
+      "spell_tier_charges": 0,
+      "boosted_this_round": false,
+      "sub_job": "Hunter",
+      "skills": [
+        "fireball",
+        "icewind",
+        "lightning_bolt",
+        "stroke_of_genius",
+        "elemental_barrage",
+        "advance_magic",
+        "alephans_wisdom",
+        "precise_shot",
+        "thunderbird",
+        "cleaving_blow",
+        "mercy_strike",
+        "take_aim",
+        "leghold_trap"
+      ],
+      "supports": [
+        "advanced_magic_master",
+        "elemental_augmentation"
+      ],
+      "rise_again_ready": false
+    },
+    {
+      "id": 3,
+      "traveler": "hikari",
+      "name": "光",
+      "alive": true,
+      "hp": 6781,
+      "max_hp": 6781,
+      "sp": 171,
+      "max_sp": 171,
+      "bp": 1,
+      "shields": 7,
+      "max_shields": 7,
+      "weaknesses": [
+        "axe",
+        "bow",
+        "ice",
+        "wind"
+      ],
+      "broken": false,
+      "broken_until_round": null,
+      "latent": 0.0,
+      "latent_capacity": 125,
+      "latent_ready": false,
+      "weapons": [
+        "sword",
+        "polearm",
+        "staff"
+      ],
+      "stats": {
+        "pa": 392.0,
+        "pd": 313.0,
+        "ea": 268.0,
+        "ed": 239.0,
+        "spd": 285.0,
+        "crit": 285.0,
+        "acc": 313.0,
+        "eva": 228.0
+      },
+      "base_stats": {
+        "pa": 392,
+        "pd": 313,
+        "ea": 268,
+        "ed": 239,
+        "spd": 285,
+        "crit": 285,
+        "acc": 313,
+        "eva": 228
+      },
+      "buffs": {},
+      "debuffs": {},
+      "status": {},
+      "defending": false,
+      "spell_tier": 1,
+      "spell_tier_charges": 0,
+      "boosted_this_round": false,
+      "sub_job": "Cleric",
+      "skills": [
+        "aggressive_slash",
+        "piercing_thrust",
+        "abide",
+        "enervating_slash",
+        "stout_wall",
+        "incite",
+        "vengeful_blade",
+        "brands_blade",
+        "heal_wounds",
+        "holy_light"
+      ],
+      "supports": [
+        "bolstering_break",
+        "deal_more_damage",
+        "latent_power_plus",
+        "summon_strength"
+      ],
+      "rise_again_ready": false
+    }
+  ],
+  "opponents": [
+    {
+      "id": 0,
+      "traveler": "ochette",
+      "name": "欧修缇",
+      "alive": true,
+      "hp": 5447,
+      "max_hp": 5447,
+      "sp": 145,
+      "max_sp": 145,
+      "bp": 1,
+      "shields": 6,
+      "max_shields": 6,
+      "weaknesses": [
+        "sword",
+        "staff",
+        "fire",
+        "ice"
+      ],
+      "broken": false,
+      "broken_until_round": null,
+      "latent": 0.0,
+      "latent_capacity": 125,
+      "latent_ready": false,
+      "weapons": [
+        "bow",
+        "axe",
+        "dagger",
+        "sword"
+      ],
+      "stats": {
+        "pa": 348.0,
+        "pd": 228.0,
+        "ea": 285.0,
+        "ed": 228.0,
+        "spd": 307.0,
+        "crit": 378.0,
+        "acc": 359.0,
+        "eva": 338.0
+      },
+      "base_stats": {
+        "pa": 348,
+        "pd": 228,
+        "ea": 285,
+        "ed": 228,
+        "spd": 307,
+        "crit": 378,
+        "acc": 359,
+        "eva": 338
+      },
+      "buffs": {},
+      "debuffs": {},
+      "status": {},
+      "defending": false,
+      "spell_tier": 1,
+      "spell_tier_charges": 0,
+      "boosted_this_round": false,
+      "sub_job": "Thief",
+      "skills": [
+        "precise_shot",
+        "thunderbird",
+        "cleaving_blow",
+        "mercy_strike",
+        "take_aim",
+        "leghold_trap",
+        "abating_orb",
+        "draefendis_bow",
+        "darkest_night",
+        "surprise_attack",
+        "swift_step",
+        "armor_corrosive",
+        "shackle_foe"
+      ],
+      "supports": [
+        "eagle_eye",
+        "salt_the_wound"
+      ],
+      "rise_again_ready": false
+    },
+    {
+      "id": 1,
+      "traveler": "castti",
+      "name": "卡斯蒂",
+      "alive": true,
+      "hp": 6836,
+      "max_hp": 6836,
+      "sp": 214,
+      "max_sp": 214,
+      "bp": 1,
+      "shields": 6,
+      "max_shields": 6,
+      "weaknesses": [
+        "polearm",
+        "staff",
+        "lightning",
+        "light"
+      ],
+      "broken": false,
+      "broken_until_round": null,
+      "latent": 0.0,
+      "latent_capacity": 100,
+      "latent_ready": false,
+      "weapons": [
+        "axe",
+        "staff"
+      ],
+      "stats": {
+        "pa": 313.0,
+        "pd": 285.0,
+        "ea": 299.0,
+        "ed": 299.0,
+        "spd": 228.0,
+        "crit": 285.0,
+        "acc": 285.0,
+        "eva": 256.0
+      },
+      "base_stats": {
+        "pa": 313,
+        "pd": 285,
+        "ea": 299,
+        "ed": 299,
+        "spd": 228,
+        "crit": 285,
+        "acc": 285,
+        "eva": 256
+      },
+      "buffs": {},
+      "debuffs": {},
+      "status": {
+        "ward": 3
+      },
+      "defending": false,
+      "spell_tier": 1,
+      "spell_tier_charges": 0,
+      "boosted_this_round": false,
+      "sub_job": "Cleric",
+      "skills": [
+        "healing_touch",
+        "icicle",
+        "rehabilitate",
+        "sweeping_cleave",
+        "poison_axe",
+        "replenish_health",
+        "weak_to_poison",
+        "dohters_charity",
+        "heal_wounds",
+        "holy_light",
+        "luminescence"
+      ],
+      "supports": [
+        "hale_and_hearty",
+        "inspiriting_break",
+        "preventative_measures"
+      ],
+      "rise_again_ready": false,
+      "materials": 4
+    },
+    {
+      "id": 2,
+      "traveler": "osvald",
+      "name": "奥兹巴尔多",
+      "alive": true,
+      "hp": 4557,
+      "max_hp": 4557,
+      "sp": 218,
+      "max_sp": 218,
+      "bp": 1,
+      "shields": 5,
+      "max_shields": 5,
+      "weaknesses": [
+        "sword",
+        "dagger",
+        "fire",
+        "lightning"
+      ],
+      "broken": false,
+      "broken_until_round": null,
+      "latent": 0.0,
+      "latent_capacity": 100,
+      "latent_ready": false,
+      "weapons": [
+        "staff",
+        "bow",
+        "axe"
+      ],
+      "stats": {
+        "pa": 276.0,
+        "pd": 256.0,
+        "ea": 420.0,
+        "ed": 342.0,
+        "spd": 268.0,
+        "crit": 241.0,
+        "acc": 302.0,
+        "eva": 293.0
+      },
+      "base_stats": {
+        "pa": 276,
+        "pd": 256,
+        "ea": 420,
+        "ed": 342,
+        "spd": 268,
+        "crit": 241,
+        "acc": 302,
+        "eva": 293
+      },
+      "buffs": {},
+      "debuffs": {},
+      "status": {},
+      "defending": false,
+      "spell_tier": 1,
+      "spell_tier_charges": 0,
+      "boosted_this_round": false,
+      "sub_job": "Hunter",
+      "skills": [
+        "fireball",
+        "icewind",
+        "lightning_bolt",
+        "stroke_of_genius",
+        "elemental_barrage",
+        "advance_magic",
+        "alephans_wisdom",
+        "precise_shot",
+        "thunderbird",
+        "cleaving_blow",
+        "mercy_strike",
+        "take_aim",
+        "leghold_trap"
+      ],
+      "supports": [
+        "advanced_magic_master",
+        "elemental_augmentation"
+      ],
+      "rise_again_ready": false
+    },
+    {
+      "id": 3,
+      "traveler": "hikari",
+      "name": "光",
+      "alive": true,
+      "hp": 6781,
+      "max_hp": 6781,
+      "sp": 171,
+      "max_sp": 171,
+      "bp": 1,
+      "shields": 7,
+      "max_shields": 7,
+      "weaknesses": [
+        "axe",
+        "bow",
+        "ice",
+        "wind"
+      ],
+      "broken": false,
+      "broken_until_round": null,
+      "latent": 0.0,
+      "latent_capacity": 125,
+      "latent_ready": false,
+      "weapons": [
+        "sword",
+        "polearm",
+        "staff"
+      ],
+      "stats": {
+        "pa": 392.0,
+        "pd": 313.0,
+        "ea": 268.0,
+        "ed": 239.0,
+        "spd": 285.0,
+        "crit": 285.0,
+        "acc": 313.0,
+        "eva": 228.0
+      },
+      "base_stats": {
+        "pa": 392,
+        "pd": 313,
+        "ea": 268,
+        "ed": 239,
+        "spd": 285,
+        "crit": 285,
+        "acc": 313,
+        "eva": 228
+      },
+      "buffs": {},
+      "debuffs": {},
+      "status": {},
+      "defending": false,
+      "spell_tier": 1,
+      "spell_tier_charges": 0,
+      "boosted_this_round": false,
+      "sub_job": "Cleric",
+      "skills": [
+        "aggressive_slash",
+        "piercing_thrust",
+        "abide",
+        "enervating_slash",
+        "stout_wall",
+        "incite",
+        "vengeful_blade",
+        "brands_blade",
+        "heal_wounds",
+        "holy_light"
+      ],
+      "supports": [
+        "bolstering_break",
+        "deal_more_damage",
+        "latent_power_plus",
+        "summon_strength"
+      ],
+      "rise_again_ready": false
+    }
+  ],
+  "current": [
+    1,
+    3
+  ],
+  "queue": [
+    [
+      1,
+      0
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      0,
+      3
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      1
+    ]
+  ],
+  "next_round_order": [
+    [
+      0,
+      0
+    ],
+    [
+      1,
+      0
+    ],
+    [
+      0,
+      3
+    ],
+    [
+      1,
+      3
+    ],
+    [
+      0,
+      2
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      0,
+      1
+    ],
+    [
+      1,
+      1
+    ]
+  ],
+  "last_events": [
+    {
+      "e": "turn",
+      "u": [
+        0,
+        0
+      ],
+      "kind": "normal"
+    },
+    {
+      "e": "boost",
+      "u": [
+        0,
+        0
+      ],
+      "n": 1
+    },
+    {
+      "e": "skill",
+      "u": [
+        0,
+        0
+      ],
+      "s": "abating_orb"
+    }
+  ],
+  "my_items": {
+    "light_soulstone": 1,
+    "wind_soulstone": 1,
+    "lightning_soulstone_m": 1,
+    "wind_soulstone_m": 1,
+    "herb_of_serenity": 1,
+    "healing_grape_m": 1,
+    "healing_grape": 2,
+    "inspiriting_plum": 1
+  },
+  "opponent_items": {
+    "light_soulstone": 1,
+    "wind_soulstone": 1,
+    "lightning_soulstone_m": 1,
+    "wind_soulstone_m": 1,
+    "herb_of_serenity": 1,
+    "healing_grape_m": 1,
+    "healing_grape": 2,
+    "inspiriting_plum": 1
+  }
+}

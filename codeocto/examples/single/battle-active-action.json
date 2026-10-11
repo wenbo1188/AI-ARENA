@@ -1,0 +1,10 @@
+{
+  "tick": 2,
+  "action": {
+    "skill": "abating_orb",
+    "target": 2,
+    "boost": 1,
+    "latent": false,
+    "recipe": "elixir"
+  }
+}

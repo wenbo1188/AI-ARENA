@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__TITLE__</title>
+<style>
+/*__FONT__*/
+  :root { --bg:#f3efe6; --fg:#231c2c; --muted:#6d6377; --card:#fffdf8; --line:#d8cfbf; --gold:#9a7a3a; --a:#2f7ae0; --b:#d84848; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#120e18; --fg:#ece4d4; --muted:#a69cb0; --card:#1c1724; --line:#3a3046; --gold:#d6be82; --a:#5aa9ff; --b:#ff6b6b; color-scheme:dark; } }
+  :root[data-theme="dark"] { --bg:#120e18; --fg:#ece4d4; --muted:#a69cb0; --card:#1c1724; --line:#3a3046; --gold:#d6be82; --a:#5aa9ff; --b:#ff6b6b; color-scheme:dark; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg); font:14px/1.5 "Replay CJK","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif; }
+  main { max-width:1200px; margin:0 auto; padding:16px; }
+  h1 { font-size:18px; font-weight:600; text-align:center; margin:4px 0 10px; color:var(--gold); letter-spacing:.1em; }
+  .score { display:flex; align-items:center; justify-content:center; gap:16px; font-size:20px; font-weight:700; margin:0 0 12px; flex-wrap:wrap; }
+  .score .a { color:var(--a); } .score .b { color:var(--b); }
+  .score .num { font-size:26px; min-width:90px; text-align:center; font-variant-numeric:tabular-nums; }
+  canvas { width:100%; height:auto; display:block; border-radius:6px; background:#0b0812; image-rendering:pixelated; box-shadow:0 8px 30px rgba(0,0,0,.35); }
+  .ctrl { display:flex; gap:8px; align-items:center; margin:12px 0; flex-wrap:wrap; }
+  .ctrl input[type=range] { flex:1; min-width:160px; accent-color:var(--gold); }
+  .rot { display:none; text-align:center; font-size:12px; color:var(--muted); margin:0 0 6px; }
+  /* 竖屏手机：整幅画面按宽度缩放，提示横屏看更清楚 */
+  @media (orientation: portrait) and (max-width: 700px) { main { padding:8px; } .rot { display:block; } h1 { margin:0 0 6px; } .score { font-size:16px; gap:8px; margin-bottom:8px; } .score .num { font-size:20px; min-width:60px; } }
+  /* 横屏手机：去掉标题和比分条，画面按屏幕高度完整显示，控制条紧贴在下面 */
+  @media (orientation: landscape) and (max-height: 600px) {
+    main { padding:4px 8px; max-width:none; } h1, .score { display:none; }
+    canvas { width:min(100%, calc((100vh - 52px) * 16 / 9)); width:min(100%, calc((100svh - 52px) * 16 / 9)); margin:0 auto; border-radius:4px; }
+    .ctrl { margin:6px auto 8px; gap:6px; width:min(100%, calc((100svh - 52px) * 16 / 9)); } .ctrl button, .ctrl select { padding:4px 6px; font-size:13px; } .ctrl input[type=range] { min-width:60px; }
+    .ctrl #info { display:none; }
+  }
+  button, select { background:var(--card); color:var(--fg); border:1px solid var(--line); border-radius:6px; padding:6px 12px; font:inherit; cursor:pointer; }
+  .muted { color:var(--muted); }
+  .cols { display:grid; grid-template-columns: 1fr; gap:16px; }
+  #log { max-height:360px; overflow:auto; background:var(--card); border:1px solid var(--line); border-radius:8px; padding:6px 0; }
+  #log .row { padding:4px 12px; cursor:pointer; border-left:3px solid transparent; }
+  #log .row:hover { background:rgba(150,120,60,.08); }
+  #log .row.on { border-left-color:var(--gold); background:rgba(150,120,60,.14); }
+  .rd { color:var(--gold); } .lt { color:#e08a20; } .bp { color:#c99a10; font-size:12px; }
+  .wk { color:#d8a010; font-size:12px; margin-left:2px; } .cr { color:#e05a3a; font-size:12px; margin-left:2px; }
+  .brk { color:#d89a10; font-weight:700; } .ko { color:#d84848; } .end { color:var(--gold); }
+  table { border-collapse:collapse; width:100%; background:var(--card); border-radius:8px; overflow:hidden; }
+  th, td { padding:6px 10px; border-bottom:1px solid var(--line); text-align:left; white-space:nowrap; }
+  .tbl { overflow-x:auto; }
+  .note { font-size:12px; color:var(--muted); margin-top:12px; }
+  /* ?clean=1 录制模式：只留画布，铺满窗口 */
+  html.clean, html.clean body { margin:0; background:#000; overflow:hidden; }
+  html.clean main { padding:0; max-width:none; }
+  html.clean main > :not(#cv) { display:none !important; }
+  html.clean #cv { width:100vw; height:100vh; object-fit:contain; border-radius:0; box-shadow:none; image-rendering:auto; }
+</style>
+</head>
+<body>
+<main>
+  <h1>歧路旅人 II · 旅人对决</h1>
+  <div class="score"><span class="a" id="na"></span><span class="num" id="sc"></span><span class="b" id="nb"></span></div>
+  <p class="rot">把手机横过来看画面更清楚</p>
+  <canvas id="cv"></canvas>
+  <div class="ctrl">
+    <button id="play">▶ 播放</button>
+    <button id="prev">◀ 上一步</button>
+    <button id="next">下一步 ▶</button>
+    <select id="speed"><option value="0.5">0.5×</option><option value="1" selected>1×</option><option value="2">2×</option><option value="4">4×</option><option value="8">8×</option></select>
+    <input type="range" id="seek" min="0" value="0">
+    <button id="sfx">🔊 音效开</button>
+    <button id="cut">🎬 特写开</button>
+    <span class="muted" id="info"></span>
+  </div>
+  <div class="cols">
+    <div id="log"></div>
+    <div class="tbl"><table id="stats"></table></div>
+  </div>
+  <p class="note">空格 播放/暂停，← → 逐步，点击战报跳转。浏览器要求先点一下页面才能出声。战场角色的关键姿态、命中特效和招式音效取自用户提供的素材包，头像和技能特写立绘取自用户提供的设计图；场景、界面和其余音效为自制，致敬《歧路旅人 II》（八方旅人2）的像素加景深画风，未使用原作美术和音乐素材。界面字体为内嵌的思源黑体（Noto Sans SC，SIL OFL 1.1）子集。</p>
+</main>
+<script>window.__REPLAY__ = @@DATA@@;</script>
+<script>
+__SCRIPT__
+</script>
+</body>
+</html>

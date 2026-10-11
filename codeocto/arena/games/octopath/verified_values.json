@@ -1,0 +1,4876 @@
+{
+  "aggressive_slash": {
+    "name": "Aggressive Slash",
+    "sp": 9,
+    "levels": [
+      {
+        "source_row": 8,
+        "ratio": 0.8,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "RANDOM_TARGET_PHYSICS_DAMAGE",
+            "value": 70.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 9,
+        "ratio": 1.1,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "RANDOM_TARGET_PHYSICS_DAMAGE",
+            "value": 70.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 10,
+        "ratio": 1.4,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "RANDOM_TARGET_PHYSICS_DAMAGE",
+            "value": 70.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 11,
+        "ratio": 1.7,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "RANDOM_TARGET_PHYSICS_DAMAGE",
+            "value": 70.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "piercing_thrust": {
+    "name": "Piercing Thrust",
+    "sp": 12,
+    "levels": [
+      {
+        "source_row": 24,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 125.0,
+            "turns": 0,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 25,
+        "ratio": 2.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 125.0,
+            "turns": 0,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 26,
+        "ratio": 3.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 125.0,
+            "turns": 0,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 27,
+        "ratio": 4.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 125.0,
+            "turns": 0,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "abide": {
+    "name": "Abide",
+    "sp": 4,
+    "levels": [
+      {
+        "source_row": 12,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_ATK_UP",
+            "value": 0.0,
+            "turns": 3,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 13,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_ATK_UP",
+            "value": 0.0,
+            "turns": 5,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 14,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_ATK_UP",
+            "value": 0.0,
+            "turns": 7,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 15,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_ATK_UP",
+            "value": 0.0,
+            "turns": 9,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "enervating_slash": {
+    "name": "Enervating Slash",
+    "sp": 7,
+    "levels": [
+      {
+        "source_row": 28,
+        "ratio": 1.0,
+        "crit": 1.2,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 90.0,
+            "turns": 0,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 29,
+        "ratio": 2.0,
+        "crit": 1.2,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 90.0,
+            "turns": 0,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 30,
+        "ratio": 3.0,
+        "crit": 1.2,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 90.0,
+            "turns": 0,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 31,
+        "ratio": 4.0,
+        "crit": 1.2,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 90.0,
+            "turns": 0,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "stout_wall": {
+    "name": "Stout Wall",
+    "sp": 4,
+    "levels": [
+      {
+        "source_row": 16,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_DEF_UP",
+            "value": 0.0,
+            "turns": 3,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 17,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_DEF_UP",
+            "value": 0.0,
+            "turns": 5,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 18,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_DEF_UP",
+            "value": 0.0,
+            "turns": 7,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 19,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_DEF_UP",
+            "value": 0.0,
+            "turns": 9,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "incite": {
+    "name": "Incite",
+    "sp": 4,
+    "levels": [
+      {
+        "source_row": 20,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_PROVOKE",
+            "value": 0.0,
+            "turns": 3,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 21,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_PROVOKE",
+            "value": 0.0,
+            "turns": 5,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 22,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_PROVOKE",
+            "value": 0.0,
+            "turns": 7,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 23,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_PROVOKE",
+            "value": 0.0,
+            "turns": 9,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "vengeful_blade": {
+    "name": "Vengeful Blade",
+    "sp": 6,
+    "levels": [
+      {
+        "source_row": 32,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_WAR_COUNTER",
+            "value": 100.0,
+            "turns": 2,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 33,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_WAR_COUNTER",
+            "value": 100.0,
+            "turns": 3,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 34,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_WAR_COUNTER",
+            "value": 100.0,
+            "turns": 4,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 35,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_WAR_COUNTER",
+            "value": 100.0,
+            "turns": 5,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "brands_blade": {
+    "name": "Brand's Blade",
+    "sp": 30,
+    "levels": [
+      {
+        "source_row": 45,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 170.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 46,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 170.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 47,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 170.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 48,
+        "ratio": 6.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 170.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "arrow_of_fortune": {
+    "name": "Arrow of Fortune",
+    "sp": 12,
+    "levels": [
+      {
+        "source_row": 57,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 140.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "GET_LUCKY_EXP",
+            "value": 3.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "GET_LUCKY_JP",
+            "value": 2.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 58,
+        "ratio": 1.8,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 140.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "GET_LUCKY_EXP",
+            "value": 3.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "GET_LUCKY_JP",
+            "value": 2.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 59,
+        "ratio": 2.6,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 140.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "GET_LUCKY_EXP",
+            "value": 3.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "GET_LUCKY_JP",
+            "value": 2.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 60,
+        "ratio": 3.4,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 140.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "GET_LUCKY_EXP",
+            "value": 3.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "GET_LUCKY_JP",
+            "value": 2.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "rest": {
+    "name": "Rest",
+    "sp": 0,
+    "levels": [
+      {
+        "source_row": 65,
+        "ratio": 1.7,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "REMOVE_DECONDITION",
+            "value": 0.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "HP_RECOVERY",
+            "value": 150.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "MP_FIXED_RECOVERY",
+            "value": 25.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 66,
+        "ratio": 2.5,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "REMOVE_DECONDITION",
+            "value": 0.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "HP_RECOVERY",
+            "value": 150.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "MP_FIXED_RECOVERY",
+            "value": 50.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 67,
+        "ratio": 3.3,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "REMOVE_DECONDITION",
+            "value": 0.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "HP_RECOVERY",
+            "value": 150.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "MP_FIXED_RECOVERY",
+            "value": 75.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 68,
+        "ratio": 4.1,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "REMOVE_DECONDITION",
+            "value": 0.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "HP_RECOVERY",
+            "value": 150.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "MP_FIXED_RECOVERY",
+            "value": 100.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "ember": {
+    "name": "Ember",
+    "sp": 7,
+    "levels": [
+      {
+        "source_row": 53,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 54,
+        "ratio": 2.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 55,
+        "ratio": 3.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 56,
+        "ratio": 4.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "donate_bp": {
+    "name": "Donate BP",
+    "sp": 6,
+    "levels": [
+      {
+        "source_row": 69,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "BP_RECOVERY",
+            "value": 1.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 70,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "BP_RECOVERY",
+            "value": 2.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 71,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "BP_RECOVERY",
+            "value": 3.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 72,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "BP_RECOVERY",
+            "value": 4.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "sidestep": {
+    "name": "Sidestep",
+    "sp": 10,
+    "levels": [
+      {
+        "source_row": 73,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_HIDE_OUT",
+            "value": 0.0,
+            "turns": 1,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 74,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_HIDE_OUT",
+            "value": 0.0,
+            "turns": 2,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 75,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_HIDE_OUT",
+            "value": 0.0,
+            "turns": 3,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 76,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_HIDE_OUT",
+            "value": 0.0,
+            "turns": 4,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "bifelgans_bounty": {
+    "name": "Bifelgan's Bounty",
+    "sp": 30,
+    "levels": [
+      {
+        "source_row": 89,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "MONEY_DRAIN",
+            "value": 0.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 90,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "MONEY_DRAIN",
+            "value": 0.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 91,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "MONEY_DRAIN",
+            "value": 0.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 92,
+        "ratio": 6.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "MONEY_DRAIN",
+            "value": 0.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "darkest_night": {
+    "name": "Darkest Night",
+    "sp": 7,
+    "levels": [
+      {
+        "source_row": 261,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 262,
+        "ratio": 2.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 263,
+        "ratio": 3.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 264,
+        "ratio": 4.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "hp_thief": {
+    "name": "HP Thief",
+    "sp": 6,
+    "levels": [
+      {
+        "source_row": 273,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 110.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "HP_DRAIN",
+            "value": 50.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 274,
+        "ratio": 1.8,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 110.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "HP_DRAIN",
+            "value": 50.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 275,
+        "ratio": 2.6,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 110.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "HP_DRAIN",
+            "value": 50.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 276,
+        "ratio": 3.4,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 110.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "HP_DRAIN",
+            "value": 50.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "surprise_attack": {
+    "name": "Surprise Attack",
+    "sp": 12,
+    "levels": [
+      {
+        "source_row": 281,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 125.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 282,
+        "ratio": 2.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 125.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 283,
+        "ratio": 3.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 125.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 284,
+        "ratio": 4.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 125.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "swift_step": {
+    "name": "Swift Step",
+    "sp": 4,
+    "levels": [
+      {
+        "source_row": 277,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_AGI_UP",
+            "value": 0.0,
+            "turns": 3,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 278,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_AGI_UP",
+            "value": 0.0,
+            "turns": 5,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 279,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_AGI_UP",
+            "value": 0.0,
+            "turns": 7,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 280,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_AGI_UP",
+            "value": 0.0,
+            "turns": 9,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "armor_corrosive": {
+    "name": "Armor Corrosive",
+    "sp": 4,
+    "levels": [
+      {
+        "source_row": 265,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_DEF_DOWN",
+            "value": 0.0,
+            "turns": 2,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 266,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_DEF_DOWN",
+            "value": 0.0,
+            "turns": 4,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 267,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_DEF_DOWN",
+            "value": 0.0,
+            "turns": 6,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 268,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_DEF_DOWN",
+            "value": 0.0,
+            "turns": 8,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "shackle_foe": {
+    "name": "Shackle Foe",
+    "sp": 4,
+    "levels": [
+      {
+        "source_row": 269,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_ATK_DOWN",
+            "value": 0.0,
+            "turns": 2,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 270,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_ATK_DOWN",
+            "value": 0.0,
+            "turns": 4,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 271,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_ATK_DOWN",
+            "value": 0.0,
+            "turns": 6,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 272,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_ATK_DOWN",
+            "value": 0.0,
+            "turns": 8,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "aebers_reckoning": {
+    "name": "Aeber's Reckoning",
+    "sp": 30,
+    "levels": [
+      {
+        "source_row": 293,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 150.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 294,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 150.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 295,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 150.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 296,
+        "ratio": 5.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 150.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "healing_touch": {
+    "name": "Healing Touch",
+    "sp": 6,
+    "levels": [
+      {
+        "source_row": 405,
+        "ratio": 2.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "REVIVE",
+            "value": 160.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 406,
+        "ratio": 2.7,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "REVIVE",
+            "value": 160.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 407,
+        "ratio": 3.4,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "REVIVE",
+            "value": 160.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 408,
+        "ratio": 4.1,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "REVIVE",
+            "value": 160.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "icicle": {
+    "name": "Icicle",
+    "sp": 7,
+    "levels": [
+      {
+        "source_row": 397,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 398,
+        "ratio": 2.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 399,
+        "ratio": 3.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 400,
+        "ratio": 4.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "rehabilitate": {
+    "name": "Rehabilitate",
+    "sp": 10,
+    "levels": [
+      {
+        "source_row": 409,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "REMOVE_DECONDITION",
+            "value": 0.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "ADD_DECONDITION_GUARD",
+            "value": 0.0,
+            "turns": 2,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 410,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "REMOVE_DECONDITION",
+            "value": 0.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "ADD_DECONDITION_GUARD",
+            "value": 0.0,
+            "turns": 4,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 411,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "REMOVE_DECONDITION",
+            "value": 0.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "ADD_DECONDITION_GUARD",
+            "value": 0.0,
+            "turns": 6,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 412,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "REMOVE_DECONDITION",
+            "value": 0.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "ADD_DECONDITION_GUARD",
+            "value": 0.0,
+            "turns": 8,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "sweeping_cleave": {
+    "name": "Sweeping Cleave",
+    "sp": 9,
+    "levels": [
+      {
+        "source_row": 413,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 110.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 414,
+        "ratio": 1.9,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 110.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 415,
+        "ratio": 2.8,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 110.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 416,
+        "ratio": 3.7,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 110.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "poison_axe": {
+    "name": "Poison Axe",
+    "sp": 12,
+    "levels": [
+      {
+        "source_row": 401,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 140.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "ADD_POISON_NORMAL",
+            "value": 0.0,
+            "turns": 2,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 402,
+        "ratio": 2.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 140.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "ADD_POISON_NORMAL",
+            "value": 0.0,
+            "turns": 2,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 403,
+        "ratio": 3.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 140.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "ADD_POISON_NORMAL",
+            "value": 0.0,
+            "turns": 2,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 404,
+        "ratio": 4.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 140.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "ADD_POISON_NORMAL",
+            "value": 0.0,
+            "turns": 2,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "replenish_health": {
+    "name": "Replenish Health",
+    "sp": 9,
+    "levels": [
+      {
+        "source_row": 421,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_HP_REGENERATION",
+            "value": 20.0,
+            "turns": 3,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 422,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_HP_REGENERATION",
+            "value": 20.0,
+            "turns": 5,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 423,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_HP_REGENERATION",
+            "value": 20.0,
+            "turns": 7,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 424,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_HP_REGENERATION",
+            "value": 20.0,
+            "turns": 9,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "weak_to_poison": {
+    "name": "Weak to Poison",
+    "sp": 4,
+    "levels": [
+      {
+        "source_row": 425,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_WEAKNESS_POISON",
+            "value": 0.0,
+            "turns": 2,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 426,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_WEAKNESS_POISON",
+            "value": 0.0,
+            "turns": 4,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 427,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_WEAKNESS_POISON",
+            "value": 0.0,
+            "turns": 6,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 428,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_WEAKNESS_POISON",
+            "value": 0.0,
+            "turns": 8,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "dohters_charity": {
+    "name": "Dohter's Charity",
+    "sp": 30,
+    "levels": [
+      {
+        "source_row": 437,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_ITEM_ALL",
+            "value": 0.0,
+            "turns": 3,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 438,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_ITEM_ALL",
+            "value": 0.0,
+            "turns": 3,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 439,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_ITEM_ALL",
+            "value": 0.0,
+            "turns": 3,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 440,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_ITEM_ALL",
+            "value": 0.0,
+            "turns": 3,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "precise_shot": {
+    "name": "Precise Shot",
+    "sp": 6,
+    "levels": [
+      {
+        "source_row": 213,
+        "ratio": 0.9,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 100.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 214,
+        "ratio": 0.9,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 100.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 215,
+        "ratio": 0.9,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 100.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 216,
+        "ratio": 0.9,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 100.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "thunderbird": {
+    "name": "Thunderbird",
+    "sp": 7,
+    "levels": [
+      {
+        "source_row": 217,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 218,
+        "ratio": 2.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 219,
+        "ratio": 3.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 220,
+        "ratio": 4.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "cleaving_blow": {
+    "name": "Cleaving Blow",
+    "sp": 12,
+    "levels": [
+      {
+        "source_row": 225,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 140.0,
+            "turns": 0,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 226,
+        "ratio": 2.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 140.0,
+            "turns": 0,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 227,
+        "ratio": 3.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 140.0,
+            "turns": 0,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 228,
+        "ratio": 4.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 140.0,
+            "turns": 0,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "mercy_strike": {
+    "name": "Mercy Strike",
+    "sp": 4,
+    "levels": [
+      {
+        "source_row": 221,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "DAMAGE_STOP",
+            "value": 1.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 100.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 222,
+        "ratio": 2.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "DAMAGE_STOP",
+            "value": 1.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 100.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 223,
+        "ratio": 3.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "DAMAGE_STOP",
+            "value": 1.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 100.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 224,
+        "ratio": 4.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "DAMAGE_STOP",
+            "value": 1.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 100.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "take_aim": {
+    "name": "Take Aim",
+    "sp": 8,
+    "levels": [
+      {
+        "source_row": 229,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_CON_UP",
+            "value": 0.0,
+            "turns": 2,
+            "chance": 100
+          },
+          {
+            "effect": "ADD_ACC_UP",
+            "value": 0.0,
+            "turns": 2,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 230,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_CON_UP",
+            "value": 0.0,
+            "turns": 4,
+            "chance": 100
+          },
+          {
+            "effect": "ADD_ACC_UP",
+            "value": 0.0,
+            "turns": 4,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 231,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_CON_UP",
+            "value": 0.0,
+            "turns": 6,
+            "chance": 100
+          },
+          {
+            "effect": "ADD_ACC_UP",
+            "value": 0.0,
+            "turns": 6,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 232,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_CON_UP",
+            "value": 0.0,
+            "turns": 8,
+            "chance": 100
+          },
+          {
+            "effect": "ADD_ACC_UP",
+            "value": 0.0,
+            "turns": 8,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "leghold_trap": {
+    "name": "Leghold Trap",
+    "sp": 10,
+    "levels": [
+      {
+        "source_row": 233,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_SLOW",
+            "value": 0.0,
+            "turns": 2,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 234,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_SLOW",
+            "value": 0.0,
+            "turns": 4,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 235,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_SLOW",
+            "value": 0.0,
+            "turns": 6,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 236,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_SLOW",
+            "value": 0.0,
+            "turns": 8,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "abating_orb": {
+    "name": "Abating Orb",
+    "sp": 9,
+    "levels": [
+      {
+        "source_row": 237,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 238,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 239,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 240,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "draefendis_bow": {
+    "name": "Draefendi's Bow",
+    "sp": 30,
+    "levels": [
+      {
+        "source_row": 249,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 250,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 251,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 252,
+        "ratio": 1.7,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 140.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "heal_wounds": {
+    "name": "Heal Wounds",
+    "sp": 15,
+    "levels": [
+      {
+        "source_row": 301,
+        "ratio": 1.4,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "HP_RECOVERY",
+            "value": 120.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 302,
+        "ratio": 2.1,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "HP_RECOVERY",
+            "value": 120.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 303,
+        "ratio": 2.8,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "HP_RECOVERY",
+            "value": 120.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 304,
+        "ratio": 3.5,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "HP_RECOVERY",
+            "value": 120.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ],
+    "tiers": [
+      [
+        {
+          "ratio": 1.4,
+          "invocation": 1.2
+        },
+        {
+          "ratio": 2.1,
+          "invocation": 1.2
+        },
+        {
+          "ratio": 2.8,
+          "invocation": 1.2
+        },
+        {
+          "ratio": 3.5,
+          "invocation": 1.2
+        }
+      ],
+      [
+        {
+          "ratio": 1.4,
+          "invocation": 1.8
+        },
+        {
+          "ratio": 2.1,
+          "invocation": 1.8
+        },
+        {
+          "ratio": 2.8,
+          "invocation": 1.8
+        },
+        {
+          "ratio": 3.5,
+          "invocation": 1.8
+        }
+      ],
+      [
+        {
+          "ratio": 1.4,
+          "invocation": 2.4
+        },
+        {
+          "ratio": 2.1,
+          "invocation": 2.4
+        },
+        {
+          "ratio": 2.8,
+          "invocation": 2.4
+        },
+        {
+          "ratio": 3.5,
+          "invocation": 2.4
+        }
+      ]
+    ]
+  },
+  "holy_light": {
+    "name": "Holy Light",
+    "sp": 6,
+    "levels": [
+      {
+        "source_row": 313,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 314,
+        "ratio": 2.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 315,
+        "ratio": 3.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 316,
+        "ratio": 4.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "prayer_to_the_flame": {
+    "name": "Prayer to the Flame",
+    "sp": 8,
+    "levels": [
+      {
+        "source_row": 329,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_DEF_UP",
+            "value": 0.0,
+            "turns": 2,
+            "chance": 100
+          },
+          {
+            "effect": "ADD_MDEF_UP",
+            "value": 0.0,
+            "turns": 2,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 330,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_DEF_UP",
+            "value": 0.0,
+            "turns": 4,
+            "chance": 100
+          },
+          {
+            "effect": "ADD_MDEF_UP",
+            "value": 0.0,
+            "turns": 4,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 331,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_DEF_UP",
+            "value": 0.0,
+            "turns": 6,
+            "chance": 100
+          },
+          {
+            "effect": "ADD_MDEF_UP",
+            "value": 0.0,
+            "turns": 6,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 332,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_DEF_UP",
+            "value": 0.0,
+            "turns": 8,
+            "chance": 100
+          },
+          {
+            "effect": "ADD_MDEF_UP",
+            "value": 0.0,
+            "turns": 8,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "mystical_staff": {
+    "name": "Mystical Staff",
+    "sp": 6,
+    "levels": [
+      {
+        "source_row": 333,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 110.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "MP_DRAIN",
+            "value": 10.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 334,
+        "ratio": 1.8,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 110.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "MP_DRAIN",
+            "value": 10.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 335,
+        "ratio": 2.6,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 110.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "MP_DRAIN",
+            "value": 10.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 336,
+        "ratio": 3.4,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 110.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "MP_DRAIN",
+            "value": 10.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "luminescence": {
+    "name": "Luminescence",
+    "sp": 14,
+    "levels": [
+      {
+        "source_row": 317,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 105.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 318,
+        "ratio": 1.9,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 105.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 319,
+        "ratio": 2.8,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 105.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 320,
+        "ratio": 3.7,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 105.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ],
+    "tiers": [
+      [
+        {
+          "ratio": 1.0,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 1.9,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 2.8,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 3.7,
+          "invocation": 1.05
+        }
+      ],
+      [
+        {
+          "ratio": 0.85,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 1.5,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 2.15,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 2.8,
+          "invocation": 1.05
+        }
+      ],
+      [
+        {
+          "ratio": 0.75,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 1.3,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 1.85,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 2.4,
+          "invocation": 1.05
+        }
+      ]
+    ]
+  },
+  "sacred_shield": {
+    "name": "Sacred Shield",
+    "sp": 10,
+    "levels": [
+      {
+        "source_row": 349,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_DAMAGE_CUT_00",
+            "value": 50.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 350,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_DAMAGE_CUT_01",
+            "value": 65.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 351,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_DAMAGE_CUT_02",
+            "value": 80.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 352,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_DAMAGE_CUT_03",
+            "value": 100.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "revive": {
+    "name": "Revive",
+    "sp": 40,
+    "levels": [
+      {
+        "source_row": 353,
+        "ratio": 1.4,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "REVIVE",
+            "value": 0.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 354,
+        "ratio": 2.1,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "REVIVE",
+            "value": 120.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 355,
+        "ratio": 2.8,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "REVIVE",
+            "value": 120.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 356,
+        "ratio": 3.5,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "REVIVE",
+            "value": 120.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ],
+    "tiers": [
+      [
+        {
+          "ratio": 1.4,
+          "invocation": 0.0
+        },
+        {
+          "ratio": 2.1,
+          "invocation": 1.2
+        },
+        {
+          "ratio": 2.8,
+          "invocation": 1.2
+        },
+        {
+          "ratio": 3.5,
+          "invocation": 1.2
+        }
+      ],
+      [
+        {
+          "ratio": 1.4,
+          "invocation": 1.8
+        },
+        {
+          "ratio": 2.1,
+          "invocation": 1.8
+        },
+        {
+          "ratio": 2.8,
+          "invocation": 1.8
+        },
+        {
+          "ratio": 3.5,
+          "invocation": 1.8
+        }
+      ],
+      [
+        {
+          "ratio": 1.4,
+          "invocation": 2.4
+        },
+        {
+          "ratio": 2.1,
+          "invocation": 2.4
+        },
+        {
+          "ratio": 2.8,
+          "invocation": 2.4
+        },
+        {
+          "ratio": 3.5,
+          "invocation": 2.4
+        }
+      ]
+    ]
+  },
+  "aelfrics_blessing": {
+    "name": "Aelfric's Blessing",
+    "sp": 30,
+    "levels": [
+      {
+        "source_row": 389,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_LAST_ACT_BUFF",
+            "value": 0.0,
+            "turns": 3,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 390,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_LAST_ACT_BUFF",
+            "value": 0.0,
+            "turns": 3,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 391,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_LAST_ACT_BUFF",
+            "value": 0.0,
+            "turns": 3,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 392,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_LAST_ACT_BUFF",
+            "value": 0.0,
+            "turns": 3,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "fireball": {
+    "name": "Fireball",
+    "sp": 14,
+    "levels": [
+      {
+        "source_row": 97,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 105.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 98,
+        "ratio": 1.9,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 105.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 99,
+        "ratio": 2.8,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 105.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 100,
+        "ratio": 3.7,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 105.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ],
+    "tiers": [
+      [
+        {
+          "ratio": 1.0,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 1.9,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 2.8,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 3.7,
+          "invocation": 1.05
+        }
+      ],
+      [
+        {
+          "ratio": 0.85,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 1.5,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 2.15,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 2.8,
+          "invocation": 1.05
+        }
+      ],
+      [
+        {
+          "ratio": 0.75,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 1.3,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 1.85,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 2.4,
+          "invocation": 1.05
+        }
+      ]
+    ]
+  },
+  "icewind": {
+    "name": "Icewind",
+    "sp": 14,
+    "levels": [
+      {
+        "source_row": 109,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 105.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 110,
+        "ratio": 1.9,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 105.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 111,
+        "ratio": 2.8,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 105.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 112,
+        "ratio": 3.7,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 105.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ],
+    "tiers": [
+      [
+        {
+          "ratio": 1.0,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 1.9,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 2.8,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 3.7,
+          "invocation": 1.05
+        }
+      ],
+      [
+        {
+          "ratio": 0.85,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 1.5,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 2.15,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 2.8,
+          "invocation": 1.05
+        }
+      ],
+      [
+        {
+          "ratio": 0.75,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 1.3,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 1.85,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 2.4,
+          "invocation": 1.05
+        }
+      ]
+    ]
+  },
+  "lightning_bolt": {
+    "name": "Lightning Bolt",
+    "sp": 14,
+    "levels": [
+      {
+        "source_row": 121,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 105.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 122,
+        "ratio": 1.9,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 105.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 123,
+        "ratio": 2.8,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 105.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 124,
+        "ratio": 3.7,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 105.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ],
+    "tiers": [
+      [
+        {
+          "ratio": 1.0,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 1.9,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 2.8,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 3.7,
+          "invocation": 1.05
+        }
+      ],
+      [
+        {
+          "ratio": 0.85,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 1.5,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 2.15,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 2.8,
+          "invocation": 1.05
+        }
+      ],
+      [
+        {
+          "ratio": 0.75,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 1.3,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 1.85,
+          "invocation": 1.05
+        },
+        {
+          "ratio": 2.4,
+          "invocation": 1.05
+        }
+      ]
+    ]
+  },
+  "stroke_of_genius": {
+    "name": "Stroke of Genius",
+    "sp": 5,
+    "levels": [
+      {
+        "source_row": 137,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_RANDOM_STATUSUP",
+            "value": 0.0,
+            "turns": 0,
+            "chance": 100
+          },
+          {
+            "effect": "ADD_RANDOM_STATUSUP",
+            "value": 0.0,
+            "turns": 0,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 138,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_RANDOM_STATUSUP",
+            "value": 0.0,
+            "turns": 0,
+            "chance": 100
+          },
+          {
+            "effect": "ADD_RANDOM_STATUSUP",
+            "value": 0.0,
+            "turns": 0,
+            "chance": 100
+          },
+          {
+            "effect": "ADD_RANDOM_STATUSUP",
+            "value": 0.0,
+            "turns": 0,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 139,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_RANDOM_STATUSUP",
+            "value": 0.0,
+            "turns": 0,
+            "chance": 100
+          },
+          {
+            "effect": "ADD_RANDOM_STATUSUP",
+            "value": 0.0,
+            "turns": 0,
+            "chance": 100
+          },
+          {
+            "effect": "ADD_RANDOM_STATUSUP",
+            "value": 0.0,
+            "turns": 0,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 140,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_RANDOM_STATUSUP",
+            "value": 0.0,
+            "turns": 0,
+            "chance": 100
+          },
+          {
+            "effect": "ADD_RANDOM_STATUSUP",
+            "value": 0.0,
+            "turns": 0,
+            "chance": 100
+          },
+          {
+            "effect": "ADD_RANDOM_STATUSUP",
+            "value": 0.0,
+            "turns": 0,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "elemental_barrage": {
+    "name": "Elemental Barrage",
+    "sp": 10,
+    "levels": [
+      {
+        "source_row": 141,
+        "ratio": 0.8,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "RANDOM_TARGET_MAGIC_DAMAGE_FIRE",
+            "value": 80.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "RANDOM_TARGET_MAGIC_DAMAGE_ICE",
+            "value": 80.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "RANDOM_TARGET_MAGIC_DAMAGE_THUNDER",
+            "value": 80.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 142,
+        "ratio": 1.1,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "RANDOM_TARGET_MAGIC_DAMAGE_FIRE",
+            "value": 80.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "RANDOM_TARGET_MAGIC_DAMAGE_ICE",
+            "value": 80.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "RANDOM_TARGET_MAGIC_DAMAGE_THUNDER",
+            "value": 80.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 143,
+        "ratio": 1.4,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "RANDOM_TARGET_MAGIC_DAMAGE_FIRE",
+            "value": 80.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "RANDOM_TARGET_MAGIC_DAMAGE_ICE",
+            "value": 80.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "RANDOM_TARGET_MAGIC_DAMAGE_THUNDER",
+            "value": 80.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 144,
+        "ratio": 1.7,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "RANDOM_TARGET_MAGIC_DAMAGE_FIRE",
+            "value": 80.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "RANDOM_TARGET_MAGIC_DAMAGE_ICE",
+            "value": 80.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "RANDOM_TARGET_MAGIC_DAMAGE_THUNDER",
+            "value": 80.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "advance_magic": {
+    "name": "Advanced Magic",
+    "sp": 15,
+    "levels": [
+      {
+        "source_row": 145,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_SUPER_MAGIC",
+            "value": 0.0,
+            "turns": 2,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 146,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_SUPER_MAGIC",
+            "value": 0.0,
+            "turns": 3,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 147,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_SUPER_MAGIC",
+            "value": 0.0,
+            "turns": 4,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 148,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_SUPER_MAGIC",
+            "value": 0.0,
+            "turns": 5,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "alephans_wisdom": {
+    "name": "Alephan's Wisdom",
+    "sp": 30,
+    "levels": [
+      {
+        "source_row": 153,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_HYPER_MAGIC",
+            "value": 0.0,
+            "turns": 2,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 154,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_HYPER_MAGIC",
+            "value": 0.0,
+            "turns": 4,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 155,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_HYPER_MAGIC",
+            "value": 0.0,
+            "turns": 6,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 156,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_HYPER_MAGIC",
+            "value": 0.0,
+            "turns": 3,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "lion_dance": {
+    "name": "Lion Dance",
+    "sp": 4,
+    "levels": [
+      {
+        "source_row": 173,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_ATK_UP",
+            "value": 0.0,
+            "turns": 2,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 174,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_ATK_UP",
+            "value": 0.0,
+            "turns": 4,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 175,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_ATK_UP",
+            "value": 0.0,
+            "turns": 6,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 176,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_ATK_UP",
+            "value": 0.0,
+            "turns": 8,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "ruinous_kick": {
+    "name": "Ruinous Kick",
+    "sp": 10,
+    "levels": [
+      {
+        "source_row": 177,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "SP_DAMAGE",
+            "value": 1.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 150.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 178,
+        "ratio": 2.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "SP_DAMAGE",
+            "value": 1.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 150.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 179,
+        "ratio": 3.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "SP_DAMAGE",
+            "value": 1.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 150.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 180,
+        "ratio": 4.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "SP_DAMAGE",
+            "value": 1.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 150.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "peacock_strut": {
+    "name": "Peacock Strut",
+    "sp": 4,
+    "levels": [
+      {
+        "source_row": 185,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_MATK_UP",
+            "value": 0.0,
+            "turns": 2,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 186,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_MATK_UP",
+            "value": 0.0,
+            "turns": 4,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 187,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_MATK_UP",
+            "value": 0.0,
+            "turns": 6,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 188,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_MATK_UP",
+            "value": 0.0,
+            "turns": 8,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "sweeping_gale": {
+    "name": "Sweeping Gale",
+    "sp": 7,
+    "levels": [
+      {
+        "source_row": 181,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 182,
+        "ratio": 2.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 183,
+        "ratio": 3.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 184,
+        "ratio": 4.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "MAGIC_DAMAGE",
+            "value": 130.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "stimulate": {
+    "name": "Stimulate",
+    "sp": 5,
+    "levels": [
+      {
+        "source_row": 193,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ORDER_COUNT_UP",
+            "value": 1.0,
+            "turns": 0,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 194,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ORDER_COUNT_UP",
+            "value": 2.0,
+            "turns": 0,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 195,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ORDER_COUNT_UP",
+            "value": 3.0,
+            "turns": 0,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 196,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ORDER_COUNT_UP",
+            "value": 10.0,
+            "turns": 0,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "dagger_dance": {
+    "name": "Dagger Dance",
+    "sp": 9,
+    "levels": [
+      {
+        "source_row": 189,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 110.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 190,
+        "ratio": 1.9,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 110.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 191,
+        "ratio": 2.8,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 110.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 192,
+        "ratio": 3.7,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 110.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "sealticges_seduction": {
+    "name": "Sealticge's Seduction",
+    "sp": 30,
+    "levels": [
+      {
+        "source_row": 205,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_SKILL_ALL",
+            "value": 0.0,
+            "turns": 3,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 206,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_SKILL_ALL",
+            "value": 0.0,
+            "turns": 3,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 207,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_SKILL_ALL",
+            "value": 0.0,
+            "turns": 3,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 208,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "ADD_SKILL_ALL",
+            "value": 0.0,
+            "turns": 3,
+            "chance": 100
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "tenretsu": {
+    "name": "Tenretsuzan",
+    "sp": 0,
+    "levels": [
+      {
+        "source_row": 601,
+        "ratio": 1.2,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 175.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 999.0
+      },
+      {
+        "source_row": 602,
+        "ratio": 2.4,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 175.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 999.0
+      },
+      {
+        "source_row": 603,
+        "ratio": 3.6,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 175.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 999.0
+      },
+      {
+        "source_row": 604,
+        "ratio": 4.8,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 175.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 999.0
+      }
+    ]
+  },
+  "hien": {
+    "name": "Hienka",
+    "sp": 0,
+    "levels": [
+      {
+        "source_row": 609,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 140.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "ADD_LAST_ACT_SPECIAL",
+            "value": 0.0,
+            "turns": 1,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 610,
+        "ratio": 2.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 140.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "ADD_LAST_ACT_SPECIAL",
+            "value": 0.0,
+            "turns": 1,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 611,
+        "ratio": 3.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 140.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "ADD_LAST_ACT_SPECIAL",
+            "value": 0.0,
+            "turns": 1,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 612,
+        "ratio": 4.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 140.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "ADD_LAST_ACT_SPECIAL",
+            "value": 0.0,
+            "turns": 1,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "sougetsu": {
+    "name": "Sougetsusen",
+    "sp": 0,
+    "levels": [
+      {
+        "source_row": 617,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 110.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 618,
+        "ratio": 1.9,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 110.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 619,
+        "ratio": 2.8,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 110.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 620,
+        "ratio": 3.7,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 110.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "beast_claw": {
+    "name": "Beastly Claws",
+    "sp": 0,
+    "levels": [
+      {
+        "source_row": 625,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 180.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 626,
+        "ratio": 2.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 180.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 627,
+        "ratio": 3.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 180.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 628,
+        "ratio": 4.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 180.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "beast_fang": {
+    "name": "Beastly Fangs",
+    "sp": 0,
+    "levels": [
+      {
+        "source_row": 633,
+        "ratio": 1.2,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 200.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 634,
+        "ratio": 2.4,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 200.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 635,
+        "ratio": 3.6,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 200.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 636,
+        "ratio": 4.8,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 200.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "beast_roar": {
+    "name": "Beastly Howl",
+    "sp": 0,
+    "levels": [
+      {
+        "source_row": 629,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "SP_DAMAGE_DIRECT",
+            "value": 1.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "ADD_DEF_DOWN",
+            "value": 0.0,
+            "turns": 3,
+            "chance": 0
+          },
+          {
+            "effect": "ADD_MDEF_DOWN",
+            "value": 0.0,
+            "turns": 3,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 630,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "SP_DAMAGE_DIRECT",
+            "value": 1.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "ADD_DEF_DOWN",
+            "value": 0.0,
+            "turns": 4,
+            "chance": 0
+          },
+          {
+            "effect": "ADD_MDEF_DOWN",
+            "value": 0.0,
+            "turns": 4,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 631,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "SP_DAMAGE_DIRECT",
+            "value": 1.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "ADD_DEF_DOWN",
+            "value": 0.0,
+            "turns": 5,
+            "chance": 0
+          },
+          {
+            "effect": "ADD_MDEF_DOWN",
+            "value": 0.0,
+            "turns": 5,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      },
+      {
+        "source_row": 632,
+        "ratio": 1.0,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "SP_DAMAGE_DIRECT",
+            "value": 1.0,
+            "turns": 0,
+            "chance": 0
+          },
+          {
+            "effect": "ADD_DEF_DOWN",
+            "value": 0.0,
+            "turns": 6,
+            "chance": 0
+          },
+          {
+            "effect": "ADD_MDEF_DOWN",
+            "value": 0.0,
+            "turns": 6,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 0.0
+      }
+    ]
+  },
+  "attack": {
+    "name": "Attack",
+    "sp": 0,
+    "levels": [
+      {
+        "source_row": 4,
+        "ratio": 0.8,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 100.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 20.0
+      },
+      {
+        "source_row": 5,
+        "ratio": 0.8,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 100.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 20.0
+      },
+      {
+        "source_row": 6,
+        "ratio": 0.8,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 100.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 20.0
+      },
+      {
+        "source_row": 7,
+        "ratio": 0.8,
+        "crit": 1.25,
+        "effects": [
+          {
+            "effect": "PHYSICS_DAMAGE",
+            "value": 100.0,
+            "turns": 0,
+            "chance": 0
+          }
+        ],
+        "hit_ratio": 20.0
+      }
+    ]
+  }
+}

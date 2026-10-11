@@ -1,0 +1,28 @@
+{
+  "game": "octopath",
+  "title": "旅人对决 AI 竞赛",
+  "version": "1.1",
+  "stages": [
+    "single"
+  ],
+  "matches_per_pair_per_stage": 5,
+  "practice_seeds": [
+    12,
+    21,
+    34
+  ],
+  "baseline": "bots/octopath/quickstart_bot.py",
+  "tick_wall_ms": 1000,
+  "budget_type": "cpu_user_system",
+  "total_budget": 60000,
+  "memory_bytes": 268435456,
+  "status": "development-kit",
+  "arena_adaptations": {
+    "ever_evasive_extra_miss": 0.2,
+    "ensnare_turns": 2,
+    "poison_hp_fraction": "1/6",
+    "hp_bonus": 1000,
+    "hp_bonus_order": "after_loadout",
+    "divine_first_round": true
+  }
+}

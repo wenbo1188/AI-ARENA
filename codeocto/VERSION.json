@@ -1,0 +1,10 @@
+{
+  "game": "octopath",
+  "version": "1.1",
+  "date": "2026-10-09",
+  "python_tested": "3.12.6",
+  "platform_tested": "Windows",
+  "competition_sha256": "6bc6f11fd0d5c7a379768cba70b9fd9cb8d001ac32760e645421ee997d27b24e",
+  "source": "用户提供的竞技场工程，经本次规则与工具修订",
+  "status": "ready_for_local_development; organizer_deployment_acceptance_required"
+}

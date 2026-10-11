@@ -1,0 +1,148 @@
+{
+  "Octopath": {
+    "manifest_verified": true,
+    "commands": [
+      {
+        "command": [
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tests"
+        ],
+        "exit": 0,
+        "output": ".................................\n----------------------------------------------------------------------\nRan 33 tests in 1.261s\n\nOK\n"
+      },
+      {
+        "command": [
+          "kit.py",
+          "check"
+        ],
+        "exit": 0,
+        "output": "single seat=0 score=[1, 0] ticks=87\nsingle seat=1 score=[1, 0] ticks=87\nPASS\n"
+      },
+      {
+        "command": [
+          "kit.py",
+          "pack",
+          "--meta",
+          "D:\\Codex\\2026-10-07\\zhe\\work\\kit-release-check-1791546137\\Octopath-test-meta.json"
+        ],
+        "exit": 0,
+        "output": "D:\\Codex\\2026-10-07\\zhe\\work\\kit-release-check-1791546137\\Octopath-Participant-Kit-v1.1\\dist\\Release_Test-c2c34e4d61df.zip\n"
+      },
+      {
+        "command": [
+          "kit.py",
+          "pack",
+          "--meta",
+          "D:\\Codex\\2026-10-07\\zhe\\work\\kit-release-check-1791546137\\Octopath-test-meta.json"
+        ],
+        "exit": 1,
+        "output": "ERROR: 请使用当前版本、当前代码重新完成自测\n"
+      },
+      {
+        "command": [
+          "kit.py",
+          "pack",
+          "--meta",
+          "D:\\Codex\\2026-10-07\\zhe\\work\\kit-release-check-1791546137\\Octopath-test-meta.json"
+        ],
+        "exit": 1,
+        "output": "ERROR: 请使用当前版本、当前代码重新完成自测\n"
+      },
+      {
+        "command": [
+          "kit.py",
+          "match"
+        ],
+        "exit": 0,
+        "output": "{\n  \"scores\": [\n    1,\n    0\n  ],\n  \"ticks\": 87,\n  \"stats\": [\n    {\n      \"name\": \"candidate\",\n      \"timeouts\": 0,\n      \"invalid_lines\": 0,\n      \"crashed\": false,\n      \"crash_reason\": \"\",\n      \"used_ms\": 156,\n      \"avg_ms\": 2.33,\n      \"max_ms\": 109.0,\n      \"cpu_ms\": 156.25,\n      \"cpu_backend\": \"GetProcessTimes(user+kernel)\",\n      \"stderr_tail\": []\n    },\n    {\n      \"name\": \"baseline\",\n      \"timeouts\": 0,\n      \"invalid_lines\": 0,\n      \"crashed\": false,\n      \"crash_reason\": \"\",\n      \"used_ms\": 188,\n      \"avg_ms\": 3.05,\n      \"max_ms\": 140.0,\n      \"cpu_ms\": 187.5,\n      \"cpu_backend\": \"GetProcessTimes(user+kernel)\",\n      \"stderr_tail\": []\n    }\n  ]\n}\nReplay: D:\\Codex\\2026-10-07\\zhe\\work\\kit-release-check-1791546137\\Octopath-Participant-Kit-v1.1\\results\\single-12-left.html\n"
+      },
+      {
+        "command": [
+          "kit.py",
+          "tournament",
+          "D:\\Codex\\2026-10-07\\zhe\\work\\kit-release-check-1791546137\\octopath-entries.json",
+          "--seed",
+          "500",
+          "--out",
+          "D:\\Codex\\2026-10-07\\zhe\\work\\kit-release-check-1791546137\\Octopath-Participant-Kit-v1.1\\release-tournament"
+        ],
+        "exit": 0,
+        "output": "1/5: ['Test-B', 'Test-A'] [1, 0]\n2/5: ['Test-A', 'Test-B'] [0, 1]\n3/5: ['Test-B', 'Test-A'] [1, 0]\n4/5: ['Test-A', 'Test-B'] [0, 1]\n5/5: ['Test-B', 'Test-A'] [1, 0]\n"
+      },
+      {
+        "command": [
+          "standings.py",
+          "D:\\Codex\\2026-10-07\\zhe\\work\\kit-release-check-1791546137\\Octopath-Participant-Kit-v1.1\\release-tournament"
+        ],
+        "exit": 0,
+        "output": "D:\\Codex\\2026-10-07\\zhe\\work\\kit-release-check-1791546137\\Octopath-Participant-Kit-v1.1\\release-tournament\\overall.html\n"
+      }
+    ],
+    "submission_sha_binding_verified": true
+  },
+  "version": "1.1",
+  "date": "2026-10-09",
+  "archive_sha256": "6e71cce1e8b4b5fb13b70788aa04b5e1c4484e1b930dcac8678027e63b936c7b",
+  "behavior_verification": {
+    "prototype_matches_verified": 1000,
+    "natural_opening_seed": 1492,
+    "natural_opening_remaining": [
+      994,
+      1603,
+      0,
+      540
+    ],
+    "sample_scores": [
+      0,
+      1
+    ],
+    "sample_ticks": 27,
+    "sample_stats": [
+      {
+        "name": "练习队A",
+        "timeouts": 0,
+        "invalid_lines": 0,
+        "crashed": false,
+        "crash_reason": "",
+        "used_ms": 172,
+        "avg_ms": 28.33,
+        "max_ms": 515.0,
+        "cpu_ms": 171.875,
+        "cpu_backend": "GetProcessTimes(user+kernel)",
+        "stderr_tail": []
+      },
+      {
+        "name": "练习队B",
+        "timeouts": 0,
+        "invalid_lines": 0,
+        "crashed": false,
+        "crash_reason": "",
+        "used_ms": 203,
+        "avg_ms": 26.59,
+        "max_ms": 609.0,
+        "cpu_ms": 203.125,
+        "cpu_backend": "GetProcessTimes(user+kernel)",
+        "stderr_tail": []
+      }
+    ]
+  },
+  "fixed_rules": {
+    "hp_bonus": 1000,
+    "hp_bonus_order": "after_loadout",
+    "divine_first_round": true
+  },
+  "verified_scope": [
+    "fresh_archive_manifest",
+    "33_regression_tests",
+    "both_sides_selfcheck",
+    "full_local_match",
+    "sha256_submission_binding",
+    "changed_code_rejection",
+    "old_version_report_rejection",
+    "5_game_tournament_and_standings",
+    "1000_same_process_prototype_matches"
+  ]
+}

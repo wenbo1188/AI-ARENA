@@ -1,0 +1,62 @@
+{
+  "tick": 1,
+  "loadout": [
+    {
+      "sub_job": "Thief",
+      "learn": [
+        "armor_corrosive",
+        "shackle_foe",
+        "surprise_attack",
+        "swift_step"
+      ],
+      "supports": [
+        "salt_the_wound",
+        "eagle_eye"
+      ]
+    },
+    {
+      "sub_job": "Cleric",
+      "learn": [
+        "luminescence"
+      ],
+      "supports": [
+        "hale_and_hearty",
+        "preventative_measures",
+        "inspiriting_break"
+      ]
+    },
+    {
+      "sub_job": "Hunter",
+      "learn": [
+        "mercy_strike",
+        "take_aim",
+        "cleaving_blow",
+        "leghold_trap"
+      ],
+      "supports": [
+        "advanced_magic_master",
+        "elemental_augmentation"
+      ]
+    },
+    {
+      "sub_job": "Cleric",
+      "learn": [],
+      "supports": [
+        "latent_power_plus",
+        "summon_strength",
+        "deal_more_damage",
+        "bolstering_break"
+      ]
+    }
+  ],
+  "items": {
+    "light_soulstone": 1,
+    "wind_soulstone": 1,
+    "lightning_soulstone_m": 1,
+    "wind_soulstone_m": 1,
+    "herb_of_serenity": 1,
+    "healing_grape_m": 1,
+    "healing_grape": 2,
+    "inspiriting_plum": 1
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "type": "turn",
+  "tick": 0,
+  "phase": "pick",
+  "your_turn": true,
+  "pick_count": 4,
+  "pick_mode": "blind",
+  "available": [
+    "hikari",
+    "agnea",
+    "partitio",
+    "osvald",
+    "temenos",
+    "throne",
+    "ochette",
+    "castti"
+  ],
+  "my_picks": [],
+  "opponent_picks": []
+}

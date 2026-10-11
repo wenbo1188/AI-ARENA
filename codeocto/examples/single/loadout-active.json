@@ -1,0 +1,17 @@
+{
+  "type": "turn",
+  "tick": 1,
+  "phase": "loadout",
+  "your_turn": true,
+  "my_picks": [
+    "ochette",
+    "castti",
+    "osvald",
+    "hikari"
+  ],
+  "opponent_picks": [],
+  "budget": {
+    "jp": 12000,
+    "gold": 6000
+  }
+}

@@ -1,0 +1,3687 @@
+{
+  "type": "init",
+  "time_limit_ms": 1000,
+  "total_time_ms": 60000,
+  "time_budget_type": "cpu_user_system",
+  "memory_limit_bytes": 268435456,
+  "game": "octopath",
+  "you": 0,
+  "team_size": 4,
+  "pick_mode": "blind",
+  "max_rounds": 30,
+  "max_bp": 5,
+  "max_boost": 3,
+  "arena_rules": {
+    "hp_bonus": 1000,
+    "hp_bonus_order": "after_loadout",
+    "divine_first_round": true
+  },
+  "travelers": {
+    "hikari": {
+      "name": "光",
+      "name_en": "Hikari",
+      "job": "剑士",
+      "job_en": "Warrior",
+      "hp": 5781,
+      "sp": 145,
+      "pa": 342,
+      "pd": 313,
+      "ea": 256,
+      "ed": 228,
+      "acc": 313,
+      "eva": 228,
+      "crit": 285,
+      "spd": 285,
+      "weapons": [
+        "sword",
+        "polearm"
+      ],
+      "shields": 7,
+      "weak": [
+        "axe",
+        "bow",
+        "ice",
+        "wind"
+      ],
+      "skills": [
+        "aggressive_slash",
+        "piercing_thrust",
+        "abide",
+        "enervating_slash",
+        "stout_wall",
+        "incite",
+        "vengeful_blade",
+        "brands_blade"
+      ],
+      "latent_power": {
+        "name": "阴之力",
+        "desc": "释放体内的暗影之力，本次行动可以使用天裂斩、飞燕华、双月闪"
+      },
+      "latent_skills": [
+        "tenretsu",
+        "hien",
+        "sougetsu"
+      ]
+    },
+    "agnea": {
+      "name": "爱格妮娅",
+      "name_en": "Agnea",
+      "job": "舞娘",
+      "job_en": "Dancer",
+      "hp": 4002,
+      "sp": 182,
+      "pa": 285,
+      "pd": 199,
+      "ea": 342,
+      "ed": 228,
+      "acc": 285,
+      "eva": 313,
+      "crit": 285,
+      "spd": 370,
+      "weapons": [
+        "dagger"
+      ],
+      "shields": 5,
+      "weak": [
+        "sword",
+        "polearm",
+        "lightning",
+        "dark"
+      ],
+      "skills": [
+        "lion_dance",
+        "ruinous_kick",
+        "peacock_strut",
+        "sweeping_gale",
+        "stimulate",
+        "dagger_dance",
+        "bewildering_grace",
+        "sealticges_seduction"
+      ],
+      "latent_power": {
+        "name": "齐心协力",
+        "desc": "本次行动的单体技能/攻击改为作用于全体"
+      },
+      "latent_skills": []
+    },
+    "partitio": {
+      "name": "帕特提欧",
+      "name_en": "Partitio",
+      "job": "商人",
+      "job_en": "Merchant",
+      "hp": 4891,
+      "sp": 182,
+      "pa": 313,
+      "pd": 285,
+      "ea": 313,
+      "ed": 285,
+      "acc": 285,
+      "eva": 256,
+      "crit": 256,
+      "spd": 256,
+      "weapons": [
+        "polearm",
+        "bow"
+      ],
+      "shields": 6,
+      "weak": [
+        "dagger",
+        "axe",
+        "wind",
+        "dark"
+      ],
+      "skills": [
+        "arrow_of_fortune",
+        "rest",
+        "ember",
+        "donate_bp",
+        "sidestep",
+        "bifelgans_bounty"
+      ],
+      "latent_power": {
+        "name": "气势",
+        "desc": "BP 立刻补满（5），然后正常行动"
+      },
+      "latent_skills": []
+    },
+    "osvald": {
+      "name": "奥兹巴尔多",
+      "name_en": "Osvald",
+      "job": "学者",
+      "job_en": "Scholar",
+      "hp": 3557,
+      "sp": 218,
+      "pa": 256,
+      "pd": 256,
+      "ea": 370,
+      "ed": 342,
+      "acc": 285,
+      "eva": 285,
+      "crit": 228,
+      "spd": 256,
+      "weapons": [
+        "staff"
+      ],
+      "shields": 5,
+      "weak": [
+        "sword",
+        "dagger",
+        "fire",
+        "lightning"
+      ],
+      "skills": [
+        "fireball",
+        "icewind",
+        "lightning_bolt",
+        "stroke_of_genius",
+        "elemental_barrage",
+        "advance_magic",
+        "alephans_wisdom"
+      ],
+      "latent_power": {
+        "name": "魔法集合化",
+        "desc": "本次的全体攻击魔法集中打一个敌人，伤害 ×2"
+      },
+      "latent_skills": []
+    },
+    "temenos": {
+      "name": "提米诺斯",
+      "name_en": "Temenos",
+      "job": "神官",
+      "job_en": "Cleric",
+      "hp": 4002,
+      "sp": 236,
+      "pa": 285,
+      "pd": 285,
+      "ea": 342,
+      "ed": 370,
+      "acc": 285,
+      "eva": 228,
+      "crit": 199,
+      "spd": 228,
+      "weapons": [
+        "staff"
+      ],
+      "shields": 6,
+      "weak": [
+        "polearm",
+        "wind",
+        "ice",
+        "dark"
+      ],
+      "skills": [
+        "heal_wounds",
+        "holy_light",
+        "prayer_to_the_flame",
+        "mystical_staff",
+        "luminescence",
+        "sacred_shield",
+        "revive",
+        "aelfrics_blessing"
+      ],
+      "latent_power": {
+        "name": "审判",
+        "desc": "本次行动的每一击都削减护盾，无视弱点"
+      },
+      "latent_skills": []
+    },
+    "throne": {
+      "name": "斯洛妮",
+      "name_en": "Throné",
+      "job": "盗贼",
+      "job_en": "Thief",
+      "hp": 4447,
+      "sp": 145,
+      "pa": 313,
+      "pd": 228,
+      "ea": 285,
+      "ed": 228,
+      "acc": 313,
+      "eva": 342,
+      "crit": 285,
+      "spd": 342,
+      "weapons": [
+        "dagger",
+        "sword"
+      ],
+      "shields": 5,
+      "weak": [
+        "staff",
+        "bow",
+        "fire",
+        "light"
+      ],
+      "skills": [
+        "darkest_night",
+        "hp_thief",
+        "surprise_attack",
+        "swift_step",
+        "armor_corrosive",
+        "shackle_foe",
+        "aebers_reckoning"
+      ],
+      "latent_power": {
+        "name": "残影",
+        "desc": "本回合连续行动两次"
+      },
+      "latent_skills": []
+    },
+    "ochette": {
+      "name": "欧修缇",
+      "name_en": "Ochette",
+      "job": "猎人",
+      "job_en": "Hunter",
+      "hp": 4447,
+      "sp": 145,
+      "pa": 342,
+      "pd": 228,
+      "ea": 285,
+      "ed": 228,
+      "acc": 342,
+      "eva": 313,
+      "crit": 313,
+      "spd": 285,
+      "weapons": [
+        "bow",
+        "axe"
+      ],
+      "shields": 6,
+      "weak": [
+        "sword",
+        "staff",
+        "fire",
+        "ice"
+      ],
+      "skills": [
+        "precise_shot",
+        "thunderbird",
+        "cleaving_blow",
+        "mercy_strike",
+        "take_aim",
+        "leghold_trap",
+        "abating_orb",
+        "draefendis_bow"
+      ],
+      "latent_power": {
+        "name": "兽之力",
+        "desc": "释放野性，本次行动可以使用兽之爪、兽之牙、兽之咆哮"
+      },
+      "latent_skills": [
+        "beast_claw",
+        "beast_fang",
+        "beast_roar"
+      ]
+    },
+    "castti": {
+      "name": "卡斯蒂",
+      "name_en": "Castti",
+      "job": "药师",
+      "job_en": "Apothecary",
+      "hp": 5336,
+      "sp": 182,
+      "pa": 313,
+      "pd": 285,
+      "ea": 285,
+      "ed": 285,
+      "acc": 285,
+      "eva": 256,
+      "crit": 285,
+      "spd": 228,
+      "weapons": [
+        "axe"
+      ],
+      "shields": 6,
+      "weak": [
+        "polearm",
+        "staff",
+        "lightning",
+        "light"
+      ],
+      "skills": [
+        "healing_touch",
+        "icicle",
+        "rehabilitate",
+        "sweeping_cleave",
+        "poison_axe",
+        "replenish_health",
+        "weak_to_poison",
+        "dohters_charity"
+      ],
+      "latent_power": {
+        "name": "节约",
+        "desc": "本次调合不消耗材料，且按最大加成（BP 3）的效果生效（不花 BP）"
+      },
+      "latent_skills": []
+    }
+  },
+  "skills": {
+    "aggressive_slash": {
+      "job": "Warrior",
+      "name": "Aggressive Slash",
+      "zh": "五月雨斩",
+      "sp": 9,
+      "target": "random",
+      "kind": "phys",
+      "type": "sword",
+      "power": 0.5599999999999999,
+      "boost": "hits",
+      "levels": [
+        3,
+        4,
+        5,
+        6
+      ],
+      "desc": "剑，随机攻击敌人 3/4/5/6 次",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        0.8,
+        1.1,
+        1.4,
+        1.7
+      ],
+      "invocation_values": [
+        0.7,
+        0.7,
+        0.7,
+        0.7
+      ],
+      "spell": false
+    },
+    "piercing_thrust": {
+      "job": "Warrior",
+      "name": "Piercing Thrust",
+      "zh": "会心之枪",
+      "sp": 12,
+      "target": "enemy",
+      "kind": "phys",
+      "type": "polearm",
+      "power": 1.25,
+      "boost": "crit",
+      "levels": [
+        25,
+        50,
+        75,
+        100
+      ],
+      "desc": "枪，单体强力攻击，暴击率 25/50/75/100%",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "invocation_values": [
+        1.25,
+        1.25,
+        1.25,
+        1.25
+      ],
+      "spell": false
+    },
+    "abide": {
+      "job": "Warrior",
+      "name": "Abide",
+      "zh": "蓄力",
+      "sp": 4,
+      "target": "self",
+      "boost": "dur",
+      "levels": [
+        3,
+        5,
+        7,
+        9
+      ],
+      "desc": "自身物攻上升 3/5/7/9 回合",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "enervating_slash": {
+      "job": "Warrior",
+      "name": "Enervating Slash",
+      "zh": "无心长刀",
+      "sp": 7,
+      "target": "enemy",
+      "kind": "phys",
+      "type": "sword",
+      "power": 0.9,
+      "boost": "power",
+      "desc": "消除目标的正面效果，按消除数量提高此次攻击伤害",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "invocation_values": [
+        0.9,
+        0.9,
+        0.9,
+        0.9
+      ],
+      "spell": false
+    },
+    "stout_wall": {
+      "job": "Warrior",
+      "name": "Stout Wall",
+      "zh": "铁壁",
+      "sp": 4,
+      "target": "self",
+      "boost": "dur",
+      "levels": [
+        3,
+        5,
+        7,
+        9
+      ],
+      "desc": "自身物防上升 3/5/7/9 回合",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "incite": {
+      "job": "Warrior",
+      "name": "Incite",
+      "zh": "挑衅",
+      "sp": 4,
+      "target": "self",
+      "boost": "dur",
+      "levels": [
+        3,
+        5,
+        7,
+        9
+      ],
+      "desc": "敌人的单体攻击全部打向自己，3 回合（加成延长）",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "vengeful_blade": {
+      "job": "Warrior",
+      "name": "Vengeful Blade",
+      "zh": "反击长刀",
+      "sp": 6,
+      "target": "self",
+      "boost": "count",
+      "levels": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "desc": "受到物理攻击时用剑反击，2/3/4/5 次",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "brands_blade": {
+      "job": "Warrior",
+      "name": "Brand's Blade",
+      "zh": "雷剑将布兰德的刚剑",
+      "sp": 30,
+      "target": "enemy",
+      "kind": "phys",
+      "type": "sword",
+      "power": 10.2,
+      "divine": true,
+      "desc": "神技：剑，单体极强攻击",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        6.0
+      ],
+      "invocation_values": [
+        1.7,
+        1.7,
+        1.7,
+        1.7
+      ],
+      "spell": false
+    },
+    "arrow_of_fortune": {
+      "job": "Merchant",
+      "name": "Arrow of Fortune",
+      "zh": "幸运之箭",
+      "sp": 12,
+      "target": "enemy",
+      "kind": "phys",
+      "type": "bow",
+      "power": 1.4,
+      "boost": "power",
+      "desc": "弓，单体强力攻击",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.8,
+        2.6,
+        3.4
+      ],
+      "invocation_values": [
+        1.4,
+        1.4,
+        1.4,
+        1.4
+      ],
+      "spell": false
+    },
+    "rest": {
+      "job": "Merchant",
+      "name": "Rest",
+      "zh": "稍作休息",
+      "sp": 0,
+      "target": "self",
+      "boost": "power",
+      "desc": "按施术者基础属防、恢复系数和等级系数恢复HP；恢复25/50/75/100 SP，解除中毒",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.7,
+        2.5,
+        3.3,
+        4.1
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "ember": {
+      "job": "Merchant",
+      "name": "Ember",
+      "zh": "火花",
+      "sp": 7,
+      "target": "enemy",
+      "kind": "elem",
+      "type": "fire",
+      "power": 1.3,
+      "boost": "power",
+      "spell": false,
+      "desc": "火，单体",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "invocation_values": [
+        1.3,
+        1.3,
+        1.3,
+        1.3
+      ]
+    },
+    "donate_bp": {
+      "job": "Merchant",
+      "name": "Donate BP",
+      "zh": "BP传递",
+      "sp": 6,
+      "target": "ally_other",
+      "boost": "count",
+      "levels": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "desc": "给一名其他队友 1/2/3/4 BP",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "sidestep": {
+      "job": "Merchant",
+      "name": "Sidestep",
+      "zh": "紧急回避",
+      "sp": 10,
+      "target": "self",
+      "boost": "count",
+      "levels": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "desc": "必定闪避接下来 1/2/3/4 次物理攻击",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "bifelgans_bounty": {
+      "job": "Merchant",
+      "name": "Bifelgan's Bounty",
+      "zh": "绅商伯比菲尔根的心眼",
+      "sp": 30,
+      "target": "enemy",
+      "kind": "elem",
+      "type": null,
+      "power": 7.800000000000001,
+      "divine": true,
+      "desc": "神技：无属性单体魔法伤害；本赛事战斗中不增加赛前金钱",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        6.0
+      ],
+      "invocation_values": [
+        1.3,
+        1.3,
+        1.3,
+        1.3
+      ],
+      "spell": false
+    },
+    "darkest_night": {
+      "job": "Thief",
+      "name": "Darkest Night",
+      "zh": "暗夜",
+      "sp": 7,
+      "target": "enemy",
+      "kind": "elem",
+      "type": "dark",
+      "power": 1.3,
+      "boost": "power",
+      "spell": false,
+      "desc": "暗，单体",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "invocation_values": [
+        1.3,
+        1.3,
+        1.3,
+        1.3
+      ]
+    },
+    "hp_thief": {
+      "job": "Thief",
+      "name": "HP Thief",
+      "zh": "吸血匕首",
+      "sp": 6,
+      "target": "enemy",
+      "kind": "phys",
+      "type": "dagger",
+      "power": 1.1,
+      "hits": 2,
+      "boost": "power",
+      "desc": "短剑，单体 2 次，吸取伤害一半的 HP",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.8,
+        2.6,
+        3.4
+      ],
+      "invocation_values": [
+        1.1,
+        1.1,
+        1.1,
+        1.1
+      ],
+      "spell": false
+    },
+    "surprise_attack": {
+      "job": "Thief",
+      "name": "Surprise Attack",
+      "zh": "突然袭击",
+      "sp": 12,
+      "target": "enemy",
+      "kind": "phys",
+      "type": "sword",
+      "power": 1.25,
+      "boost": "power",
+      "desc": "剑，单体；本回合越早行动威力越高（第 1 个行动 2.6 倍，往后每个顺位 -0.15，最低 1.4）",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "invocation_values": [
+        1.25,
+        1.25,
+        1.25,
+        1.25
+      ],
+      "spell": false
+    },
+    "swift_step": {
+      "job": "Thief",
+      "name": "Swift Step",
+      "zh": "瞬间移动",
+      "sp": 4,
+      "target": "self",
+      "boost": "dur",
+      "levels": [
+        3,
+        5,
+        7,
+        9
+      ],
+      "desc": "自身速度上升 3 回合（加成延长）",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "armor_corrosive": {
+      "job": "Thief",
+      "name": "Armor Corrosive",
+      "zh": "猫头鹰",
+      "sp": 4,
+      "target": "enemy",
+      "boost": "dur",
+      "levels": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "desc": "单个敌人物防下降 2/4/6/8 回合",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "shackle_foe": {
+      "job": "Thief",
+      "name": "Shackle Foe",
+      "zh": "蝙蝠",
+      "sp": 4,
+      "target": "enemy",
+      "boost": "dur",
+      "levels": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "desc": "单个敌人物攻下降 2/4/6/8 回合",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "aebers_reckoning": {
+      "job": "Thief",
+      "name": "Aeber's Reckoning",
+      "zh": "盗公子埃伯尔的钩爪",
+      "sp": 30,
+      "target": "enemies",
+      "kind": "phys",
+      "type": "dagger",
+      "power": 7.5,
+      "divine": true,
+      "desc": "全体短剑攻击；以物攻计算基础伤害，再乘 (0.84 + 当前速度/500)",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        5.0
+      ],
+      "invocation_values": [
+        1.5,
+        1.5,
+        1.5,
+        1.5
+      ],
+      "spell": false
+    },
+    "healing_touch": {
+      "job": "Apothecary",
+      "name": "Healing Touch",
+      "zh": "治疗术",
+      "sp": 6,
+      "target": "ally_any",
+      "heal": 2.2,
+      "boost": "power",
+      "desc": "单个队友恢复 HP，可复活倒下的队友",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        2.0,
+        2.7,
+        3.4,
+        4.1
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "icicle": {
+      "job": "Apothecary",
+      "name": "Icicle",
+      "zh": "冰柱",
+      "sp": 7,
+      "target": "enemy",
+      "kind": "elem",
+      "type": "ice",
+      "power": 1.3,
+      "boost": "power",
+      "spell": false,
+      "desc": "冰，单体",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "invocation_values": [
+        1.3,
+        1.3,
+        1.3,
+        1.3
+      ]
+    },
+    "rehabilitate": {
+      "job": "Apothecary",
+      "name": "Rehabilitate",
+      "zh": "健全化",
+      "sp": 10,
+      "target": "ally",
+      "boost": "dur",
+      "levels": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "desc": "单个队友免疫异常状态（中毒）2/4/6/8 回合，并解毒",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "sweeping_cleave": {
+      "job": "Apothecary",
+      "name": "Sweeping Cleave",
+      "zh": "斧一闪",
+      "sp": 9,
+      "target": "enemies",
+      "kind": "phys",
+      "type": "axe",
+      "power": 1.1,
+      "boost": "power",
+      "desc": "斧，全体",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.9,
+        2.8,
+        3.7
+      ],
+      "invocation_values": [
+        1.1,
+        1.1,
+        1.1,
+        1.1
+      ],
+      "spell": false
+    },
+    "poison_axe": {
+      "job": "Apothecary",
+      "name": "Poison Axe",
+      "zh": "毒断击",
+      "sp": 12,
+      "target": "enemy",
+      "kind": "phys",
+      "type": "axe",
+      "power": 1.4,
+      "boost": "power",
+      "desc": "斧，单体强力攻击，并使其中毒 2 回合",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "invocation_values": [
+        1.4,
+        1.4,
+        1.4,
+        1.4
+      ],
+      "spell": false
+    },
+    "replenish_health": {
+      "job": "Apothecary",
+      "name": "Replenish Health",
+      "zh": "继续疗伤",
+      "sp": 9,
+      "target": "ally",
+      "boost": "dur",
+      "levels": [
+        3,
+        5,
+        7,
+        9
+      ],
+      "desc": "单个队友每次行动后恢复最大 HP 的 20%，3/5/7/9 回合",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "weak_to_poison": {
+      "job": "Apothecary",
+      "name": "Weak to Poison",
+      "zh": "施加中毒弱点",
+      "sp": 4,
+      "target": "enemy",
+      "boost": "dur",
+      "levels": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "desc": "单个敌人 2/4/6/8 回合内弱毒：中毒结算伤害时削 1 护盾",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "dohters_charity": {
+      "job": "Apothecary",
+      "name": "Dohter's Charity",
+      "zh": "灵药公德塔的恩惠",
+      "sp": 30,
+      "target": "ally",
+      "divine": true,
+      "desc": "神技：3 回合内，该队友的单体恢复技能和调合作用于全体队友",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "precise_shot": {
+      "job": "Hunter",
+      "name": "Precise Shot",
+      "zh": "狙击",
+      "sp": 6,
+      "target": "chosen",
+      "kind": "phys",
+      "type": "bow",
+      "power": 0.9,
+      "boost": "hits",
+      "levels": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "desc": "弓，攻击 2/3/4/5 次，每次的目标由你指定（targets 列表，不足的重复最后一个）",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        0.9,
+        0.9,
+        0.9,
+        0.9
+      ],
+      "invocation_values": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "spell": false
+    },
+    "thunderbird": {
+      "job": "Hunter",
+      "name": "Thunderbird",
+      "zh": "雷鸟",
+      "sp": 7,
+      "target": "enemy",
+      "kind": "elem",
+      "type": "lightning",
+      "power": 1.3,
+      "boost": "power",
+      "spell": false,
+      "desc": "雷，单体较强攻击",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "invocation_values": [
+        1.3,
+        1.3,
+        1.3,
+        1.3
+      ]
+    },
+    "cleaving_blow": {
+      "job": "Hunter",
+      "name": "Cleaving Blow",
+      "zh": "瓦解",
+      "sp": 12,
+      "target": "enemy",
+      "kind": "phys",
+      "type": "axe",
+      "power": 1.4,
+      "boost": "power",
+      "desc": "斧，单体强力攻击；自身物攻上升 3 回合，并按对手类型获得物防（物攻≥属攻）或属防上升",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "invocation_values": [
+        1.4,
+        1.4,
+        1.4,
+        1.4
+      ],
+      "spell": false
+    },
+    "mercy_strike": {
+      "job": "Hunter",
+      "name": "Mercy Strike",
+      "zh": "点到为止",
+      "sp": 4,
+      "target": "enemy",
+      "kind": "phys",
+      "type": "bow",
+      "power": 0.01,
+      "boost": "power",
+      "mercy": true,
+      "desc": "弓，单体；不会击倒对手（至少留 1 HP）",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "invocation_values": [
+        0.01,
+        0.01,
+        0.01,
+        0.01
+      ],
+      "spell": false
+    },
+    "take_aim": {
+      "job": "Hunter",
+      "name": "Take Aim",
+      "zh": "瞄准目标",
+      "sp": 8,
+      "target": "allies",
+      "boost": "dur",
+      "levels": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "desc": "全体队友暴击率和命中上升 2/4/6/8 回合",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "leghold_trap": {
+      "job": "Hunter",
+      "name": "Leghold Trap",
+      "zh": "黏着捕网",
+      "sp": 10,
+      "target": "enemy",
+      "boost": "dur",
+      "levels": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "desc": "单个敌人 2/4/6/8 回合内总在回合最后行动",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "abating_orb": {
+      "job": "Hunter",
+      "name": "Abating Orb",
+      "zh": "化解弹",
+      "sp": 9,
+      "target": "enemy",
+      "boost": "count",
+      "levels": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "desc": "清除单个敌人 1/2/3/4 个增益效果",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "draefendis_bow": {
+      "job": "Hunter",
+      "name": "Draefendi's Bow",
+      "zh": "狩猎女王德雷芳朵的猛追",
+      "sp": 30,
+      "target": "enemies",
+      "kind": "phys",
+      "type": "bow",
+      "power": 2.38,
+      "hits": 3,
+      "divine": true,
+      "desc": "神技：弓，全体攻击 3 次",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.7
+      ],
+      "invocation_values": [
+        1.3,
+        1.3,
+        1.3,
+        1.4
+      ],
+      "spell": false
+    },
+    "heal_wounds": {
+      "job": "Cleric",
+      "name": "Heal Wounds",
+      "zh": "恢复魔法",
+      "sp": 15,
+      "target": "allies",
+      "heal": 1.4,
+      "boost": "power",
+      "spell": true,
+      "desc": "全体队友恢复 HP",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.4,
+        2.1,
+        2.8,
+        3.5
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "tier_parameters": [
+        [
+          {
+            "ratio": 1.4,
+            "invocation": 1.2
+          },
+          {
+            "ratio": 2.1,
+            "invocation": 1.2
+          },
+          {
+            "ratio": 2.8,
+            "invocation": 1.2
+          },
+          {
+            "ratio": 3.5,
+            "invocation": 1.2
+          }
+        ],
+        [
+          {
+            "ratio": 1.4,
+            "invocation": 1.8
+          },
+          {
+            "ratio": 2.1,
+            "invocation": 1.8
+          },
+          {
+            "ratio": 2.8,
+            "invocation": 1.8
+          },
+          {
+            "ratio": 3.5,
+            "invocation": 1.8
+          }
+        ],
+        [
+          {
+            "ratio": 1.4,
+            "invocation": 2.4
+          },
+          {
+            "ratio": 2.1,
+            "invocation": 2.4
+          },
+          {
+            "ratio": 2.8,
+            "invocation": 2.4
+          },
+          {
+            "ratio": 3.5,
+            "invocation": 2.4
+          }
+        ]
+      ]
+    },
+    "holy_light": {
+      "job": "Cleric",
+      "name": "Holy Light",
+      "zh": "圣光",
+      "sp": 6,
+      "target": "enemy",
+      "kind": "elem",
+      "type": "light",
+      "power": 1.3,
+      "boost": "power",
+      "spell": false,
+      "desc": "光，单体",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "invocation_values": [
+        1.3,
+        1.3,
+        1.3,
+        1.3
+      ]
+    },
+    "prayer_to_the_flame": {
+      "job": "Cleric",
+      "name": "Prayer to the Flame",
+      "zh": "圣火的祈祷",
+      "sp": 8,
+      "target": "ally",
+      "boost": "dur",
+      "levels": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "desc": "一名队友物防与属防上升2/4/6/8回合",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "mystical_staff": {
+      "job": "Cleric",
+      "name": "Mystical Staff",
+      "zh": "吸魔杖击",
+      "sp": 6,
+      "target": "enemy",
+      "kind": "phys",
+      "type": "staff",
+      "power": 1.1,
+      "hits": 2,
+      "boost": "power",
+      "desc": "杖，单体 2 次，回复相当于伤害 10% 的 SP",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.8,
+        2.6,
+        3.4
+      ],
+      "invocation_values": [
+        1.1,
+        1.1,
+        1.1,
+        1.1
+      ],
+      "spell": false
+    },
+    "luminescence": {
+      "job": "Cleric",
+      "name": "Luminescence",
+      "zh": "光明魔法",
+      "sp": 14,
+      "target": "enemies",
+      "kind": "elem",
+      "type": "light",
+      "power": 1.05,
+      "boost": "power",
+      "spell": true,
+      "desc": "光，全体",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.9,
+        2.8,
+        3.7
+      ],
+      "invocation_values": [
+        1.05,
+        1.05,
+        1.05,
+        1.05
+      ],
+      "tier_parameters": [
+        [
+          {
+            "ratio": 1.0,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 1.9,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 2.8,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 3.7,
+            "invocation": 1.05
+          }
+        ],
+        [
+          {
+            "ratio": 0.85,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 1.5,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 2.15,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 2.8,
+            "invocation": 1.05
+          }
+        ],
+        [
+          {
+            "ratio": 0.75,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 1.3,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 1.85,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 2.4,
+            "invocation": 1.05
+          }
+        ]
+      ]
+    },
+    "sacred_shield": {
+      "job": "Cleric",
+      "name": "Sacred Shield",
+      "zh": "守护之圣盾",
+      "sp": 10,
+      "target": "ally",
+      "boost": "count",
+      "levels": [
+        50,
+        65,
+        80,
+        100
+      ],
+      "desc": "单个队友下一次受到的伤害减少 50/65/80/100%",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0.5,
+        0.65,
+        0.8,
+        1.0
+      ],
+      "spell": false
+    },
+    "revive": {
+      "job": "Cleric",
+      "name": "Revive",
+      "zh": "复活魔法",
+      "sp": 40,
+      "target": "allies",
+      "boost": "power",
+      "spell": true,
+      "desc": "复活全体倒下队友；恢复量按属防、档位与魔法阶数计算，零BP一阶复活仅恢复1 HP",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.4,
+        2.1,
+        2.8,
+        3.5
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "tier_parameters": [
+        [
+          {
+            "ratio": 1.4,
+            "invocation": 0.0
+          },
+          {
+            "ratio": 2.1,
+            "invocation": 1.2
+          },
+          {
+            "ratio": 2.8,
+            "invocation": 1.2
+          },
+          {
+            "ratio": 3.5,
+            "invocation": 1.2
+          }
+        ],
+        [
+          {
+            "ratio": 1.4,
+            "invocation": 1.8
+          },
+          {
+            "ratio": 2.1,
+            "invocation": 1.8
+          },
+          {
+            "ratio": 2.8,
+            "invocation": 1.8
+          },
+          {
+            "ratio": 3.5,
+            "invocation": 1.8
+          }
+        ],
+        [
+          {
+            "ratio": 1.4,
+            "invocation": 2.4
+          },
+          {
+            "ratio": 2.1,
+            "invocation": 2.4
+          },
+          {
+            "ratio": 2.8,
+            "invocation": 2.4
+          },
+          {
+            "ratio": 3.5,
+            "invocation": 2.4
+          }
+        ]
+      ]
+    },
+    "aelfrics_blessing": {
+      "job": "Cleric",
+      "name": "Aelfric's Blessing",
+      "zh": "圣火神爱尔福林克的指引",
+      "sp": 30,
+      "target": "ally",
+      "divine": true,
+      "desc": "神技：3 回合内，该队友每回合末尾额外行动一次",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "fireball": {
+      "job": "Scholar",
+      "name": "Fireball",
+      "zh": "火焰魔法",
+      "sp": 14,
+      "target": "enemies",
+      "kind": "elem",
+      "type": "fire",
+      "power": 1.05,
+      "boost": "power",
+      "spell": true,
+      "desc": "火，全体",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.9,
+        2.8,
+        3.7
+      ],
+      "invocation_values": [
+        1.05,
+        1.05,
+        1.05,
+        1.05
+      ],
+      "tier_parameters": [
+        [
+          {
+            "ratio": 1.0,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 1.9,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 2.8,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 3.7,
+            "invocation": 1.05
+          }
+        ],
+        [
+          {
+            "ratio": 0.85,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 1.5,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 2.15,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 2.8,
+            "invocation": 1.05
+          }
+        ],
+        [
+          {
+            "ratio": 0.75,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 1.3,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 1.85,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 2.4,
+            "invocation": 1.05
+          }
+        ]
+      ]
+    },
+    "icewind": {
+      "job": "Scholar",
+      "name": "Icewind",
+      "zh": "冰冻魔法",
+      "sp": 14,
+      "target": "enemies",
+      "kind": "elem",
+      "type": "ice",
+      "power": 1.05,
+      "boost": "power",
+      "spell": true,
+      "desc": "冰，全体",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.9,
+        2.8,
+        3.7
+      ],
+      "invocation_values": [
+        1.05,
+        1.05,
+        1.05,
+        1.05
+      ],
+      "tier_parameters": [
+        [
+          {
+            "ratio": 1.0,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 1.9,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 2.8,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 3.7,
+            "invocation": 1.05
+          }
+        ],
+        [
+          {
+            "ratio": 0.85,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 1.5,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 2.15,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 2.8,
+            "invocation": 1.05
+          }
+        ],
+        [
+          {
+            "ratio": 0.75,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 1.3,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 1.85,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 2.4,
+            "invocation": 1.05
+          }
+        ]
+      ]
+    },
+    "lightning_bolt": {
+      "job": "Scholar",
+      "name": "Lightning Bolt",
+      "zh": "雷击魔法",
+      "sp": 14,
+      "target": "enemies",
+      "kind": "elem",
+      "type": "lightning",
+      "power": 1.05,
+      "boost": "power",
+      "spell": true,
+      "desc": "雷，全体",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.9,
+        2.8,
+        3.7
+      ],
+      "invocation_values": [
+        1.05,
+        1.05,
+        1.05,
+        1.05
+      ],
+      "tier_parameters": [
+        [
+          {
+            "ratio": 1.0,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 1.9,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 2.8,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 3.7,
+            "invocation": 1.05
+          }
+        ],
+        [
+          {
+            "ratio": 0.85,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 1.5,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 2.15,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 2.8,
+            "invocation": 1.05
+          }
+        ],
+        [
+          {
+            "ratio": 0.75,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 1.3,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 1.85,
+            "invocation": 1.05
+          },
+          {
+            "ratio": 2.4,
+            "invocation": 1.05
+          }
+        ]
+      ]
+    },
+    "stroke_of_genius": {
+      "job": "Scholar",
+      "name": "Stroke of Genius",
+      "zh": "灵光一闪",
+      "sp": 5,
+      "target": "self",
+      "boost": "count",
+      "levels": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "desc": "随机获得 2/3/4/5 个属性上升（3 回合，重复则延长）",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "elemental_barrage": {
+      "job": "Scholar",
+      "name": "Elemental Barrage",
+      "zh": "属性混乱",
+      "sp": 10,
+      "target": "random",
+      "kind": "elem",
+      "type": "random_fil",
+      "power": 0.6400000000000001,
+      "boost": "hits",
+      "levels": [
+        [
+          3,
+          5
+        ],
+        [
+          4,
+          6
+        ],
+        [
+          5,
+          7
+        ],
+        [
+          6,
+          8
+        ]
+      ],
+      "spell": false,
+      "desc": "火/冰/雷随机，随机攻击敌人 3-5/4-6/5-7/6-8 次",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        0.8,
+        1.1,
+        1.4,
+        1.7
+      ],
+      "invocation_values": [
+        0.8,
+        0.8,
+        0.8,
+        0.8
+      ]
+    },
+    "advance_magic": {
+      "job": "Scholar",
+      "name": "Advanced Magic",
+      "zh": "大魔法化",
+      "sp": 15,
+      "target": "ally",
+      "desc": "使一名队友接下来2/3/4/5次适用魔法强化为二阶；魔法强化加成另加1次",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false,
+      "boost": "count",
+      "levels": [
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    "alephans_wisdom": {
+      "job": "Scholar",
+      "name": "Alephan's Wisdom",
+      "zh": "硕学王阿雷芬的知识",
+      "sp": 30,
+      "target": "ally",
+      "divine": true,
+      "desc": "使一名队友接下来3次适用魔法强化为三阶；魔法强化加成另加1次",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "lion_dance": {
+      "job": "Dancer",
+      "name": "Lion Dance",
+      "zh": "狮子之舞",
+      "sp": 4,
+      "target": "ally",
+      "boost": "dur",
+      "levels": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "desc": "单个队友物攻上升 2/4/6/8 回合",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "ruinous_kick": {
+      "job": "Dancer",
+      "name": "Ruinous Kick",
+      "zh": "猛踢要害",
+      "sp": 10,
+      "target": "enemy",
+      "kind": "phys",
+      "type": null,
+      "power": 1.5,
+      "boost": "power",
+      "shield_break": 1,
+      "desc": "无属性物理单体强力攻击，无视弱点削减 1 护盾",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "invocation_values": [
+        1.5,
+        1.5,
+        1.5,
+        1.5
+      ],
+      "spell": false
+    },
+    "peacock_strut": {
+      "job": "Dancer",
+      "name": "Peacock Strut",
+      "zh": "孔雀之舞",
+      "sp": 4,
+      "target": "ally",
+      "boost": "dur",
+      "levels": [
+        2,
+        4,
+        6,
+        8
+      ],
+      "desc": "单个队友属攻上升 2/4/6/8 回合",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "sweeping_gale": {
+      "job": "Dancer",
+      "name": "Sweeping Gale",
+      "zh": "旋风",
+      "sp": 7,
+      "target": "enemy",
+      "kind": "elem",
+      "type": "wind",
+      "power": 1.3,
+      "boost": "power",
+      "spell": false,
+      "desc": "风，单体",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "invocation_values": [
+        1.3,
+        1.3,
+        1.3,
+        1.3
+      ]
+    },
+    "stimulate": {
+      "job": "Dancer",
+      "name": "Stimulate",
+      "zh": "推波助澜",
+      "sp": 5,
+      "target": "ally_other",
+      "boost": "count",
+      "levels": [
+        1,
+        2,
+        3,
+        99
+      ],
+      "desc": "让一名其他队友的下一次行动提前 1/2/3 位/最先",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "dagger_dance": {
+      "job": "Dancer",
+      "name": "Dagger Dance",
+      "zh": "短刀之舞",
+      "sp": 9,
+      "target": "enemies",
+      "kind": "phys",
+      "type": "dagger",
+      "power": 1.1,
+      "boost": "power",
+      "desc": "短剑，全体",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.9,
+        2.8,
+        3.7
+      ],
+      "invocation_values": [
+        1.1,
+        1.1,
+        1.1,
+        1.1
+      ],
+      "spell": false
+    },
+    "bewildering_grace": {
+      "job": "Dancer",
+      "name": "Bewildering Grace",
+      "zh": "百思不解之舞",
+      "sp": 25,
+      "target": "self",
+      "boost": "count",
+      "levels": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "desc": "随机触发 1/2/3/4 个奇妙效果（有好有坏）"
+    },
+    "sealticges_seduction": {
+      "job": "Dancer",
+      "name": "Sealticge's Seduction",
+      "zh": "舞姬希尔缇吉的话",
+      "sp": 30,
+      "target": "ally",
+      "divine": true,
+      "desc": "神技：3 回合内，该队友的单体技能改为作用于全体（神技和只作用于自己的技能除外）",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false
+    },
+    "tenretsu": {
+      "job": "hikari",
+      "name": "Tenretsu",
+      "zh": "天裂斩",
+      "sp": 0,
+      "target": "enemy",
+      "kind": "phys",
+      "type": "sword",
+      "power": 2.1,
+      "boost": "power",
+      "desc": "潜力专属：剑，单体 1 次强力斩击",
+      "hit_ratios": [
+        999.0,
+        999.0,
+        999.0,
+        999.0
+      ],
+      "ability_ratios": [
+        1.2,
+        2.4,
+        3.6,
+        4.8
+      ],
+      "invocation_values": [
+        1.75,
+        1.75,
+        1.75,
+        1.75
+      ],
+      "spell": false
+    },
+    "hien": {
+      "job": "hikari",
+      "name": "Hien",
+      "zh": "飞燕华",
+      "sp": 0,
+      "target": "enemy",
+      "kind": "phys",
+      "type": "sword",
+      "power": 1.4,
+      "hits": 2,
+      "boost": "power",
+      "desc": "潜力专属：单体两次剑攻击，在本回合末追加一次行动；每回合最多追加一次",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "invocation_values": [
+        1.4,
+        1.4,
+        1.4,
+        1.4
+      ],
+      "spell": false
+    },
+    "sougetsu": {
+      "job": "hikari",
+      "name": "Sougetsu",
+      "zh": "双月闪",
+      "sp": 0,
+      "target": "enemies",
+      "kind": "phys",
+      "type": "sword",
+      "power": 1.1,
+      "hits": 2,
+      "boost": "power",
+      "desc": "潜力专属：全体先受一次剑攻击，再受一次长柄武器攻击",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.9,
+        2.8,
+        3.7
+      ],
+      "invocation_values": [
+        1.1,
+        1.1,
+        1.1,
+        1.1
+      ],
+      "spell": false
+    },
+    "beast_claw": {
+      "job": "ochette",
+      "name": "Beast Claw",
+      "zh": "兽之爪",
+      "sp": 0,
+      "target": "enemies",
+      "kind": "phys",
+      "type": null,
+      "power": 1.8,
+      "hits": 1,
+      "boost": "power",
+      "desc": "潜力专属：全体一次无武器属性物理伤害",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        2.0,
+        3.0,
+        4.0
+      ],
+      "invocation_values": [
+        1.8,
+        1.8,
+        1.8,
+        1.8
+      ],
+      "spell": false
+    },
+    "beast_fang": {
+      "job": "ochette",
+      "name": "Beast Fang",
+      "zh": "兽之牙",
+      "sp": 0,
+      "target": "enemy",
+      "kind": "phys",
+      "type": null,
+      "power": 2.4,
+      "hits": 1,
+      "boost": "power",
+      "shield_break": 0,
+      "desc": "潜力专属：单体一次无武器属性物理伤害",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.2,
+        2.4,
+        3.6,
+        4.8
+      ],
+      "invocation_values": [
+        2.0,
+        2.0,
+        2.0,
+        2.0
+      ],
+      "spell": false
+    },
+    "beast_roar": {
+      "job": "ochette",
+      "name": "Beast Roar",
+      "zh": "兽之咆哮",
+      "sp": 0,
+      "target": "enemies",
+      "boost": "dur",
+      "desc": "全体敌人物防、属防下降3/4/5/6回合，并无视弱点削1盾；不造成HP伤害",
+      "hit_ratios": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "ability_ratios": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "invocation_values": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "spell": false,
+      "levels": [
+        3,
+        4,
+        5,
+        6
+      ]
+    }
+  },
+  "concoct_recipes": {
+    "elixir": {
+      "zh": "复苏药",
+      "desc": "全体队友恢复最大 HP 15%×(1+BP)"
+    },
+    "phoenix": {
+      "zh": "还魂药",
+      "desc": "复活一名倒下的队友（target 填队友 id），恢复最大 HP 25%×(1+BP)；没有倒下队友时改为治疗该队友"
+    },
+    "toxin": {
+      "zh": "毒雾",
+      "desc": "全体敌人受到 0.5×(1+BP) 倍威力的无属性伤害，并中毒 3 回合"
+    },
+    "firebomb": {
+      "zh": "火焰瓶",
+      "desc": "全体敌人受到 0.9×(1+BP) 倍威力的火属性伤害（削护盾）"
+    }
+  },
+  "types": [
+    "sword",
+    "polearm",
+    "dagger",
+    "axe",
+    "bow",
+    "staff",
+    "fire",
+    "ice",
+    "lightning",
+    "wind",
+    "light",
+    "dark"
+  ],
+  "constants": {
+    "weak_mult": 1.3,
+    "break_mult": 2.0,
+    "crit_mult": 1.25,
+    "defend_mult": 0.5,
+    "buff_mult": 1.5,
+    "debuff_mult": 0.67,
+    "poison_pct": 0.16666666666666666,
+    "regen_pct": 0.2,
+    "latent_per_dmg": 130.0,
+    "latent_per_break": 25.0,
+    "latent_per_action": 0.0,
+    "materials": 4,
+    "speed_jitter": 0.08,
+    "level_multiplier": 1.36328125,
+    "damage_random_min": 1.01,
+    "damage_random_max": 1.05
+  },
+  "loadout_enabled": true,
+  "loadout_rules": {
+    "budget": {
+      "jp": 12000,
+      "gold": 6000
+    },
+    "jp_costs": [
+      30,
+      100,
+      500,
+      1000,
+      3000,
+      5000
+    ],
+    "free_skills": 2,
+    "support_unlock": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "support_slots": 4,
+    "licenses": 3,
+    "jobs": {
+      "Warrior": {
+        "zh": "剑士",
+        "bonus_pct": {
+          "hp": 18,
+          "pa": 5,
+          "pd": 5
+        },
+        "weapons": [
+          "sword",
+          "polearm"
+        ],
+        "skills": [
+          "aggressive_slash",
+          "piercing_thrust",
+          "abide",
+          "enervating_slash",
+          "stout_wall",
+          "incite",
+          "vengeful_blade",
+          "brands_blade"
+        ],
+        "free_skills": [
+          "aggressive_slash",
+          "piercing_thrust"
+        ],
+        "divine": "brands_blade",
+        "nonbattle_skills": [],
+        "supports": [
+          "bolstering_break",
+          "summon_strength",
+          "latent_power_plus",
+          "deal_more_damage"
+        ]
+      },
+      "Merchant": {
+        "zh": "商人",
+        "bonus_pct": {
+          "hp": 8,
+          "sp": 8,
+          "pa": 3,
+          "pd": 3,
+          "ea": 3,
+          "ed": 3
+        },
+        "weapons": [
+          "polearm",
+          "bow"
+        ],
+        "skills": [
+          "arrow_of_fortune",
+          "rest",
+          "ember",
+          "donate_bp",
+          "sidestep",
+          "bifelgans_bounty",
+          "collect",
+          "hire_help"
+        ],
+        "free_skills": [
+          "arrow_of_fortune",
+          "rest"
+        ],
+        "divine": "bifelgans_bounty",
+        "nonbattle_skills": [
+          "collect",
+          "hire_help"
+        ],
+        "supports": [
+          "grows_on_trees",
+          "boost_start",
+          "hang_tough",
+          "full_power"
+        ]
+      },
+      "Thief": {
+        "zh": "盗贼",
+        "bonus_pct": {
+          "pa": 2,
+          "acc": 5,
+          "spd": 8,
+          "crit": 5,
+          "eva": 8
+        },
+        "weapons": [
+          "dagger",
+          "sword"
+        ],
+        "skills": [
+          "darkest_night",
+          "hp_thief",
+          "surprise_attack",
+          "swift_step",
+          "armor_corrosive",
+          "shackle_foe",
+          "aebers_reckoning",
+          "steal"
+        ],
+        "free_skills": [
+          "steal",
+          "darkest_night"
+        ],
+        "divine": "aebers_reckoning",
+        "nonbattle_skills": [
+          "steal"
+        ],
+        "supports": [
+          "incidental_attack",
+          "fleetfoot",
+          "ensnare",
+          "life_in_the_shadows"
+        ]
+      },
+      "Apothecary": {
+        "zh": "药师",
+        "bonus_pct": {
+          "hp": 20,
+          "pa": 2,
+          "pd": 2,
+          "ea": 2,
+          "crit": 2
+        },
+        "weapons": [
+          "axe"
+        ],
+        "skills": [
+          "healing_touch",
+          "icicle",
+          "rehabilitate",
+          "sweeping_cleave",
+          "poison_axe",
+          "replenish_health",
+          "weak_to_poison",
+          "dohters_charity"
+        ],
+        "free_skills": [
+          "healing_touch",
+          "icicle"
+        ],
+        "divine": "dohters_charity",
+        "nonbattle_skills": [],
+        "supports": [
+          "vigorous_victor",
+          "hale_and_hearty",
+          "inspiriting_break",
+          "preventative_measures"
+        ]
+      },
+      "Hunter": {
+        "zh": "猎人",
+        "bonus_pct": {
+          "pa": 8,
+          "acc": 6,
+          "spd": 5,
+          "crit": 6,
+          "eva": 3
+        },
+        "weapons": [
+          "bow",
+          "axe"
+        ],
+        "skills": [
+          "precise_shot",
+          "thunderbird",
+          "cleaving_blow",
+          "mercy_strike",
+          "take_aim",
+          "leghold_trap",
+          "abating_orb",
+          "draefendis_bow"
+        ],
+        "free_skills": [
+          "precise_shot",
+          "thunderbird"
+        ],
+        "divine": "draefendis_bow",
+        "nonbattle_skills": [],
+        "supports": [
+          "heighten_senses",
+          "eagle_eye",
+          "more_rare_monsters",
+          "salt_the_wound"
+        ]
+      },
+      "Cleric": {
+        "zh": "神官",
+        "bonus_pct": {
+          "sp": 18,
+          "ea": 5,
+          "ed": 5
+        },
+        "weapons": [
+          "staff"
+        ],
+        "skills": [
+          "heal_wounds",
+          "holy_light",
+          "prayer_to_the_flame",
+          "mystical_staff",
+          "luminescence",
+          "sacred_shield",
+          "revive",
+          "aelfrics_blessing"
+        ],
+        "free_skills": [
+          "heal_wounds",
+          "holy_light"
+        ],
+        "divine": "aelfrics_blessing",
+        "nonbattle_skills": [],
+        "supports": [
+          "resilience",
+          "inner_strength",
+          "evil_ward",
+          "rise_again"
+        ]
+      },
+      "Scholar": {
+        "zh": "学者",
+        "bonus_pct": {
+          "sp": 13,
+          "ea": 10,
+          "ed": 5
+        },
+        "weapons": [
+          "staff"
+        ],
+        "skills": [
+          "fireball",
+          "icewind",
+          "lightning_bolt",
+          "stroke_of_genius",
+          "elemental_barrage",
+          "advance_magic",
+          "alephans_wisdom",
+          "analyze"
+        ],
+        "free_skills": [
+          "fireball",
+          "icewind"
+        ],
+        "divine": "alephans_wisdom",
+        "nonbattle_skills": [
+          "analyze"
+        ],
+        "supports": [
+          "evasive_maneuvers",
+          "elemental_augmentation",
+          "extra_experience",
+          "advanced_magic_master"
+        ]
+      },
+      "Dancer": {
+        "zh": "舞娘",
+        "bonus_pct": {
+          "ea": 8,
+          "spd": 10,
+          "eva": 10
+        },
+        "weapons": [
+          "dagger"
+        ],
+        "skills": [
+          "lion_dance",
+          "ruinous_kick",
+          "peacock_strut",
+          "sweeping_gale",
+          "stimulate",
+          "dagger_dance",
+          "bewildering_grace",
+          "sealticges_seduction"
+        ],
+        "free_skills": [
+          "lion_dance",
+          "ruinous_kick"
+        ],
+        "divine": "sealticges_seduction",
+        "nonbattle_skills": [],
+        "supports": [
+          "the_show_goes_on",
+          "ever_evasive",
+          "hard_worker",
+          "invigorate_and_inspire"
+        ]
+      }
+    },
+    "supports": {
+      "bolstering_break": {
+        "job": "Warrior",
+        "n": 1,
+        "name": "Bolstering Break",
+        "zh": "令敌人破防提升物攻",
+        "desc": "自己击破敌人时，自身物攻上升 2 回合",
+        "battle": true
+      },
+      "summon_strength": {
+        "job": "Warrior",
+        "n": 2,
+        "name": "Summon Strength",
+        "zh": "物攻+50",
+        "desc": "物攻 +50",
+        "battle": true
+      },
+      "latent_power_plus": {
+        "job": "Warrior",
+        "n": 3,
+        "name": "Latent Power Plus",
+        "zh": "提升潜力上升量",
+        "desc": "潜力能量积累速度 ×1.2",
+        "battle": true
+      },
+      "deal_more_damage": {
+        "job": "Warrior",
+        "n": 4,
+        "name": "Deal More Damage",
+        "zh": "突破伤害界限",
+        "desc": "自己造成的伤害上限从 9999 提高到 99999",
+        "battle": true
+      },
+      "the_show_goes_on": {
+        "job": "Dancer",
+        "n": 1,
+        "name": "The Show Goes On",
+        "zh": "强化回合数增加",
+        "desc": "自己施加的属性上升多持续 1 回合",
+        "battle": true
+      },
+      "ever_evasive": {
+        "job": "Dancer",
+        "n": 2,
+        "name": "Ever Evasive",
+        "zh": "回避率上升",
+        "desc": "被物理攻击时的落空率 +20%（直接加在落空率上）",
+        "arena_rule": "本届确定规则：自然落空率额外增加20个百分点；击破目标仍无自然闪避",
+        "battle": true
+      },
+      "hard_worker": {
+        "job": "Dancer",
+        "n": 3,
+        "name": "Hard Worker",
+        "zh": "获得JP上升",
+        "battle": false,
+        "desc": "战斗后获得的 JP ×1.1（探索用，竞技场无效）"
+      },
+      "invigorate_and_inspire": {
+        "job": "Dancer",
+        "n": 4,
+        "name": "Invigorate and Inspire",
+        "zh": "暖场高手",
+        "desc": "自己施加属性上升时，获得增益的角色潜力能量 +5/10/15/20（按这次行动花的 BP 0/1/2/3）",
+        "battle": true
+      },
+      "grows_on_trees": {
+        "job": "Merchant",
+        "n": 1,
+        "name": "Grows on Trees",
+        "zh": "获取金额上升",
+        "battle": false,
+        "desc": "战斗后获得的金钱 ×1.1（探索用，竞技场无效）"
+      },
+      "boost_start": {
+        "job": "Merchant",
+        "n": 2,
+        "name": "Boost-Start",
+        "zh": "BP加成",
+        "desc": "开战时 BP +1",
+        "battle": true
+      },
+      "hang_tough": {
+        "job": "Merchant",
+        "n": 3,
+        "name": "Hang Tough",
+        "zh": "坚持到底",
+        "desc": "受到致命的一击时，如果这一击之前 HP 在 25% 以上，剩 1 HP 撑住（多段攻击每一击单独判断）",
+        "battle": true
+      },
+      "full_power": {
+        "job": "Merchant",
+        "n": 4,
+        "name": "Full Power",
+        "zh": "潜力爆发MAX",
+        "desc": "开战时潜力能量全满",
+        "battle": true
+      },
+      "evasive_maneuvers": {
+        "job": "Scholar",
+        "n": 1,
+        "name": "Evasive Maneuvers",
+        "zh": "遇敌概率减半",
+        "battle": false,
+        "desc": "遇敌率减半（探索用，竞技场无效）"
+      },
+      "elemental_augmentation": {
+        "job": "Scholar",
+        "n": 2,
+        "name": "Elemental Augmentation",
+        "zh": "属攻+50",
+        "desc": "属攻 +50",
+        "battle": true
+      },
+      "extra_experience": {
+        "job": "Scholar",
+        "n": 3,
+        "name": "Extra Experience",
+        "zh": "获得EXP提升",
+        "battle": false,
+        "desc": "战斗后获得的经验 ×1.1（探索用，竞技场无效）"
+      },
+      "advanced_magic_master": {
+        "job": "Scholar",
+        "n": 4,
+        "name": "Advanced Magic Master",
+        "zh": "魔法强化加成",
+        "desc": "自己施放大魔法化 / 硕学王的知识时，强化次数 +1",
+        "battle": true
+      },
+      "incidental_attack": {
+        "job": "Thief",
+        "n": 1,
+        "name": "Incidental Attack",
+        "zh": "顺便战斗",
+        "desc": "使用不造成伤害的技能后，50% 概率再普通攻击 1 次",
+        "battle": true
+      },
+      "fleetfoot": {
+        "job": "Thief",
+        "n": 2,
+        "name": "Fleetfoot",
+        "zh": "行动速度+50",
+        "desc": "速度 +50",
+        "battle": true
+      },
+      "ensnare": {
+        "job": "Thief",
+        "n": 3,
+        "name": "Ensnare",
+        "zh": "陷阱",
+        "desc": "受到物理伤害时，50% 概率让攻击者随机一项属性下降 2 回合",
+        "arena_rule": "本届确定规则：减益持续2回合",
+        "battle": true
+      },
+      "life_in_the_shadows": {
+        "job": "Thief",
+        "n": 4,
+        "name": "Life in the Shadows",
+        "zh": "存于黑暗",
+        "battle": false,
+        "desc": "夜晚战斗后经验和 JP ×1.5（探索用，竞技场无效）"
+      },
+      "resilience": {
+        "job": "Cleric",
+        "n": 1,
+        "name": "Resilience",
+        "zh": "HP恢复量上升",
+        "desc": "自己技能的 HP 恢复量 ×1.3",
+        "battle": true
+      },
+      "inner_strength": {
+        "job": "Cleric",
+        "n": 2,
+        "name": "Inner Strength",
+        "zh": "最大SP+50",
+        "desc": "最大 SP +50",
+        "battle": true
+      },
+      "evil_ward": {
+        "job": "Cleric",
+        "n": 3,
+        "name": "Evil Ward",
+        "zh": "逃跑成功率上升",
+        "battle": false,
+        "desc": "逃跑成功率上升（竞技场无效）"
+      },
+      "rise_again": {
+        "job": "Cleric",
+        "n": 4,
+        "name": "Rise Again",
+        "zh": "自动复活",
+        "desc": "每场一次，倒下时立刻以 25% HP 复活",
+        "battle": true
+      },
+      "heighten_senses": {
+        "job": "Hunter",
+        "n": 1,
+        "name": "Heighten Senses",
+        "zh": "先制攻击的概率上升",
+        "battle": false,
+        "desc": "先制攻击概率上升（探索用，竞技场无效）"
+      },
+      "eagle_eye": {
+        "job": "Hunter",
+        "n": 2,
+        "name": "Eagle Eye",
+        "zh": "暴击+50",
+        "desc": "暴击 +50",
+        "battle": true
+      },
+      "more_rare_monsters": {
+        "job": "Hunter",
+        "n": 3,
+        "name": "More Rare Monsters",
+        "zh": "稀有怪物遭遇率上升",
+        "battle": false,
+        "desc": "稀有怪遭遇率上升（探索用，竞技场无效）"
+      },
+      "salt_the_wound": {
+        "job": "Hunter",
+        "n": 4,
+        "name": "Salt the Wound",
+        "zh": "破防追击",
+        "desc": "自己击破敌人时，50% 概率立刻再行动一次（不会连续触发）",
+        "battle": true
+      },
+      "vigorous_victor": {
+        "job": "Apothecary",
+        "n": 1,
+        "name": "Vigorous Victor",
+        "zh": "战斗后恢复",
+        "battle": false,
+        "desc": "战斗胜利后恢复 30% HP/SP（竞技场无效）"
+      },
+      "hale_and_hearty": {
+        "job": "Apothecary",
+        "n": 2,
+        "name": "Hale and Hearty",
+        "zh": "最大HP+500",
+        "desc": "最大 HP +500",
+        "battle": true
+      },
+      "inspiriting_break": {
+        "job": "Apothecary",
+        "n": 3,
+        "name": "Inspiriting Break",
+        "zh": "令敌人破防恢复SP",
+        "desc": "自己击破敌人时，恢复固定 20 SP",
+        "battle": true
+      },
+      "preventative_measures": {
+        "job": "Apothecary",
+        "n": 4,
+        "name": "Preventative Measures",
+        "zh": "预防药",
+        "desc": "开战时获得 3 次属性下降无效（每挡掉一次减 1；按次数算，日文资料和玩家实测一致）",
+        "battle": true
+      }
+    },
+    "nonbattle_skills": {
+      "steal": {
+        "job": "Thief",
+        "name": "Steal",
+        "zh": "偷窃"
+      },
+      "collect": {
+        "job": "Merchant",
+        "name": "Collect",
+        "zh": "收集金钱"
+      },
+      "hire_help": {
+        "job": "Merchant",
+        "name": "Hire Help",
+        "zh": "雇佣帮手"
+      },
+      "analyze": {
+        "job": "Scholar",
+        "name": "Analyze",
+        "zh": "分析"
+      }
+    },
+    "items": {
+      "healing_grape": {
+        "name": "Healing Grape",
+        "zh": "恢复HP的葡萄",
+        "price": 50,
+        "target": "ally",
+        "fx": {
+          "hp": 500
+        },
+        "desc": "恢复 HP 500"
+      },
+      "healing_grape_m": {
+        "name": "Healing Grape (M)",
+        "zh": "恢复HP的葡萄(大)",
+        "price": 260,
+        "target": "ally",
+        "fx": {
+          "hp": 1250
+        },
+        "desc": "恢复 HP 1250"
+      },
+      "healing_grape_bunch": {
+        "name": "Healing Grape Bunch",
+        "zh": "恢复全体HP的葡萄",
+        "price": 720,
+        "target": "allies",
+        "fx": {
+          "hp": 900
+        },
+        "desc": "全体恢复 HP 900",
+        "src": "内部价值"
+      },
+      "inspiriting_plum": {
+        "name": "Inspiriting Plum",
+        "zh": "恢复SP的李子",
+        "price": 240,
+        "target": "ally",
+        "fx": {
+          "sp": 40
+        },
+        "desc": "恢复 SP 40"
+      },
+      "inspiriting_plum_m": {
+        "name": "Inspiriting Plum (M)",
+        "zh": "恢复SP的李子(大)",
+        "price": 900,
+        "target": "ally",
+        "fx": {
+          "sp": 100
+        },
+        "desc": "恢复 SP 100"
+      },
+      "energizing_pomegranate": {
+        "name": "Energizing Pomegranate",
+        "zh": "恢复BP的石榴",
+        "price": 300,
+        "target": "ally",
+        "fx": {
+          "bp": 1
+        },
+        "desc": "BP +1",
+        "src": "内部价值"
+      },
+      "olive_of_life": {
+        "name": "Olive of Life",
+        "zh": "复活的橄榄",
+        "price": 500,
+        "target": "ko",
+        "fx": {
+          "revive": 500
+        },
+        "desc": "复活倒下的队友，HP 500"
+      },
+      "olive_of_life_m": {
+        "name": "Olive of Life (M)",
+        "zh": "复活的橄榄(大)",
+        "price": 3000,
+        "target": "ko",
+        "fx": {
+          "revive": 2000
+        },
+        "desc": "复活倒下的队友，HP 2000"
+      },
+      "herb_of_serenity": {
+        "name": "Herb of Serenity",
+        "zh": "包治百病的药草",
+        "price": 600,
+        "target": "ally",
+        "fx": {
+          "cure": true
+        },
+        "desc": "治疗中毒（原作是治疗全部异常状态，本竞技场只有中毒和弱毒）"
+      },
+      "fire_soulstone": {
+        "name": "Fire Soulstone",
+        "zh": "火之精灵石",
+        "price": 700,
+        "target": "enemies",
+        "fx": {
+          "dmg": 200,
+          "type": "fire"
+        },
+        "desc": "全体敌人受到 200 点火属性固定伤害"
+      },
+      "fire_soulstone_m": {
+        "name": "Fire Soulstone (M)",
+        "zh": "火之精灵石(大)",
+        "price": 1700,
+        "target": "enemies",
+        "fx": {
+          "dmg": 1100,
+          "type": "fire"
+        },
+        "desc": "全体敌人受到 1100 点火属性固定伤害"
+      },
+      "ice_soulstone": {
+        "name": "Ice Soulstone",
+        "zh": "冰之精灵石",
+        "price": 700,
+        "target": "enemies",
+        "fx": {
+          "dmg": 200,
+          "type": "ice"
+        },
+        "desc": "全体敌人受到 200 点冰属性固定伤害"
+      },
+      "ice_soulstone_m": {
+        "name": "Ice Soulstone (M)",
+        "zh": "冰之精灵石(大)",
+        "price": 1700,
+        "target": "enemies",
+        "fx": {
+          "dmg": 1100,
+          "type": "ice"
+        },
+        "desc": "全体敌人受到 1100 点冰属性固定伤害"
+      },
+      "lightning_soulstone": {
+        "name": "Thunder Soulstone",
+        "zh": "雷之精灵石",
+        "price": 700,
+        "target": "enemies",
+        "fx": {
+          "dmg": 200,
+          "type": "lightning"
+        },
+        "desc": "全体敌人受到 200 点雷属性固定伤害"
+      },
+      "lightning_soulstone_m": {
+        "name": "Thunder Soulstone (M)",
+        "zh": "雷之精灵石(大)",
+        "price": 1700,
+        "target": "enemies",
+        "fx": {
+          "dmg": 1100,
+          "type": "lightning"
+        },
+        "desc": "全体敌人受到 1100 点雷属性固定伤害"
+      },
+      "wind_soulstone": {
+        "name": "Wind Soulstone",
+        "zh": "风之精灵石",
+        "price": 700,
+        "target": "enemies",
+        "fx": {
+          "dmg": 200,
+          "type": "wind"
+        },
+        "desc": "全体敌人受到 200 点风属性固定伤害"
+      },
+      "wind_soulstone_m": {
+        "name": "Wind Soulstone (M)",
+        "zh": "风之精灵石(大)",
+        "price": 1700,
+        "target": "enemies",
+        "fx": {
+          "dmg": 1100,
+          "type": "wind"
+        },
+        "desc": "全体敌人受到 1100 点风属性固定伤害"
+      },
+      "light_soulstone": {
+        "name": "Light Soulstone",
+        "zh": "光之精灵石",
+        "price": 700,
+        "target": "enemies",
+        "fx": {
+          "dmg": 200,
+          "type": "light"
+        },
+        "desc": "全体敌人受到 200 点光属性固定伤害"
+      },
+      "light_soulstone_m": {
+        "name": "Light Soulstone (M)",
+        "zh": "光之精灵石(大)",
+        "price": 1700,
+        "target": "enemies",
+        "fx": {
+          "dmg": 1100,
+          "type": "light"
+        },
+        "desc": "全体敌人受到 1100 点光属性固定伤害"
+      },
+      "dark_soulstone": {
+        "name": "Shadow Soulstone",
+        "zh": "暗之精灵石",
+        "price": 700,
+        "target": "enemies",
+        "fx": {
+          "dmg": 200,
+          "type": "dark"
+        },
+        "desc": "全体敌人受到 200 点暗属性固定伤害"
+      },
+      "dark_soulstone_m": {
+        "name": "Shadow Soulstone (M)",
+        "zh": "暗之精灵石(大)",
+        "price": 1700,
+        "target": "enemies",
+        "fx": {
+          "dmg": 1100,
+          "type": "dark"
+        },
+        "desc": "全体敌人受到 1100 点暗属性固定伤害"
+      }
+    },
+    "item_stack": 99
+  }
+}

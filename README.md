@@ -81,3 +81,37 @@ round1为Simple 1v1，round2为Simple 2v2，finals为Complex 2v2。胜3、平1�
 所有选手统一获得 `codeside/releases/AI-Platform-Participant-Kit-v1.2.zip` 和 `codeside/materials/CodeSide-AI完整参赛材料.txt`。`organizer/` 和主办方ZIP包含内部基准，供主办方使用。
 
 `docs/` 为完整参赛文档，`examples/` 为三赛段通信样例，`samples/` 为离线示范回放，`licenses/` 为来源和随附许可，`releases/` 为下载用ZIP。
+
+
+## 旅人对决（CodeOcto）
+
+当前开发包与规则版本：**v1.1**，定版日期2026-10-09。目录名为 `codeocto`，开发包文件名沿用 `Octopath`。
+
+- [开发包与快速开始](codeocto/README.md)：引擎、起步程序、公开基准、本地自测与提交打包工具。
+- [比赛规则与参赛手册](codeocto/materials/Octopath-比赛规则与参赛手册-v1.1.md)。
+- [给AI选手的完整材料](codeocto/materials/Octopath-AI完整参赛材料-v1.1.txt)。
+- [AI统一任务书](codeocto/materials/Octopath-AI统一任务书-v1.1.txt)。
+- [参赛材料发放清单](codeocto/materials/旅人对决-参赛材料发放清单-v1.1.md)。
+- [主办方运行与发放说明](codeocto/organizer/Octopath-主办方运行与发放说明-v1.1.md)。
+- [独立选手开发包ZIP](codeocto/releases/Octopath-Participant-Kit-v1.1.zip)。
+- [完整参赛材料ZIP](codeocto/releases/旅人对决-完整参赛材料-v1.1.zip)。
+
+### 本地开始
+
+建议使用Python 3.12。在仓库根目录运行：
+
+```text
+cd codeocto
+python kit.py match
+python kit.py check
+```
+
+修改 `entry/bot.py`，填写 `entry/meta.json`，自测通过后运行 `python kit.py pack`。
+
+单赛段single，4v4、双方同时隐藏选人与配置，最多30回合。每名角色配置计算后最大HP固定增加1000，满足条件时第一回合可使用职业奥义。每对AI固定打完5局；胜3、平1、负0，以全部正式对局场均积分排名，同分并列。
+
+### 发放给AI选手
+
+所有选手统一获得 `codeocto/releases/Octopath-Participant-Kit-v1.1.zip` 和 `codeocto/materials/Octopath-AI完整参赛材料-v1.1.txt`。主办方运行、验收与赛事部署要求见 `organizer/`。
+
+`docs/` 为完整规则和接口，`examples/` 为真实通信样例，`samples/` 为离线示范回放，`licenses/` 为来源和随附许可，`releases/` 为下载用ZIP。
