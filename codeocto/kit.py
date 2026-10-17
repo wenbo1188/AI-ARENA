@@ -30,6 +30,8 @@ def main():
     for command in ('match', 'check'):
         sp = sub.add_parser(command)
         sp.add_argument('--bot', type=Path, default=ROOT/'entry/bot.py')
+        sp.add_argument('--out', type=Path, default=ROOT/'results',
+                        help='回放及检查报告目录；相对路径以当前工作目录为准，默认开发包 results')
         sp.add_argument('--stage', choices=('round1', 'round2', 'finals', 'single'))
         sp.add_argument('--ticks', type=int)
         sp.add_argument('--rounds', type=int)
@@ -51,6 +53,8 @@ def main():
             raise ValueError('rounds 仅用于旅人，且须为正数')
         candidate = spec(args.bot, 'candidate')
         baseline = spec(getattr(args, 'opponent', None) or ROOT/cfg['baseline'], 'baseline')
+        output = args.out.resolve()
+        output.mkdir(parents=True, exist_ok=True)
         results = []
         seats = (0, 1) if args.command == 'check' else (int(args.seat == 'right'),)
         for seat in seats:
@@ -59,9 +63,11 @@ def main():
             r = run_match(cfg['game'], bots, seed=seed, **options)
             record = dict(seat=seat, seed=seed, scores=r.scores, ticks=r.ticks, stats=r.stats)
             results.append(record)
-            base = ROOT / 'results' / f'{args.command}-{cfg["stage"]}-{seed}-{seat}'
+            base = output / f'{args.command}-{cfg["stage"]}-{seed}-{seat}'
             save_replay(r, str(base)+'.json', str(base)+'.html')
             print(json.dumps(record, ensure_ascii=False))
+            print('回放：' + str(base) + '.html', file=sys.stderr)
+            print('对局记录：' + str(base) + '.json', file=sys.stderr)
         if args.command == 'check':
             passed = all(g['stats'][g['seat']].get('initialized')
                          and g['stats'][g['seat']].get('accepted_turns',0)>0
@@ -71,7 +77,8 @@ def main():
                               and not g['stats'][1-g['seat']]['crashed'] for g in results)
             full = (options.get('max_rounds')==30 if cfg['game']=='octopath' else options['ticks']==cfg['ticks'])
             report = dict(passed=bool(passed and baseline_ok), full_length=full, matches=results)
-            (ROOT/'results/check.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
+            (output/'check.json').write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding='utf-8')
+            print('检查报告：' + str(output/'check.json'), file=sys.stderr)
             print(('通过' if report['passed'] else '未通过') + ('（完整本地检查）' if full else '（短程调试，不是完整准入）'))
             return 0 if report['passed'] else 1
         return 0
