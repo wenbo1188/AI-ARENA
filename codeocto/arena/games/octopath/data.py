@@ -115,7 +115,7 @@ SKILLS = {
                  "type": "dagger", "power": 0.9, "hits": 2, "boost": "power", "desc": "短剑，单体 2 次，吸取伤害一半的 HP"},
     "surprise_attack": {"job": "Thief", "name": "Surprise Attack", "zh": "突然袭击", "sp": 12, "target": "enemy",
                         "kind": "phys", "type": "sword", "power": 2.6, "boost": "power",
-                        "desc": "剑，单体；本回合越早行动威力越高（第 1 个行动 2.6 倍，往后每个顺位 -0.15，最低 1.4）"},
+                        "desc": "剑，单体；顺位倍率为 2 - min(a / max(1, n - 1), 1)，a 为本回合此前已完成的行动次数，n 为回合开始时行动队列人数；首次行动 2 倍，最低 1 倍"},
     "swift_step": {"job": "Thief", "name": "Swift Step", "zh": "瞬间移动", "sp": 4, "target": "self",
                    "boost": "dur", "levels": [3, 5, 7, 9], "desc": "自身速度上升 3 回合（加成延长）"},
     "armor_corrosive": {"job": "Thief", "name": "Armor Corrosive", "zh": "猫头鹰", "sp": 4, "target": "enemy",
