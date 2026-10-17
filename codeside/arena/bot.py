@@ -7,7 +7,7 @@
   bot  -> arena {"tick": t, ...动作}                 （必须回显 tick）
   arena -> bot  {"type": "end", "scores": [...]}
 
-任一时间限制超出后终止进程，不再控制单位。
+普通 tick 错误可恢复；初始化失败、崩溃或整局预算耗尽后默认接管，不重启。
 机器人写到 stderr 的内容会被收集到日志里，便于调试。
 """
 from __future__ import annotations
@@ -67,6 +67,8 @@ class BotStats:
     total_ms: float = 0.0     # 按时回复的 tick 的总用时
     used_ms: float = 0.0      # 进程累计 CPU 时间（用户态 + 内核态），包含启动
     turns: int = 0
+    initialized: bool = False
+    last_error: str = ""
     crashed: bool = False
     crash_reason: str = ""
     stderr_tail: list[str] = field(default_factory=list)
@@ -77,6 +79,7 @@ def _bot_env() -> dict:
     keep = ("PATH", "LANG", "LC_ALL", "HOME", "SYSTEMROOT", "TMPDIR", "TEMP", "TMP")
     env = {k: os.environ[k] for k in keep if k in os.environ}
     env["PYTHONUNBUFFERED"] = "1"
+    env["PYTHONUTF8"] = "1"
     env["PYTHONDONTWRITEBYTECODE"] = "1"
     return env
 
@@ -98,6 +101,7 @@ class BotProcess:
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,
+            encoding='utf-8',
             bufsize=1,
             cwd=spec.cwd,
             env=_bot_env(),
@@ -187,10 +191,14 @@ class BotProcess:
         return start
 
     def receive(self, deadline: float, tick: int | None) -> dict | None:
-        """等待到 deadline（time.monotonic 时间）为止，返回 tick 匹配的回复。"""
+        """One bad current reply defaults this tick; stale replies never poison recovery.
+
+        Initialization errors are terminal. Arrival timestamps, rather than the
+        referee's receive order, determine whether a reply was on time.
+        """
+        self.stats.last_error = ""
         while not self.stats.crashed:
             try:
-                # 另一位选手可能占用了等待时间；先检查已经按时抵达的回复。
                 line, arrived = self._lines.get_nowait()
             except queue.Empty:
                 remaining = deadline - time.monotonic()
@@ -201,37 +209,44 @@ class BotProcess:
                 except queue.Empty:
                     return None
             if line is None:
-                self.stats.crashed = True
-                self.stats.crash_reason = self.stats.crash_reason or "进程退出"
+                self.kill(self.stats.crash_reason or "进程退出")
                 return None
-            if arrived > deadline:
-                return None
-            line = line.strip()
-            if not line:
-                continue
             try:
-                msg = json.loads(line)
-            except json.JSONDecodeError:
+                msg = json.loads(line, parse_constant=lambda v: (_ for _ in ()).throw(ValueError(v)))
+                if not isinstance(msg, dict):
+                    raise ValueError("回复必须为对象")
+            except (ValueError, RecursionError):
+                # A malformed line has no tick; only penalize the current window.
+                if arrived > deadline:
+                    return None
                 self.stats.invalid += 1
-                self.kill("协议错误：stdout 不是合法 JSON")
+                self.stats.last_error = "stdout 不是合法 JSON 对象"
+                if tick is None:
+                    self.kill("初始化协议错误")
                 return None
-            if not isinstance(msg, dict):
-                self.stats.invalid += 1
-                self.kill("协议错误：回复必须为 JSON 对象")
+            reply_tick = msg.get("tick")
+            if tick is not None and type(reply_tick) is int and reply_tick < tick:
+                continue  # discard even if this stale reply arrived in a later window
+            if arrived > deadline:
+                # Preserve a future tick so it cannot be lost to receive ordering.
+                # Future responses are illegal; they never control the current tick.
                 return None
-            if tick is None or (type(msg.get("tick")) is int and msg["tick"] == tick):
-                if tick is None and msg.get("ready") is not True:
+            if tick is None:
+                if msg.get("ready") is not True:
                     self.stats.invalid += 1
-                    self.kill("init 回复缺少 ready:true")
+                    self.stats.last_error = "init 回复缺少 ready:true"
+                    self.kill("初始化协议错误")
                     return None
-                self.sample_cpu()
-                if self.stats.crashed:
-                    return None
-                self.last_arrival = arrived
-                return msg
-            self.stats.invalid += 1
-            self.kill("协议错误：tick 缺失或不匹配")
-            return None
+                self.stats.initialized = True
+            elif type(reply_tick) is not int or reply_tick != tick:
+                self.stats.invalid += 1
+                self.stats.last_error = "tick 缺失或不匹配"
+                return None
+            self.sample_cpu()
+            if self.stats.crashed:
+                return None
+            self.last_arrival = arrived
+            return msg
         return None
 
     def kill(self, reason: str) -> None:

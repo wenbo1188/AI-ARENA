@@ -1,0 +1,11 @@
+{
+  "single": {
+    "event": "travelers",
+    "title": "旅人对决 4v4",
+    "project": "codeocto",
+    "game": "octopath",
+    "stage": "single",
+    "max_rounds": 30,
+    "baseline": "bots/octopath/quickstart_bot.py"
+  }
+}

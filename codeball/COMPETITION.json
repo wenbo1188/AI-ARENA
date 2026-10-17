@@ -1,22 +1,33 @@
 {
-  "game": "football",
-  "title": "机器人足球 AI 竞赛",
-  "version": "1.1",
-  "stages": [
-    "round1",
-    "round2",
-    "finals"
+  "rules_version": "2.0",
+  "independent_events": [
+    {
+      "event": "football-2v2",
+      "title": "足球 2v2 无氮气赛",
+      "project": "codeball",
+      "game": "football",
+      "stage": "round1",
+      "ticks": 20000,
+      "baseline": "bots/quickstart_bot.py"
+    },
+    {
+      "event": "football-2v2-nitro",
+      "title": "足球 2v2 氮气赛",
+      "project": "codeball",
+      "game": "football",
+      "stage": "round2",
+      "ticks": 20000,
+      "baseline": "bots/quickstart_bot.py"
+    },
+    {
+      "event": "football-3v3-nitro",
+      "title": "足球 3v3 氮气赛",
+      "project": "codeball",
+      "game": "football",
+      "stage": "finals",
+      "ticks": 20000,
+      "baseline": "bots/quickstart_bot.py"
+    }
   ],
-  "matches_per_pair_per_stage": 2,
-  "practice_seeds": [
-    12,
-    21,
-    34
-  ],
-  "baseline": "bots/quickstart_bot.py",
-  "tick_wall_ms": 20000,
-  "budget_type": "wall",
-  "total_budget": "20*max_ticks+20000",
-  "memory_bytes": 268435456,
-  "status": "development-kit"
+  "official_entry": "../event.py"
 }

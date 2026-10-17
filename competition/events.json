@@ -1,0 +1,14 @@
+{
+  "rules_version": "2.0",
+  "development_minutes": 120,
+  "participants": 6,
+  "events": {
+    "football-2v2": {"title": "足球 2v2 无氮气赛", "project": "codeball", "game": "football", "stage": "round1", "ticks": 20000},
+    "football-2v2-nitro": {"title": "足球 2v2 氮气赛", "project": "codeball", "game": "football", "stage": "round2", "ticks": 20000},
+    "football-3v3-nitro": {"title": "足球 3v3 氮气赛", "project": "codeball", "game": "football", "stage": "finals", "ticks": 20000},
+    "shooting-simple-1v1": {"title": "平台射击 Simple 1v1", "project": "codeside", "game": "codeside", "stage": "round1", "ticks": 3600},
+    "shooting-simple-2v2": {"title": "平台射击 Simple 2v2", "project": "codeside", "game": "codeside", "stage": "round2", "ticks": 3600},
+    "shooting-complex-2v2": {"title": "平台射击 Complex 2v2", "project": "codeside", "game": "codeside", "stage": "finals", "ticks": 3600},
+    "travelers": {"title": "旅人对决 4v4", "project": "codeocto", "game": "octopath", "stage": "single", "max_rounds": 30}
+  }
+}

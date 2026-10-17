@@ -1,0 +1,10 @@
+{
+  "rules_version": "2.0",
+  "event": "football-3v3-nitro",
+  "title": "足球 3v3 氮气赛",
+  "project": "codeball",
+  "game": "football",
+  "stage": "finals",
+  "ticks": 20000,
+  "baseline": "bots/quickstart_bot.py"
+}

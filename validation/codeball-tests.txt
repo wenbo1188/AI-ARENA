@@ -1,0 +1,17 @@
+test_bad_json_stops (test_competition.RuntimeTests.test_bad_json_stops) ... ok
+test_budget_enforced (test_competition.RuntimeTests.test_budget_enforced) ... ok
+test_exit_continues (test_competition.RuntimeTests.test_exit_continues) ... ok
+test_game_budget (test_competition.RuntimeTests.test_game_budget) ... ok
+test_memory_limit (test_competition.RuntimeTests.test_memory_limit) ... ok
+test_nonfinite_json_stops (test_competition.RuntimeTests.test_nonfinite_json_stops) ... ok
+test_timeout_stops (test_competition.RuntimeTests.test_timeout_stops) ... ok
+test_wrong_tick_defaults_without_stopping (test_competition.RuntimeTests.test_wrong_tick_defaults_without_stopping) ... ok
+test_crash_does_not_restart (test_recovery.RecoveryTests.test_crash_does_not_restart) ... ok
+test_invalid_action_types_recover (test_recovery.RecoveryTests.test_invalid_action_types_recover) ... ok
+test_late_reply_does_not_stop_or_poison_next_tick (test_recovery.RecoveryTests.test_late_reply_does_not_stop_or_poison_next_tick) ... ok
+test_malformed_json_recovers (test_recovery.RecoveryTests.test_malformed_json_recovers) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 5.850s
+
+OK

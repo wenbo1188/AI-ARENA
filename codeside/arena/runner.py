@@ -92,6 +92,7 @@ def run_match(
                 deadline = start + time_limit_ms / 1000
                 if t == 0:
                     deadline = min(deadline, initial_deadlines[i])
+                invalid_before = st.invalid
                 msg = bot.receive(deadline, tick=t)
                 if msg is not None and game_name == "codeside":
                     view = game.observe(i)["player_view"]
@@ -99,15 +100,15 @@ def run_match(
                     errors = action_errors(msg, owned)
                     if errors:
                         st.invalid += 1
-                        bot.kill("协议错误：" + errors[0])
+                        st.last_error = "协议错误：" + errors[0]
                         msg = None
                 # 按回复实际到达的时间计时（各机器人并行思考，这里只是依次收取）
                 end = bot.last_arrival if msg is not None else min(time.monotonic(), deadline)
                 elapsed = max(0.0, (end - start) * 1000)
                 if msg is None:
                     if not st.crashed:
-                        st.timeouts += 1
-                        bot.kill(f"tick {t} 超出单 tick 现实时间上限 {time_limit_ms:g} ms")
+                        if st.invalid == invalid_before:
+                            st.timeouts += 1
                 else:
                     st.turns += 1
                     st.total_ms += elapsed
@@ -134,6 +135,8 @@ def run_match(
             "name": bot.spec.name,
             "timeouts": s.timeouts,
             "invalid_lines": s.invalid,
+            "initialized": s.initialized,
+            "accepted_turns": s.turns,
             "crashed": s.crashed,
             "crash_reason": s.crash_reason,
             "used_ms": round(s.used_ms),

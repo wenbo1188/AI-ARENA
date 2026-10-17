@@ -1,0 +1,10 @@
+{
+  "rules_version": "2.0",
+  "event": "shooting-complex-2v2",
+  "title": "平台射击 Complex 2v2",
+  "project": "codeside",
+  "game": "codeside",
+  "stage": "finals",
+  "ticks": 3600,
+  "baseline": "bots/codeside/quickstart_bot.py"
+}

@@ -1,0 +1,13 @@
+init --event travelers --entries D:\Codex\2026-10-17\cong\work\event-integration\entries.json --out D:\Codex\2026-10-17\cong\work\event-integration\event
+已冻结六份提交；未生成任何正式种子。下一步运行 qualify。
+
+qualify D:\Codex\2026-10-17\cong\work\event-integration\event
+A: 通过
+B: 通过
+C: 通过
+D: 通过
+E: 通过
+F: 通过
+
+run D:\Codex\2026-10-17\cong\work\event-integration\event --max-games 2
+赛事暂停： 达到本次运行上限；尚未运行轮次不生成种子

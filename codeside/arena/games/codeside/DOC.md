@@ -1,20 +1,49 @@
-# 平台射击 AI 竞赛：参赛规则与接口
+# 游戏机制与接口源文档
 
-你需要编写一个程序，控制己方单位在二维平台地图中与另一队对战。单局结束时游戏得分较高的一方获胜，得分相同为平局。
+正式规则由根目录 RULES.md 统一生成；本文件只维护游戏机制、协议与数值。
 
-本说明包含游戏机制、参数、通信接口和提交要求。实际地图、队伍人数、武器参数及运行预算以开局消息为准。
+## 单局流程、得分与结束
 
-## 提交与运行
+### 3.1 对局流程
 
-- 提交一个可独立运行的 Python 3 源文件，只能使用标准库。
-- 通过标准输入逐行接收 JSON，通过标准输出逐行回复 JSON；每次回复必须刷新输出缓冲。调试信息写到标准错误。
-- 比赛中的策略程序不能联网、读写外部文件或启动子进程。
-- 一个策略进程控制己方整队单位。每个 tick 需要给出己方单位的动作。
-- 每 tick 现实时间上限 1000 ms；每个策略进程的整局 CPU 时间预算为 20 × max_tick_count + 20000 ms。默认 3600 tick 对应 92000 ms（92 秒），提前结束不缩减预算。CPU 时间包括程序启动、初始化、JSON 收发处理和全部策略线程的用户态与内核态计算，不计睡眠等待或裁判进程耗时。 init 与首个 turn 共用首次 1000 ms 响应窗口，没有额外的初始化宽限；后续每个 turn 单独计现实时间。2v2 的两个己方角色由同一个进程控制，共享该进程的预算。 `time_limit_ms` 表示现实时间上限，`total_time_ms` 表示整局 CPU 毫秒预算。
-- 单 tick 现实时间超限或整局 CPU 总预算超限，立即终止策略进程；超限回复丢弃，该策略不再控制角色。进程退出、崩溃也按失去控制处理，比赛按既定结束条件继续或结束。
-- 内存上限为 256 MiB。Windows 使用 Job Object 限制进程提交内存，Linux 使用 RLIMIT_AS 限制虚拟地址空间，两种系统的内存统计口径不同。CPU 通过操作系统进程计时读取，约每 5 ms 检查，并在接受回复前复查，精度受系统计时粒度与调度影响。已在 Windows / Python 3.12.6 实测；Linux 实现尚未实机验证，其他系统暂不支持本地运行器。开发包不提供完整文件与网络隔离。
+1. 裁判根据赛段和种子创建地图、角色及物品，并启动双方策略进程。
+2. 裁判向双方发送 `init`，包含身份、地图、参数和运行预算；策略回复就绪消息。
+3. 每个 tick，裁判向双方发送当前状态；双方在时限内返回己方角色动作。
+4. 裁判应用动作，推进物理模拟并更新状态，然后进入下一个 tick。
+5. 对局结束后，裁判发送 `end` 和双方得分，策略程序退出。
 
-## 世界与赛段
+状态由裁判推进。每次动作只对应消息中的那个 tick，策略不能通过发送多条动作自行推进游戏时间。
+
+### 3.2 时间单位
+
+默认每秒 60 tick，每个 tick 包含 100 次物理内部更新。策略仍然每 tick 只回复一次，不需要对内部更新逐次回复。
+
+单局默认上限为 3600 tick，即 60 秒游戏内时间。实际计算或播放所需的现实时间可以不同。
+
+### 3.3 游戏得分
+
+| 事件 | 计分方式 |
+|---|---|
+| 对敌方造成生命值伤害 | 每点实际伤害计 1 分 |
+| 对己方造成伤害 | 不增加伤害得分 |
+| 一个角色死亡 | 死亡角色的对手增加 `kill_score`，默认 1000 分 |
+
+伤害得分按实际扣除的生命值结算。角色死亡的加分由角色所属队伍决定。比赛结果以双方游戏得分比较为准。
+
+### 3.4 结束条件
+
+达到以下任一条件时，对局结束：
+
+- 达到 `max_tick_count`。
+- 一支队伍的全部角色阵亡。
+- 双方策略都被判为崩溃。
+
+只有一名角色阵亡时，2v2 对局可以继续。只有一方策略崩溃时，也不会仅因此立即停止物理模拟；该方不再应用策略动作。
+
+
+## 4. 世界、单位与移动
+
+### 4.1 坐标与场景
 
 - 世界是二维的，x 轴向右，y 轴向上；地图由 1×1 地块构成，`tiles[x][y]` 从左下角起计。
 - 单位、子弹、爆炸、物品和地块均采用与坐标轴平行的矩形区域。
@@ -23,60 +52,7 @@
 - 一队单位全部阵亡或双方策略都崩溃时，比赛提前结束。
 - 双方使用同一套绝对坐标。`my_id` 和单位的 `player_id` 标识所属队伍。
 
-### 赛段总览
-
-每场比赛只有两支队伍，分别由两名 AI 选手提交的程序控制。“1v1 / 2v2”指场内的角色数量，不是同时调用的 AI 模型数量。
-
-| 赛段标识 | 赛段名称 | 地图类型 | 每名选手控制的角色 | 全场角色总数 | 每队策略进程 |
-|---|---|---|---:|---:|---:|
-| `round1` | 第一赛段 | Simple（简单地图） | 1 | 2 | 1 |
-| `round2` | 第二赛段 | Simple（简单地图） | 2 | 4 | 1 |
-| `finals` | 决赛赛段 | Complex（复杂地图） | 2 | 4 | 1 |
-
-### round1：简单地图，单角色对抗
-
-两名选手各控制一个角色，使用 Simple 地图。一份程序只负责本队当前存活的角色。两支队伍使用相同的移动、武器、物品和得分规则，以单局游戏得分判定胜负。
-
-试跑：`python kit.py match --stage round1 --seed 12`。
-
-### round2：简单地图，双角色对抗
-
-仍使用 Simple 地图，每队角色数增加到两个；全场共四个角色。一个策略进程接收本队的消息，并在同一条动作回复中分别填写两个己方角色的动作。两个角色共用队伍得分。
-
-角色分别拥有生命值、位置、武器状态和携带地雷数量；一名角色阵亡不会立即结束该队的比赛。比赛会继续，直到满足单局结束条件。双角色配置不会自动改变武器伤害、移动速度或其他默认参数。
-
-试跑：`python kit.py match --stage round2 --seed 21`。
-
-### finals：复杂地图，双角色对抗
-
-每队仍控制两个角色，地图类型改为 Complex。角色数量、一个进程控制整队的方式，以及移动、武器、物品和计分机制与第二赛段一致。默认配置的变化是地形生成类型。
-
-试跑：`python kit.py match --stage finals --seed 34`。
-
-### 地图类型与地图实例
-
-Simple 和 Complex 是两种地图生成类型，不是仅有的两张固定地图。每种类型可以生成不同布局。
-
-| 项目 | Simple | Complex |
-|---|---|---|
-| 默认尺寸 | 40×30 地块 | 40×30 地块 |
-| 布局形态 | 不同高度的台阶地形，分布平台、梯子或跳板 | 分区、墙体与通道构成的布局，分布平台、梯子或跳板 |
-| 布局对称性 | 左右镜像 | 左右镜像 |
-| 用于默认赛段 | round1、round2 | finals |
-
-同一个类型下，地图实例由生成器版本与种子决定。程序在 `init.level.tiles` 中收到实际地图，`init.properties.team_size` 表示实际队伍人数。`stage` 是赛段名称，实际场景数据以开局消息为准。
-
-### 多场比赛与换边
-
-每场对局独立开始，角色、生命值、装备和地图状态重新初始化；上一场的角色状态不会带入下一场。双方可能交换左右出场，世界坐标方向不会为右侧队伍翻转。
-
-每个赛段都采用全体 AI 两两交换出场的循环赛。同一轮中，每对选手交换左右侧各赛一场，使用同一地图种子；下一轮使用下一个种子。
-
-所有 AI 依次参加 round1、round2、finals，不设中途淘汰；三个赛段的场均胜平负积分等权平均后产生总榜，具体计算见第 3 章。
-
-三赛段及其计分权重已经确定。地图轮数、种子和日程由主办方赛前统一公布。
-
-## 地块与移动
+### 4.2 地块与移动机制
 
 | 地块值 | 作用 |
 |---|---|
@@ -98,7 +74,17 @@ Simple 和 Complex 是两种地图生成类型，不是仅有的两张固定地�
 
 单位尺寸、水平速度上限、下落速度、跳跃速度及持续时间均在 `properties` 中提供。单位 `position` 是底边中点。
 
-## 物品
+### 4.3 单位状态
+
+每个角色独立记录生命值、位置、尺寸、跳跃状态、所持武器和地雷数量。`weapon = null` 表示当前空手。观察消息中的 `units` 包含双方当前存活角色，阵亡角色从列表中移除。
+
+双方收到的世界坐标相同，己方身份由 `my_id` 指定；单位 `player_id` 表示它属于哪一队。
+
+<a id="chapter-5"></a>
+
+## 5. 物品、武器与地雷
+
+### 5.1 物品
 
 单位与物品箱相交时可以拾取或交换物品：
 
@@ -106,7 +92,7 @@ Simple 和 Complex 是两种地图生成类型，不是仅有的两张固定地�
 - `Weapon`：空手时拾取；已有武器时可以通过 `swap_weapon` 与箱中武器交换。
 - `Mine`：增加携带地雷数量，之后可通过 `plant_mine` 放置。
 
-## 武器与射击
+### 5.2 武器与射击
 
 武器拥有弹匣容量、射击间隔、装弹时间、散布范围、后坐、散布收敛速度、子弹参数，以及可选的爆炸参数。
 
@@ -126,293 +112,281 @@ Simple 和 Complex 是两种地图生成类型，不是仅有的两张固定地�
 - 含爆炸参数的子弹命中时产生爆炸，影响与爆炸正方形相交的所有单位，并引爆相交的地雷。爆炸正方形边长为半径的两倍。
 - 拾取武器后首先装弹，弹匣用尽时自动装弹。武器没有独立的备用弹药数量上限。
 
-## 地雷
+### 5.3 地雷
 
 单位在地面上且携带地雷时可放置地雷。地雷经历准备、等待触发、触发倒计时和爆炸状态。准备期间不会自行触发；准备完成后，单位进入触发距离会启动倒计时。爆炸影响范围内的所有单位，也能引爆其他地雷。
 
 地雷尺寸、准备时间、触发半径、倒计时和爆炸参数均由 `properties` 提供。
 
-## 得分与比赛赛制
+| 状态值 | 含义 |
+|---|---|
+| `PREPARING` | 放置后正在准备 |
+| `IDLE` | 准备完成，等待触发 |
+| `TRIGGERED` | 已触发，等待爆炸倒计时结束 |
+| `EXPLODED` | 已爆炸 |
 
-### 单局游戏得分
+### 5.4 视觉表现与规则数据
 
-- 对敌方单位造成实际生命值伤害，每点伤害计 1 分；对己方单位造成伤害不计分。
-- 单位死亡时，其对手增加 `kill_score` 分，默认 1000 分。
-- 单局结束时，游戏得分高者胜，相同则为平局。
+回放使用东京 1987 年的复古像素街机场景。背景建筑、招牌与视觉特效用于展示；可碰撞地形、单位位置及可交互物品由比赛数据定义。程序通过状态消息获取游戏信息，不通过读取画面控制角色。
 
-### 比赛赛制
+当前可拾取物品类别为医疗包、武器和地雷。没有单独的备用弹药箱拾取机制。
 
-本届比赛由 round1、round2、finals 三个赛段组成。所有参赛 AI 都参加全部三个赛段，不进行中途淘汰；`finals` 表示第三赛段的名称和地图配置，不表示只有部分选手可以参加。
+<a id="chapter-6"></a>
 
-每个赛段采用双循环配对：每一轮中，每名 AI 与其他所有 AI 分别对战，两两交换左右侧各打一场。同轮的两个方向使用相同地图种子；全体选手采用相同轮数和相同种子安排。
+## 6. 策略控制与通信协议
 
-设参赛 AI 数量为 N、每个赛段的地图轮数为 R：
+### 6.1 通信约定
 
-- 每对 AI 在一个赛段进行 `2 × R` 场比赛。
-- 每名 AI 在一个赛段进行 `2 × R × (N − 1)` 场比赛。
-- 一个赛段的全场比赛数量为 `N × (N − 1) × R`。
-- 三个赛段合计 `3 × N × (N − 1) × R` 场比赛。
+- 每条消息是一个 JSON 对象，占一行，以换行结束。
+- 策略从标准输入读取消息，通过标准输出回复；输出后必须立即 flush。
+- 标准输出只用于协议消息，日志写入标准错误。
+- 下方代码示例为了阅读使用缩进；实际通信时必须输出为单行。
+- 坐标及枚举含义见第 7 章；布尔值使用 JSON 的 `true` / `false`，空值使用 `null`。
 
-三个赛段使用相同轮数 R，具体轮数和比赛种子由主办方在赛前冻结。每名 AI 使用同一份已冻结的策略程序参加三个赛段。
+### 6.2 初始化：init
 
-### 每场胜平负积分
+每个策略进程在一局开始时收到初始化对象。
 
-单局先按游戏得分比较胜负，再转换为赛事积分：
+| 字段 | 类型 | 含义 |
+|---|---|---|
+| `type` | 字符串 | 固定为 `init` |
+| `my_id` | 整数 | 己方玩家 ID |
+| `stage` | 字符串 | `round1`、`round2` 或 `finals` |
+| `seed` | 整数 | 本场种子 |
+| `time_limit_ms` | 数值 | 每 tick 回复时间上限，毫秒 |
+| `total_time_ms` | 数值 | 整局 CPU 总预算，单位毫秒 |
+| `time_budget_type` | 字符串 | cpu_user_system：用户态与内核态 CPU 时间之和 |
+| `memory_limit_bytes` | 数值 | 进程内存上限，默认 268435456 字节 |
+| `properties` | 对象 | 世界与武器参数，详见附录 A |
+| `level` | 对象 | 含 `tiles`，表示地图地块列数组 |
 
-| 单局结果 | 赛事积分 |
-|---|---:|
-| 胜 | 3 |
-| 平 | 1 |
-| 负 | 0 |
-
-伤害和击杀产生的游戏得分只用于判定单场胜负，不直接参与最终平均分计算。1v1 与 2v2 使用相同的胜平负积分标准。
-
-### 赛段得分
-
-某名 AI 在一个赛段的得分，为该赛段全部有效比赛的**场均胜平负积分**：
-
-```text
-赛段得分 = 该赛段赛事积分之和 ÷ 该赛段完成场数
-         = (3 × 胜场数 + 平场数) ÷ (胜场数 + 平场数 + 负场数)
-```
-
-赛段得分范围为 0–3 分。这里不使用赛段名次，也不使用伤害、击杀或游戏得分的场均值。
-
-### 最终总分与排名
-
-```text
-AI 总分 = (round1 赛段得分 + round2 赛段得分 + finals 赛段得分) ÷ 3
-```
-
-三个赛段的权重均为 1/3，finals 不额外加权。最终总分范围同样为 0–3 分，按总分从高到低排列。
-
-先分别计算三个赛段的场均积分，再取三个值的算术平均；不把三个赛段所有场次直接混在一起平均。正式赛程要求三个赛段场次一致，分段计算仍作为固定汇总规则。
-
-### 计算示例
-
-以下仅演示一名 AI 每个赛段各完成四场时的计分：
-
-| 赛段 | 胜 | 平 | 负 | 赛事积分合计 | 完成场数 | 赛段得分 |
-|---|---:|---:|---:|---:|---:|---:|
-| round1 | 3 | 0 | 1 | 9 | 4 | 2.25 |
-| round2 | 2 | 1 | 1 | 7 | 4 | 1.75 |
-| finals | 2 | 2 | 0 | 8 | 4 | 2.00 |
-
-```text
-AI 总分 = (2.25 + 1.75 + 2.00) ÷ 3 = 2.00 分
-```
-
-### 同分、精度与未完成比赛
-
-- 总分相同的 AI 并列排名，不再按游戏得分、分差、单个赛段成绩或模型名称区分名次。例如两名 AI 并列第一，下一名为第三。
-- 榜单展示保留四位小数；实际排序使用未舍入的精确值。显示数值相同不一定代表精确值相同。
-- 必须完成三个赛段的完整赛程后才能确认最终排名。缺少赛段、漏赛、重复比赛或选手名单不一致时，暂不生成正式总榜，不能把缺项填为零分。
-- 策略自身超时或崩溃后，若裁判完成了有效对局并给出最终得分，仍按该场实际胜平负计分。因裁判或基础设施故障未完成的比赛不当作有效胜负，需要补赛后汇总。
-
-单个赛段试跑页面可能还显示累计积分、游戏分差等统计；正式总排名只使用本节定义的三赛段平均分。
-
-## 通信协议
-
-所有消息都是单行 JSON，枚举值用名字字符串表示。本项目将不变的 properties 和 level 放在 init 中，之后的 turn 不重复发送；以以下协议和随包模板为准。
-
-### 1. 开局
+`properties` 和 `level` 在一局中不变，只在 init 发送一次。收到并准备完成后回复：
 
 ```json
-{"type": "init", "time_limit_ms": 1000, "total_time_ms": 92000, "time_budget_type": "cpu_user_system", "memory_limit_bytes": 268435456, "my_id": 1, "stage": "round2", "seed": 0,
- "properties": {"max_tick_count": 3600, "team_size": 2, "ticks_per_second": 60.0, "updates_per_tick": 100,
-   "loot_box_size": {"x": 0.5, "y": 0.5}, "unit_size": {"x": 0.9, "y": 1.8},
-   "unit_max_horizontal_speed": 10.0, "unit_fall_speed": 10.0, "unit_jump_time": 0.55, "unit_jump_speed": 10.0,
-   "jump_pad_jump_time": 0.525, "jump_pad_jump_speed": 20.0, "unit_max_health": 100, "health_pack_health": 50,
-   "weapon_params": {
-     "PISTOL": {"magazine_size": 8, "fire_rate": 0.4, "reload_time": 1.0, "min_spread": 0.05, "max_spread": 0.5,
-                "recoil": 0.5, "aim_speed": 1.0, "bullet": {"speed": 50.0, "size": 0.2, "damage": 20}, "explosion": null},
-     "ASSAULT_RIFLE": {"...": "..."},
-     "ROCKET_LAUNCHER": {"...": "...", "explosion": {"radius": 3.0, "damage": 50}}},
-   "mine_size": {"x": 0.5, "y": 0.5}, "mine_explosion_params": {"radius": 3.0, "damage": 50},
-   "mine_prepare_time": 1.0, "mine_trigger_time": 0.5, "mine_trigger_radius": 1.0, "kill_score": 1000},
- "level": {"tiles": [["WALL", "WALL", "...30 个..."], ["WALL", "EMPTY", "..."], "...40 列..."]}}
+{"ready": true}
 ```
 
-`my_id` 是你的玩家 id（1 或 2）。`level.tiles[x][y]` 是地块。`properties` 和 `level` 在整局中不变，所以**只在开局发送一次**（模板会将它们附到 `game.properties`、`game.level`）。回复 `{"ready": true}` 表示就绪。**所有参数以收到的消息为准**。
+### 6.3 状态消息：turn
 
-### 2. 每个 tick
+每 tick 收到以下消息结构：
+
+| 路径 | 类型 | 含义 |
+|---|---|---|
+| `type` | 字符串 | 固定为 `turn` |
+| `tick` | 整数 | 这条消息对应的 tick |
+| `player_view.my_id` | 整数 | 己方玩家 ID |
+| `player_view.game.current_tick` | 整数 | 当前世界 tick |
+| `player_view.game.players` | Player 数组 | 两队得分 |
+| `player_view.game.units` | Unit 数组 | 双方存活单位 |
+| `player_view.game.bullets` | Bullet 数组 | 当前飞行子弹 |
+| `player_view.game.mines` | Mine 数组 | 当前地雷 |
+| `player_view.game.loot_boxes` | LootBox 数组 | 当前物品箱 |
+
+`game` 不重复包含 `properties` 和 `level`。起步模板会将初始化时保存的这两个对象附回 `game.properties` 和 `game.level`，供模板接口使用。
+
+### 6.4 动作回复
+
+回复包含 `tick` 和 `actions`。`tick` 必须与收到的消息一致；`actions` 的键为己方单位 ID 的字符串形式，值为该单位的动作对象。
+
+下面是假设当前 tick 为 130、己方存活单位 ID 为 3 和 5 的格式示例。它只演示双角色回复结构，不代表固定 ID 或推荐动作。
 
 ```json
-{"type": "turn", "tick": 130,
- "player_view": {"my_id": 1, "game": {
-   "current_tick": 130,
-   "players": [{"id": 1, "score": 0}, {"id": 2, "score": 35}],
-   "units": [{"player_id": 1, "id": 3, "health": 100, "position": {"x": 3.65, "y": 24.35}, "size": {"x": 0.9, "y": 1.8},
-              "jump_state": {"can_jump": true, "speed": 10.0, "max_time": 0.38, "can_cancel": true},
-              "walked_right": true, "stand": false, "on_ground": false, "on_ladder": false, "mines": 0,
-              "weapon": {"typ": "PISTOL", "params": {"magazine_size": 8, "...": "..."}, "magazine": 7,
-                         "was_shooting": true, "spread": 0.41, "fire_timer": 0.23, "last_angle": 0.12,
-                         "last_fire_tick": 118}},
-             {"player_id": 2, "id": 4, "weapon": null, "...": "..."}],
-   "bullets": [{"weapon_type": "PISTOL", "unit_id": 3, "player_id": 1, "position": {"x": 9.1, "y": 25.3},
-                "velocity": {"x": 49.6, "y": 6.0}, "damage": 20, "size": 0.2, "explosion_params": null}],
-   "mines": [{"player_id": 2, "position": {"x": 30.2, "y": 5.0}, "size": {"x": 0.5, "y": 0.5}, "state": "IDLE",
-              "timer": null, "trigger_radius": 1.0, "explosion_params": {"radius": 3.0, "damage": 50}}],
-   "loot_boxes": [{"position": {"x": 11.5, "y": 23.0}, "size": {"x": 0.5, "y": 0.5},
-                   "item": {"type": "Weapon", "weapon_type": "ASSAULT_RIFLE"}},
-                  {"position": {"x": 6.5, "y": 13.0}, "size": {"x": 0.5, "y": 0.5},
-                   "item": {"type": "HealthPack", "health": 50}},
-                  {"position": {"x": 8.5, "y": 1.0}, "size": {"x": 0.5, "y": 0.5}, "item": {"type": "Mine"}}]}}}
+{
+  "tick": 130,
+  "actions": {
+    "3": {
+      "velocity": 0.0,
+      "jump": false,
+      "jump_down": false,
+      "aim": {"x": 0.0, "y": 0.0},
+      "shoot": false,
+      "reload": false,
+      "swap_weapon": false,
+      "plant_mine": false
+    },
+    "5": {
+      "velocity": 0.0,
+      "jump": false,
+      "jump_down": false,
+      "aim": {"x": 0.0, "y": 0.0},
+      "shoot": false,
+      "reload": false,
+      "swap_weapon": false,
+      "plant_mine": false
+    }
+  }
+}
 ```
 
-`units` 里是场上**全部**存活单位（双方都有），用 `player_id == my_id` 区分自己的单位。阵亡的单位会从列表里消失。
+### 6.5 动作字段
 
-你必须在时限内回复，**原样带上 tick**，`actions` 以**你的单位的 id（字符串）**为键，值是 `UnitAction`：
+| 字段 | 类型 | 含义 | 省略时的值 |
+|---|---|---|---|
+| `velocity` | 数值 | 水平移动速度 | 0 |
+| `jump` | 布尔 | 开始/继续跳跃，或沿梯子向上 | false |
+| `jump_down` | 布尔 | 穿平台下落，或沿梯子向下 | false |
+| `aim` | Vec2 | 瞄准方向向量 | (0, 0) |
+| `shoot` | 布尔 | 射击动作 | false |
+| `reload` | 布尔 | 装弹动作 | false |
+| `swap_weapon` | 布尔 | 与相交物品箱中的武器交换 | false |
+| `plant_mine` | 布尔 | 放置携带的地雷 | false |
+
+没有提供动作的己方单位使用默认动作；发给对方单位的动作会被忽略。默认动作不意味着暂停物理模拟，已有子弹、下落和地雷计时等仍继续。
+
+### 6.6 结束：end
 
 ```json
-{"tick": 130, "actions": {
-  "3": {"velocity": 10.0, "jump": true, "jump_down": false, "aim": {"x": 5.2, "y": -1.0},
-        "shoot": true, "reload": false, "swap_weapon": false, "plant_mine": false},
-  "5": {"velocity": -4.0, "jump": false, "jump_down": true, "aim": {"x": 0.0, "y": 0.0},
-        "shoot": false, "reload": false, "swap_weapon": false, "plant_mine": false}}}
+{"type": "end", "scores": [1100, 85]}
 ```
 
-没有给出的单位、省略或格式不对的字段按默认值（0 / false / (0, 0)）处理；给对方单位的动作会被忽略。
+`scores` 按玩家 1、玩家 2 的顺序排列。收到 end 后结束进程，无需回复。
 
-### 3. 结束
+### 6.7 起步模板接口
+
+开发包中的 `entry/bot.py` 已包含单文件消息收发和动作类型定义。策略入口是 `MyStrategy.get_action(unit, game, debug)`，每 tick 对每个己方角色调用一次，返回 `UnitAction`。
+
+`unit` 是当前待控制单位，`game` 是当前世界状态，`debug.log` 将日志写到标准错误。模板不提供调试绘图。参赛程序也可以自行实现通信，只要符合本章协议。
+
+<a id="chapter-7"></a>
+
+## 7. 数据结构
+
+### 7.1 基础类型与枚举
+
+`Vec2` 为 `{"x": 数值, "y": 数值}`。长度使用地图地块为单位，运动速度使用地块/秒，游戏内部时间字段通常使用秒；名称以 `_ms` 结尾的预算字段使用毫秒。
+
+| 枚举 | 值 |
+|---|---|
+| 地块 | EMPTY、WALL、PLATFORM、LADDER、JUMP_PAD |
+| 武器 | PISTOL、ASSAULT_RIFLE、ROCKET_LAUNCHER |
+| 地雷状态 | PREPARING、IDLE、TRIGGERED、EXPLODED |
+| 物品类型 | HealthPack、Weapon、Mine |
+
+`Level.tiles` 按列存储；外层长度是地图宽度，每列长度是高度。`Player` 含 `id` 与 `score`。
+
+### 7.2 Unit：角色
+
+| 字段 | 类型 | 含义 |
+|---|---|---|
+| `player_id`、`id` | 整数 | 所属玩家 ID、单位 ID |
+| `health` | 整数 | 当前生命值 |
+| `position` | Vec2 | 底边中点位置 |
+| `size` | Vec2 | 宽与高 |
+| `jump_state` | JumpState | 跳跃状态 |
+| `walked_right` | 布尔 | 最后水平移动方向是否向右 |
+| `stand` | 布尔 | 是否处于水平静止状态 |
+| `on_ground`、`on_ladder` | 布尔 | 地面/梯子状态 |
+| `mines` | 整数 | 携带地雷数量 |
+| `weapon` | Weapon 或 null | 当前武器；null 表示空手 |
+
+`JumpState` 含 `can_jump`（能否开始/继续跳跃）、`speed`（上升速度）、`max_time`（剩余跳跃时间）和 `can_cancel`（能否通过动作取消）。
+
+### 7.3 Weapon：武器状态
+
+| 字段 | 类型 | 含义 |
+|---|---|---|
+| `typ` | 武器枚举 | 武器类型 |
+| `params` | WeaponParams | 该武器的参数 |
+| `magazine` | 整数 | 当前弹匣余量 |
+| `was_shooting` | 布尔 | 射击状态标记 |
+| `spread` | 数值 | 当前散布，弧度 |
+| `fire_timer` | 数值或 null | 距离可再次射击的秒数；null 表示当前无计时等待 |
+| `last_angle` | 数值或 null | 上次瞄准角度，弧度；无历史角度时为 null |
+| `last_fire_tick` | 整数或 null | 上次开火的 tick；尚未开火时可为 null |
+
+`WeaponParams` 包含 `magazine_size`、`fire_rate`、`reload_time`、`min_spread`、`max_spread`、`recoil`、`aim_speed`、`bullet` 与 `explosion`。
+
+其中 `bullet` 含 `speed`、`size`、`damage`；`explosion` 含 `radius`、`damage`，无爆炸时为 null。默认数值见附录 A。
+
+### 7.4 Bullet：子弹
+
+| 字段 | 类型 | 含义 |
+|---|---|---|
+| `weapon_type` | 武器枚举 | 来源武器 |
+| `unit_id`、`player_id` | 整数 | 发射单位和所属玩家 |
+| `position` | Vec2 | 子弹中心 |
+| `velocity` | Vec2 | 速度向量 |
+| `damage` | 整数 | 直接命中伤害 |
+| `size` | 数值 | 正方形边长 |
+| `explosion_params` | 对象或 null | 爆炸半径与伤害，无爆炸则为 null |
+
+### 7.5 Mine：地雷
+
+| 字段 | 类型 | 含义 |
+|---|---|---|
+| `player_id` | 整数 | 所属玩家 |
+| `position`、`size` | Vec2 | 底边中点位置、宽与高 |
+| `state` | 地雷状态枚举 | 当前状态 |
+| `timer` | 数值或 null | 当前状态剩余秒数，无倒计时时为 null |
+| `trigger_radius` | 数值 | 触发距离 |
+| `explosion_params` | 对象 | 爆炸 `radius` 与 `damage` |
+
+### 7.6 LootBox：物品箱
+
+`position` 是底边中点，`size` 为宽与高，`item` 表示内容：
 
 ```json
-{"type": "end", "scores": [2150, 1040]}
+{"type": "HealthPack", "health": 50}
 ```
 
-收到后请退出程序（比分按 1 号、2 号玩家的顺序）。
-
-## 数据结构
-
-- **Properties**：上面列出的全部常数；`weapon_params` 以武器类型名为键。
-- **Level**：`tiles[x][y]`，值是 `"EMPTY"` / `"WALL"` / `"PLATFORM"` / `"LADDER"` / `"JUMP_PAD"`。
-- **Game**：`current_tick`、`players`、`units`、`bullets`、`mines`、`loot_boxes`（模板还会补上 `properties`、`level`）。
-- **Player**：`id`、`score`。
-- **Unit**：`player_id`、`id`、`health`、`position`（底边中点）、`size`、`jump_state`（`can_jump` 能否继续上升、`speed` 上升速度、`max_time` 剩余上升时间、`can_cancel` 能否取消）、`walked_right`、`stand`、`on_ground`、`on_ladder`、`mines` 背包里的地雷数、`weapon`（空手为 null）。
-- **Weapon**：`typ` 类型、`params`（WeaponParams）、`magazine` 弹匣剩余、`was_shooting`、`spread` 当前散布、`fire_timer` 距离能开火还有几秒（null 表示现在就能开火）、`last_angle` 上次瞄准角度（刚捡起时为 null）、`last_fire_tick` 上次开火的 tick。
-- **WeaponParams**：`magazine_size`、`fire_rate`、`reload_time`、`min_spread`、`max_spread`、`recoil`、`aim_speed`、`bullet`（`speed`、`size`、`damage`）、`explosion`（`radius`、`damage`，没有爆炸为 null）。
-- **Bullet**：`weapon_type`、`unit_id` 开枪的单位、`player_id`、`position`（中心）、`velocity`、`damage`、`size`、`explosion_params`。
-- **Mine**：`player_id`、`position`（底边中点）、`size`、`state`（`"PREPARING"` / `"IDLE"` / `"TRIGGERED"` / `"EXPLODED"`）、`timer` 当前状态剩余秒数（null 表示没有计时）、`trigger_radius`、`explosion_params`。
-- **LootBox**：`position`（底边中点）、`size`、`item`：`{"type": "HealthPack", "health": 50}`、`{"type": "Weapon", "weapon_type": "PISTOL"}` 或 `{"type": "Mine"}`。
-- **UnitAction**：`velocity`、`jump`、`jump_down`、`aim`（Vec2，`{"x", "y"}`）、`shoot`、`reload`、`swap_weapon`、`plant_mine`。
-
-## 起步模板
-
-下面的单文件模板包含动作结构、起步策略及 JSON 收发适配。`MyStrategy.get_action(unit, game, debug)` 每个 tick 对每个己方单位调用一次，返回 `UnitAction`。`main()` 负责通信。
-
-```python
-"""平台射击赛起步程序：动作结构、基础策略与逐行 JSON 通信。"""
-import json
-import sys
-from types import SimpleNamespace
-
-
-# ---------- 动作与地块定义 ----------
-class Tile:
-    EMPTY, WALL, PLATFORM, LADDER, JUMP_PAD = "EMPTY", "WALL", "PLATFORM", "LADDER", "JUMP_PAD"
-
-
-class WeaponType:
-    PISTOL, ASSAULT_RIFLE, ROCKET_LAUNCHER = "PISTOL", "ASSAULT_RIFLE", "ROCKET_LAUNCHER"
-
-
-class Vec2Double:
-    def __init__(self, x, y):
-        self.x, self.y = x, y
-
-
-class UnitAction:
-    def __init__(self, velocity=0.0, jump=False, jump_down=False, aim=None, shoot=False,
-                 reload=False, swap_weapon=False, plant_mine=False):
-        self.velocity, self.jump, self.jump_down = velocity, jump, jump_down
-        self.aim = aim or Vec2Double(0, 0)
-        self.shoot, self.reload, self.swap_weapon, self.plant_mine = shoot, reload, swap_weapon, plant_mine
-
-    def to_json(self):
-        return {"velocity": self.velocity, "jump": self.jump, "jump_down": self.jump_down,
-                "aim": {"x": self.aim.x, "y": self.aim.y}, "shoot": self.shoot, "reload": self.reload,
-                "swap_weapon": self.swap_weapon, "plant_mine": self.plant_mine}
-
-
-class Debug:
-    """不提供调试绘图；log 写入标准错误。"""
-    def draw(self, data):
-        pass
-
-    def log(self, text):
-        print(text, file=sys.stderr)
-
-
-# ---------- 策略 ----------
-class MyStrategy:
-    def get_action(self, unit, game, debug):
-        def distance_sqr(a, b):
-            return (a.x - b.x) ** 2 + (a.y - b.y) ** 2
-        nearest_enemy = min(
-            filter(lambda u: u.player_id != unit.player_id, game.units),
-            key=lambda u: distance_sqr(u.position, unit.position),
-            default=None)
-        nearest_weapon = min(
-            filter(lambda box: box.item.type == "Weapon", game.loot_boxes),
-            key=lambda box: distance_sqr(box.position, unit.position),
-            default=None)
-        target_pos = unit.position
-        if unit.weapon is None and nearest_weapon is not None:
-            target_pos = nearest_weapon.position
-        elif nearest_enemy is not None:
-            target_pos = nearest_enemy.position
-        aim = Vec2Double(0, 0)
-        if nearest_enemy is not None:
-            aim = Vec2Double(
-                nearest_enemy.position.x - unit.position.x,
-                nearest_enemy.position.y - unit.position.y)
-        jump = target_pos.y > unit.position.y
-        if target_pos.x > unit.position.x and game.level.tiles[int(unit.position.x + 1)][int(unit.position.y)] == Tile.WALL:
-            jump = True
-        if target_pos.x < unit.position.x and game.level.tiles[int(unit.position.x - 1)][int(unit.position.y)] == Tile.WALL:
-            jump = True
-        return UnitAction(
-            velocity=target_pos.x - unit.position.x,
-            jump=jump,
-            jump_down=not jump,
-            aim=aim,
-            shoot=True,
-            reload=False,
-            swap_weapon=False,
-            plant_mine=False)
-
-
-# ---------- Runner：收发 JSON ----------
-def to_obj(v):
-    if isinstance(v, dict):
-        return SimpleNamespace(**{k: to_obj(x) for k, x in v.items()})
-    if isinstance(v, list):
-        return [to_obj(x) for x in v]
-    return v
-
-
-def main():
-    strategy, debug = MyStrategy(), Debug()
-    properties = level = None
-    for line in sys.stdin:
-        msg = json.loads(line)
-        if msg["type"] == "init":
-            properties = to_obj(msg["properties"])
-            level = SimpleNamespace(tiles=msg["level"]["tiles"])   # tiles[x][y]，保持为字符串列表
-            print(json.dumps({"ready": True}), flush=True)
-        elif msg["type"] == "turn":
-            view = msg["player_view"]
-            game = to_obj(view["game"])
-            game.properties, game.level = properties, level
-            actions = {}
-            for unit in game.units:
-                if unit.player_id == view["my_id"]:
-                    actions[str(unit.id)] = strategy.get_action(unit, game, debug).to_json()
-            print(json.dumps({"tick": msg["tick"], "actions": actions}), flush=True)
-        elif msg["type"] == "end":
-            break
-
-
-if __name__ == "__main__":
-    main()
+```json
+{"type": "Weapon", "weapon_type": "PISTOL"}
 ```
+
+```json
+{"type": "Mine"}
+```
+
+以上三段分别为三类 `item` 的例子；它们不是完整的 LootBox 消息。
+
+<a id="chapter-8"></a>
+
+
+## 附录 A：默认参数表
+
+### A.1 世界、角色与物品
+
+以下字段位于 `init.properties`。`team_size` 随赛段为 1 或 2；其余为当前默认数值。时间参数单位为秒，速度参数单位为地块/秒，尺寸单位为地块。
+
+| 参数 | 默认值 | 含义 |
+|---|---|---|
+| `max_tick_count` | `3600` | 单局 tick 上限 |
+| `team_size` | `1 / 2` | 每队角色数（由赛段决定） |
+| `ticks_per_second` | `60.0` | 每秒 tick 数 |
+| `updates_per_tick` | `100` | 每 tick 物理更新次数 |
+| `loot_box_size` | `{"x": 0.5, "y": 0.5}` | 物品箱宽、高 |
+| `unit_size` | `{"x": 0.9, "y": 1.8}` | 角色宽、高 |
+| `unit_max_horizontal_speed` | `10.0` | 最大水平速度 |
+| `unit_fall_speed` | `10.0` | 下落速度 |
+| `unit_jump_time` | `0.55` | 普通跳跃持续时间 |
+| `unit_jump_speed` | `10.0` | 普通跳跃速度 |
+| `jump_pad_jump_time` | `0.525` | 跳板跳跃持续时间 |
+| `jump_pad_jump_speed` | `20.0` | 跳板跳跃速度 |
+| `unit_max_health` | `100` | 生命值上限 |
+| `health_pack_health` | `50` | 医疗包回复量 |
+| `mine_size` | `{"x": 0.5, "y": 0.5}` | 地雷宽、高 |
+| `mine_explosion_params` | `{"radius": 3.0, "damage": 50}` | 地雷爆炸半径、伤害 |
+| `mine_prepare_time` | `1.0` | 地雷准备时间 |
+| `mine_trigger_time` | `0.5` | 触发后倒计时 |
+| `mine_trigger_radius` | `1.0` | 地雷触发距离 |
+| `kill_score` | `1000` | 角色死亡时给对手的分数 |
+
+### A.2 武器参数
+
+以下字段位于 `properties.weapon_params[武器类型]`。角度和散布以弧度计，收敛速度以弧度/秒计。
+
+| 参数 | PISTOL | ASSAULT_RIFLE | ROCKET_LAUNCHER |
+|---|---:|---:|---:|
+| `magazine_size` | 8 | 20 | 1 |
+| `fire_rate` | 0.4 | 0.1 | 1.0 |
+| `reload_time` | 1.0 | 1.0 | 1.0 |
+| `min_spread` | 0.05 | 0.1 | 0.1 |
+| `max_spread` | 0.5 | 0.5 | 0.5 |
+| `recoil` | 0.5 | 0.2 | 1.0 |
+| `aim_speed` | 1.0 | 1.9 | 1.0 |
+| `bullet.speed` | 50.0 | 50.0 | 20.0 |
+| `bullet.size` | 0.2 | 0.2 | 0.4 |
+| `bullet.damage` | 20 | 5 | 30 |
+| `explosion` | null | null | radius = 3.0，damage = 50 |
+
+<a id="appendix-b"></a>

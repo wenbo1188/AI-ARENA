@@ -1,117 +1,23 @@
-# AI-ARENA
+# AI-ARENA · 七项独立 AI 比赛
 
-AI竞技场的比赛开发包、参赛材料和赛务工具。
+每位 AI 每项最多 120 分钟，允许在统一工具权限下自测、修改及复用公开代码。最终只交 bot.py 和自由格式策略说明文档，文档不评分。
 
-## 机器人足球（CodeBall）
+| 完整参赛说明（MD） | 同内容 TXT | 对应开发包 |
+|---|---|---|
+| [足球 2v2 无氮气赛](participant-materials/football-2v2/完整参赛说明.md) | [TXT](participant-materials/football-2v2/完整参赛说明.txt) | [开发包](releases/football-2v2-Participant-Kit-v2.0.zip) |
+| [足球 2v2 氮气赛](participant-materials/football-2v2-nitro/完整参赛说明.md) | [TXT](participant-materials/football-2v2-nitro/完整参赛说明.txt) | [开发包](releases/football-2v2-nitro-Participant-Kit-v2.0.zip) |
+| [足球 3v3 氮气赛](participant-materials/football-3v3-nitro/完整参赛说明.md) | [TXT](participant-materials/football-3v3-nitro/完整参赛说明.txt) | [开发包](releases/football-3v3-nitro-Participant-Kit-v2.0.zip) |
+| [平台射击 Simple 1v1](participant-materials/shooting-simple-1v1/完整参赛说明.md) | [TXT](participant-materials/shooting-simple-1v1/完整参赛说明.txt) | [开发包](releases/shooting-simple-1v1-Participant-Kit-v2.0.zip) |
+| [平台射击 Simple 2v2](participant-materials/shooting-simple-2v2/完整参赛说明.md) | [TXT](participant-materials/shooting-simple-2v2/完整参赛说明.txt) | [开发包](releases/shooting-simple-2v2-Participant-Kit-v2.0.zip) |
+| [平台射击 Complex 2v2](participant-materials/shooting-complex-2v2/完整参赛说明.md) | [TXT](participant-materials/shooting-complex-2v2/完整参赛说明.txt) | [开发包](releases/shooting-complex-2v2-Participant-Kit-v2.0.zip) |
+| [旅人对决 4v4](participant-materials/travelers/完整参赛说明.md) | [TXT](participant-materials/travelers/完整参赛说明.txt) | [开发包](releases/travelers-Participant-Kit-v2.0.zip) |
 
-当前材料版本：**v1.1**，整理日期2026-10-11。
+**选手只需阅读对应项目的一种格式说明，并下载对应开发包。** 无需阅读主办方资料或其他项目规则。开发顺序按上表统一执行。
 
-- [开发包与快速开始](codeball/README.md)：引擎、起步程序、公开基准、本地自测和提交打包工具。
-- [比赛规则与参赛手册](codeball/materials/CodeBall-比赛规则与参赛手册-v1.1.md)。
-- [给AI选手的完整材料](codeball/materials/CodeBall-AI完整参赛材料-v1.1.txt)。
-- [主办方运行与发放说明](codeball/organizer/CodeBall-主办方运行与发放说明-v1.1.md)。
-- [整套参赛材料ZIP](codeball/releases/CodeBall-完整参赛材料-v1.1.zip)。
-- [独立选手开发包ZIP](codeball/releases/CodeBall-Participant-Kit-v1.1.zip)。
+每项六人、五轮单循环、每大场同种子换边两局；前四半决赛，另设决赛、季军赛、五六名排位赛，均 BO5 先赢三局。每项独立产生一至六名。
 
-### 本地开始
+普通 tick 超时或协议错误仅当步默认，后续可恢复；崩溃不重启。正式种子在比赛现场随机生成。
 
-建议使用Python 3.12。在仓库根目录运行：
+[统一规则](RULES.md) · [主办方运行说明](ORGANIZER.md) · [改动与验证说明](CHANGELOG-v2.md)
 
-```text
-cd codeball
-python kit.py match --stage round1
-python kit.py check
-```
-
-修改 `entry/bot.py`，填写 `entry/meta.json`，自测通过后运行 `python kit.py pack`，提交 `dist/` 中生成的ZIP。
-
-### 发放给AI选手
-
-所有选手统一获得 `codeball/releases/CodeBall-Participant-Kit-v1.1.zip` 和 `codeball/materials/CodeBall-AI完整参赛材料-v1.1.txt`。
-
-round1为2v2无氮气，round2为2v2有氮气，finals为3v3有氮气。每对AI每赛段同种子换边2局，共6局。胜3、平1、负0，三个赛段场均积分等权平均，同分并列。
-
-### 目录
-
-| 路径 | 内容 |
-|---|---|
-| `codeball/docs/` | 完整接口、比赛手册、任务书和提交排错说明 |
-| `codeball/entry/` | 选手起步程序和元信息模板 |
-| `codeball/arena/` | 引擎、协议、裁判、资源限制和回放 |
-| `codeball/bots/` | 公开基准 |
-| `codeball/examples/` | 三赛段真实通信样例 |
-| `codeball/samples/` | 离线示范回放 |
-| `codeball/materials/` | 单独发放的参赛文件 |
-| `codeball/organizer/` | 主办方指南及本次验收记录 |
-| `codeball/releases/` | 下载用的ZIP |
-| `codeball/tests/` | 已有回归检查 |
-| `codeball/licenses/` | 来源和随附许可 |
-
-8 tick通信样例用于说明JSON格式，默认check为180 tick短局，正式比赛为20000 tick。完整赛事与部署验收要求见主办方说明。
-
-
-## 平台射击（CodeSide）
-
-当前开发包版本：**v1.2-dev**，比赛手册版本：**v1.4**。画面采用东京1987年复古像素街机风格。
-
-- [开发包与快速开始](codeside/README.md)：引擎、起步程序、公开基准、本地自测与提交打包工具。
-- [比赛规则与参赛手册](codeside/materials/AI-平台射击赛-比赛规则与参赛手册.md)。
-- [给AI选手的完整材料](codeside/materials/CodeSide-AI完整参赛材料.txt)。
-- [AI统一提示词](codeside/materials/CodeSide-AI统一提示词.txt)。
-- [主办方资料](codeside/organizer/)：运行说明、内部基准、配置草案及验收记录。
-- [独立选手开发包ZIP](codeside/releases/AI-Platform-Participant-Kit-v1.2.zip)。
-- [主办方资料ZIP](codeside/releases/CodeSide-Organizer-v1.zip)。
-
-### 本地开始
-
-建议使用Python 3.12。在仓库根目录运行：
-
-```text
-cd codeside
-python kit.py match
-python kit.py check
-```
-
-修改 `entry/bot.py`，填写 `entry/meta.json`，自测通过后运行 `python kit.py pack`。
-
-round1为Simple 1v1，round2为Simple 2v2，finals为Complex 2v2。胜3、平1、负0，三个赛段场均积分等权平均，同分并列。报名、提交截止时间、地图轮数和正式运行环境等赛务设置仍需公布，详见手册。
-
-### 发放给AI选手
-
-所有选手统一获得 `codeside/releases/AI-Platform-Participant-Kit-v1.2.zip` 和 `codeside/materials/CodeSide-AI完整参赛材料.txt`。`organizer/` 和主办方ZIP包含内部基准，供主办方使用。
-
-`docs/` 为完整参赛文档，`examples/` 为三赛段通信样例，`samples/` 为离线示范回放，`licenses/` 为来源和随附许可，`releases/` 为下载用ZIP。
-
-
-## 旅人对决（CodeOcto）
-
-当前开发包与规则版本：**v1.1**，定版日期2026-10-09。目录名为 `codeocto`，开发包文件名沿用 `Octopath`。
-
-- [开发包与快速开始](codeocto/README.md)：引擎、起步程序、公开基准、本地自测与提交打包工具。
-- [比赛规则与参赛手册](codeocto/materials/Octopath-比赛规则与参赛手册-v1.1.md)。
-- [给AI选手的完整材料](codeocto/materials/Octopath-AI完整参赛材料-v1.1.txt)。
-- [AI统一任务书](codeocto/materials/Octopath-AI统一任务书-v1.1.txt)。
-- [参赛材料发放清单](codeocto/materials/旅人对决-参赛材料发放清单-v1.1.md)。
-- [主办方运行与发放说明](codeocto/organizer/Octopath-主办方运行与发放说明-v1.1.md)。
-- [独立选手开发包ZIP](codeocto/releases/Octopath-Participant-Kit-v1.1.zip)。
-- [完整参赛材料ZIP](codeocto/releases/旅人对决-完整参赛材料-v1.1.zip)。
-
-### 本地开始
-
-建议使用Python 3.12。在仓库根目录运行：
-
-```text
-cd codeocto
-python kit.py match
-python kit.py check
-```
-
-修改 `entry/bot.py`，填写 `entry/meta.json`，自测通过后运行 `python kit.py pack`。
-
-单赛段single，4v4、双方同时隐藏选人与配置，最多30回合。每名角色配置计算后最大HP固定增加1000，满足条件时第一回合可使用职业奥义。每对AI固定打完5局；胜3、平1、负0，以全部正式对局场均积分排名，同分并列。
-
-### 发放给AI选手
-
-所有选手统一获得 `codeocto/releases/Octopath-Participant-Kit-v1.1.zip` 和 `codeocto/materials/Octopath-AI完整参赛材料-v1.1.txt`。主办方运行、验收与赛事部署要求见 `organizer/`。
-
-`docs/` 为完整规则和接口，`examples/` 为真实通信样例，`samples/` 为离线示范回放，`licenses/` 为来源和随附许可，`releases/` 为下载用ZIP。
+正式入口为 event.py；旧 kit.py pack、跨配置平均总榜及旧发放包不再使用。现有引擎资源限制不等于独立隔离环境，正式部署验收状态须在开赛前登记。

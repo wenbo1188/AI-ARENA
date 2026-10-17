@@ -1,27 +1,17 @@
-# 机器人足球 AI 竞赛 · 选手开发包 v1.1
+# codeball · 独立比赛开发入口 v2.0
 
-每位参赛AI使用同一版本，交付一个仅使用Python标准库的机器人文件。建议Python3.12；已在Windows/Python3.12.6环境开发，Linux仍需主办方实机验收。
+- [足球 2v2 无氮气赛](../participant-materials/football-2v2/完整参赛说明.md)
+- [足球 2v2 氮气赛](../participant-materials/football-2v2-nitro/完整参赛说明.md)
+- [足球 3v3 氮气赛](../participant-materials/football-3v3-nitro/完整参赛说明.md)
 
-## 五分钟开始
+每项只须提交 bot.py 和自由格式策略说明文档，文档不评分；无需元信息、报告或打包。
+每项各 120 分钟，独立排名。正式规则与赛事入口见 [统一规则](../RULES.md) 和 [主办方运行说明](../ORGANIZER.md)。
 
-1. 解压整个包，阅读 `docs/05-比赛规则与参赛手册.md`。
-2. 修改 `entry/bot.py`；保留逐行JSON收发。
-3. 运行 `python kit.py match`，打开生成的 `results/round1-12-left.html`。
-4. 运行 `python kit.py check`，查看 `results/check.json`。
-5. 填写 `entry/meta.json`，运行 `python kit.py pack`，提交生成的ZIP。
+```text
+python kit.py match
+python kit.py check
+```
 
-Windows也可用 `py -3`；Linux可用 `python3`。普通对局不需要安装第三方库或联网。
-`python kit.py match --seat right --seed 21` 可换边练习。
-`python kit.py match --stage round2` / `--stage finals` 用于其他赛段。
-`samples/示例回放.html` 可离线打开。
-
-三个赛段：round1为2v2无氮气，round2为2v2有氮气，finals为3v3有氮气。所有AI都参加三段，不设晋级淘汰。每对AI每赛段2局，同种子交换两侧，共6局。
-每个赛段先计算场均积分，再对三个赛段等权平均。每局胜3分、平1分、负0分；总分范围0至3，同分并列，不使用额外决胜指标。
-
-每个策略每tick最多20秒现实时间；整局累计响应现实时间预算为 `20 × max_tick_count + 20000` 毫秒。标准局20,000 tick对应420秒。累计响应时间包含消息发送排队、初始化和策略响应，排除裁判推进物理模拟的耗时，和CPU时间不同。 内存上限256 MiB。init与第一次turn共用首个响应窗口，无额外3秒准备时间。整支队伍共享一个策略进程及其预算。
-任意超时、协议错误或崩溃后停止该策略，后续动作全部为默认零动作。比赛继续按进球数判胜负；双方策略均失效时提前结束，按当时比分结算。
-
-## 内容
-
-`kit.py`提供match/check/pack/tournament；`standings.py`核对赛程并汇总总榜；`entry/`是模板；`examples/`是真实协议；`docs/`是完整手册、接口和统一任务书；`tests/`是回归测试；`VERSION.json`、`MANIFEST.sha256`是版本与校验清单；`licenses/`记录来源与随附许可。
-本地自测直接运行策略进程，资源限制不构成完整安全沙箱。正式赛事隔离环境由主办方部署。
+在源码目录可用 --stage 指定配置；独立发放包已固定本项配置。默认 check 是完整长度两局换边；短程调试用 --ticks 180（旅人用 --rounds 3）。
+普通 tick 错误只影响当步，后续可恢复；初始化失败、进程崩溃或整局预算耗尽后默认接管、不重启。
+本地子进程工具不提供完整禁网与文件隔离，正式部署须验收。

@@ -1,0 +1,16 @@
+test_bo5_draw_retries_same_slot_without_counting_win (test_events.EventTests.test_bo5_draw_retries_same_slot_without_counting_win) ... ok
+test_bo5_fifth_slot_draw_uses_fixed_random_side (test_events.EventTests.test_bo5_fifth_slot_draw_uses_fixed_random_side) ... ok
+test_complete_twenty_series_and_six_ranks (test_events.EventTests.test_complete_twenty_series_and_six_ranks) ... ok
+test_endless_draws_pause_without_inventing_ranking (test_events.EventTests.test_endless_draws_pause_without_inventing_ranking) ... ok
+test_facility_interruption_keeps_seed_and_side (test_events.EventTests.test_facility_interruption_keeps_seed_and_side) ... ok
+test_five_rounds_every_opponent_once (test_events.EventTests.test_five_rounds_every_opponent_once) ... ok
+test_no_seeds_at_freeze_and_same_round_maps (test_events.EventTests.test_no_seeds_at_freeze_and_same_round_maps) ... ok
+test_qualification_accepts_recovery_not_permanent_failure (test_events.EventTests.test_qualification_accepts_recovery_not_permanent_failure) ... ok
+test_resume_never_replays_valid_games (test_events.EventTests.test_resume_never_replays_valid_games) ... ok
+test_roster_not_silently_resized (test_events.EventTests.test_roster_not_silently_resized) ... ok
+test_tiebreak_group_not_name_sort (test_events.EventTests.test_tiebreak_group_not_name_sort) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.979s
+
+OK
