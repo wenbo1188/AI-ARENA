@@ -70,6 +70,17 @@ python kit.py check
 ```
 
 check 默认使用本项完整长度、公开种子换边两局。需要短程调试可用 check --ticks 180（旅人用 --rounds 3），短程结果不是完整准入凭证。
+
+比较策略修改前后的表现时，使用不同的输出目录保存结果：
+
+```text
+python kit.py match --out results/before
+python kit.py match --out results/after
+python kit.py check --out results/after
+```
+
+`--out` 同时适用于 match 和 check；相对路径以运行命令时的工作目录为准，含空格的路径请加引号。不指定时仍写入开发包的 results 目录。每局生成 HTML 回放和 JSON 对局记录，check 另生成 check.json；运行时会显示文件的完整路径。重复使用同一目录、命令、配置、种子和出场侧会覆盖同名结果，check.json 也会被该目录内的新检查覆盖；比较版本时请为每次测试使用不同目录。
+
 最终只交 bot.py 和自由格式策略说明文档，不要求打包、自测报告或元信息。主办方独立复测。
 这是本地开发工具，不提供完整禁网和跨选手文件隔离。正式比赛由主办方统一评测。
 '''
