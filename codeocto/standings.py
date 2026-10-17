@@ -65,4 +65,4 @@ def main():
         write_results(aggregate(m,games),a.results);print(a.results/'overall.html');return 0
     except (OSError,ValueError,KeyError) as e: print('不能发布总榜：',e);return 1
 
-if __name__=='__main__': raise SystemExit(main())
+if __name__=='__main__': raise SystemExit('旧总榜已停用，请使用根目录 event.py')

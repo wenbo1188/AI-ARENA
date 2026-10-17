@@ -105,13 +105,13 @@ def run_match(
                 if total_time_ms is not None and not cpu:
                     limit = min(limit, max(0.0, total_time_ms - st.used_ms))
                 deadline = start + limit / 1000
+                invalid_before = st.invalid
                 msg = bot.receive(deadline, tick=t)
                 if msg is not None:
                     errors = game.action_errors(i, msg)
                     if errors:
                         st.invalid += 1
-                        if strict:
-                            bot.kill("协议错误：" + errors[0])
+                        st.last_error = "协议错误：" + errors[0]
                         msg = None
                 # 按回复实际到达的时间计时（各机器人并行思考，这里只是依次收取）
                 end = bot.last_arrival if msg is not None else min(time.monotonic(), deadline)
@@ -123,13 +123,15 @@ def run_match(
                         if total_time_ms is not None and not cpu and st.used_ms >= total_time_ms:
                             bot.kill(f"超出整局总时间预算 {total_time_ms / 1000:g} 秒")
                         else:
-                            st.timeouts += 1
-                            if strict:
-                                bot.kill(f"tick {t} 超出单 tick 时限 {time_limit_ms:g} ms")
+                            if st.invalid == invalid_before:
+                                st.timeouts += 1
                 else:
                     st.turns += 1
                     st.total_ms += elapsed
                     st.max_ms = max(st.max_ms, elapsed)
+                if not cpu and total_time_ms is not None and st.used_ms >= total_time_ms:
+                    bot.kill("超出整局总时间预算")
+                    msg = None
                 if st.crashed and hasattr(game, "set_crashed"):
                     game.set_crashed(i)
                 actions.append(msg)
@@ -152,6 +154,8 @@ def run_match(
             "name": bot.spec.name,
             "timeouts": s.timeouts,
             "invalid_lines": s.invalid,
+            "initialized": s.initialized,
+            "accepted_turns": s.turns,
             "crashed": s.crashed,
             "crash_reason": s.crash_reason,
             "used_ms": round(s.used_ms),

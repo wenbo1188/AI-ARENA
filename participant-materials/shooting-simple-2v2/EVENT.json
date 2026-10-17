@@ -1,0 +1,10 @@
+{
+  "rules_version": "2.0",
+  "event": "shooting-simple-2v2",
+  "title": "平台射击 Simple 2v2",
+  "project": "codeside",
+  "game": "codeside",
+  "stage": "round2",
+  "ticks": 3600,
+  "baseline": "bots/codeside/quickstart_bot.py"
+}

@@ -124,4 +124,4 @@ def main():
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit("旧总榜已停用，请使用根目录 event.py")

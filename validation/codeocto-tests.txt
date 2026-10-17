@@ -1,0 +1,36 @@
+test_all_travelers_start_with_bonus_and_full_hp (test_competition.ArenaHPTests.test_all_travelers_start_with_bonus_and_full_hp) ... ok
+test_bonus_after_subjob_and_support (test_competition.ArenaHPTests.test_bonus_after_subjob_and_support) ... ok
+test_first_round_divine_and_full_power_retained (test_competition.ArenaHPTests.test_first_round_divine_and_full_power_retained) ... ok
+test_observation_and_replay_report_final_hp (test_competition.ArenaHPTests.test_observation_and_replay_report_final_hp) ... ok
+test_percentage_poison_uses_new_max_hp (test_competition.ArenaHPTests.test_percentage_poison_uses_new_max_hp) ... ok
+test_beast_howl_no_damage (test_competition.MathTests.test_beast_howl_no_damage) ... ok
+test_break_does_not_stack (test_competition.MathTests.test_break_does_not_stack) ... ok
+test_break_recovers_fixed_sp (test_competition.MathTests.test_break_recovers_fixed_sp) ... ok
+test_buff_outside_base_stats (test_competition.MathTests.test_buff_outside_base_stats) ... ok
+test_critical_multiplier (test_competition.MathTests.test_critical_multiplier) ... ok
+test_expanded_damage_cap (test_competition.MathTests.test_expanded_damage_cap) ... ok
+test_heal_scales_defense (test_competition.MathTests.test_heal_scales_defense) ... ok
+test_hien_queued_end_of_round (test_competition.MathTests.test_hien_queued_end_of_round) ... ok
+test_original_formula (test_competition.MathTests.test_original_formula) ... ok
+test_poison_break_and_death (test_competition.MathTests.test_poison_break_and_death) ... ok
+test_poison_weakness_on_damage_only (test_competition.MathTests.test_poison_weakness_on_damage_only) ... ok
+test_regen_twenty_percent (test_competition.MathTests.test_regen_twenty_percent) ... ok
+test_spell_boost_consumption (test_competition.MathTests.test_spell_boost_consumption) ... ok
+test_weakness (test_competition.MathTests.test_weakness) ... ok
+test_bad_json_stops (test_competition.RuntimeTests.test_bad_json_stops) ... ok
+test_budget_enforced (test_competition.RuntimeTests.test_budget_enforced) ... ok
+test_exit_continues (test_competition.RuntimeTests.test_exit_continues) ... ok
+test_game_budget (test_competition.RuntimeTests.test_game_budget) ... ok
+test_memory_limit (test_competition.RuntimeTests.test_memory_limit) ... ok
+test_nonfinite_json_stops (test_competition.RuntimeTests.test_nonfinite_json_stops) ... ok
+test_timeout_stops (test_competition.RuntimeTests.test_timeout_stops) ... ok
+test_wrong_tick_defaults_without_stopping (test_competition.RuntimeTests.test_wrong_tick_defaults_without_stopping) ... ok
+test_crash_does_not_restart (test_recovery.RecoveryTests.test_crash_does_not_restart) ... ok
+test_invalid_action_types_recover (test_recovery.RecoveryTests.test_invalid_action_types_recover) ... ok
+test_late_reply_does_not_stop_or_poison_next_tick (test_recovery.RecoveryTests.test_late_reply_does_not_stop_or_poison_next_tick) ... ok
+test_malformed_json_recovers (test_recovery.RecoveryTests.test_malformed_json_recovers) ... ok
+
+----------------------------------------------------------------------
+Ran 31 tests in 3.360s
+
+OK

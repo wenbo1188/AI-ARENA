@@ -1,0 +1,651 @@
+{
+  "python": "3.12.6",
+  "system": "Windows",
+  "suites": [
+    {
+      "name": "events",
+      "tests": 11,
+      "passed": true
+    },
+    {
+      "name": "codeball",
+      "tests": 12,
+      "passed": true
+    },
+    {
+      "name": "codeocto",
+      "tests": 31,
+      "passed": true
+    },
+    {
+      "name": "codeside",
+      "tests": 34,
+      "passed": true
+    }
+  ],
+  "packages": [
+    {
+      "event": "football-2v2-nitro",
+      "passed": true,
+      "check": "short",
+      "matches": [
+        {
+          "seat": 0,
+          "seed": 12,
+          "scores": [
+            0,
+            0
+          ],
+          "ticks": 8,
+          "stats": [
+            {
+              "name": "candidate",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 8,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 94,
+              "avg_ms": 11.75,
+              "max_ms": 78.0,
+              "cpu_ms": 140.625,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "stderr_tail": []
+            },
+            {
+              "name": "baseline",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 8,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 110,
+              "avg_ms": 13.75,
+              "max_ms": 110.0,
+              "cpu_ms": 62.5,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "stderr_tail": []
+            }
+          ]
+        },
+        {
+          "seat": 1,
+          "seed": 12,
+          "scores": [
+            0,
+            0
+          ],
+          "ticks": 8,
+          "stats": [
+            {
+              "name": "baseline",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 8,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 110,
+              "avg_ms": 13.75,
+              "max_ms": 110.0,
+              "cpu_ms": 125.0,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "stderr_tail": []
+            },
+            {
+              "name": "candidate",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 8,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 125,
+              "avg_ms": 15.62,
+              "max_ms": 125.0,
+              "cpu_ms": 109.375,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "stderr_tail": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event": "football-2v2",
+      "passed": true,
+      "check": "short",
+      "matches": [
+        {
+          "seat": 0,
+          "seed": 12,
+          "scores": [
+            0,
+            0
+          ],
+          "ticks": 8,
+          "stats": [
+            {
+              "name": "candidate",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 8,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 63,
+              "avg_ms": 7.88,
+              "max_ms": 63.0,
+              "cpu_ms": 93.75,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "stderr_tail": []
+            },
+            {
+              "name": "baseline",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 8,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 109,
+              "avg_ms": 13.63,
+              "max_ms": 109.0,
+              "cpu_ms": 78.125,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "stderr_tail": []
+            }
+          ]
+        },
+        {
+          "seat": 1,
+          "seed": 12,
+          "scores": [
+            0,
+            0
+          ],
+          "ticks": 8,
+          "stats": [
+            {
+              "name": "baseline",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 8,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 110,
+              "avg_ms": 13.75,
+              "max_ms": 110.0,
+              "cpu_ms": 78.125,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "stderr_tail": []
+            },
+            {
+              "name": "candidate",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 8,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 110,
+              "avg_ms": 13.75,
+              "max_ms": 110.0,
+              "cpu_ms": 93.75,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "stderr_tail": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event": "football-3v3-nitro",
+      "passed": true,
+      "check": "short",
+      "matches": [
+        {
+          "seat": 0,
+          "seed": 12,
+          "scores": [
+            0,
+            0
+          ],
+          "ticks": 8,
+          "stats": [
+            {
+              "name": "candidate",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 8,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 78,
+              "avg_ms": 9.75,
+              "max_ms": 78.0,
+              "cpu_ms": 125.0,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "stderr_tail": []
+            },
+            {
+              "name": "baseline",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 8,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 109,
+              "avg_ms": 13.62,
+              "max_ms": 109.0,
+              "cpu_ms": 93.75,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "stderr_tail": []
+            }
+          ]
+        },
+        {
+          "seat": 1,
+          "seed": 12,
+          "scores": [
+            0,
+            0
+          ],
+          "ticks": 8,
+          "stats": [
+            {
+              "name": "baseline",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 8,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 109,
+              "avg_ms": 13.62,
+              "max_ms": 93.0,
+              "cpu_ms": 109.375,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "stderr_tail": []
+            },
+            {
+              "name": "candidate",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 8,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 93,
+              "avg_ms": 11.63,
+              "max_ms": 93.0,
+              "cpu_ms": 93.75,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "stderr_tail": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event": "shooting-complex-2v2",
+      "passed": true,
+      "check": "short",
+      "matches": [
+        {
+          "seat": 0,
+          "seed": 12,
+          "scores": [
+            0,
+            0
+          ],
+          "ticks": 8,
+          "stats": [
+            {
+              "name": "candidate",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 8,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 94,
+              "cpu_ms": 93.75,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "avg_ms": 9.75,
+              "max_ms": 78.0,
+              "stderr_tail": []
+            },
+            {
+              "name": "baseline",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 8,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 78,
+              "cpu_ms": 78.125,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "avg_ms": 13.62,
+              "max_ms": 109.0,
+              "stderr_tail": []
+            }
+          ]
+        },
+        {
+          "seat": 1,
+          "seed": 12,
+          "scores": [
+            0,
+            0
+          ],
+          "ticks": 8,
+          "stats": [
+            {
+              "name": "baseline",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 8,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 62,
+              "cpu_ms": 62.5,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "avg_ms": 13.75,
+              "max_ms": 110.0,
+              "stderr_tail": []
+            },
+            {
+              "name": "candidate",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 8,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 125,
+              "cpu_ms": 125.0,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "avg_ms": 15.75,
+              "max_ms": 110.0,
+              "stderr_tail": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event": "shooting-simple-1v1",
+      "passed": true,
+      "check": "short",
+      "matches": [
+        {
+          "seat": 0,
+          "seed": 12,
+          "scores": [
+            0,
+            0
+          ],
+          "ticks": 8,
+          "stats": [
+            {
+              "name": "candidate",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 8,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 109,
+              "cpu_ms": 109.375,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "avg_ms": 9.75,
+              "max_ms": 78.0,
+              "stderr_tail": []
+            },
+            {
+              "name": "baseline",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 8,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 94,
+              "cpu_ms": 93.75,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "avg_ms": 13.62,
+              "max_ms": 109.0,
+              "stderr_tail": []
+            }
+          ]
+        },
+        {
+          "seat": 1,
+          "seed": 12,
+          "scores": [
+            0,
+            0
+          ],
+          "ticks": 8,
+          "stats": [
+            {
+              "name": "baseline",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 8,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 109,
+              "cpu_ms": 109.375,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "avg_ms": 9.75,
+              "max_ms": 78.0,
+              "stderr_tail": []
+            },
+            {
+              "name": "candidate",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 8,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 47,
+              "cpu_ms": 46.875,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "avg_ms": 9.75,
+              "max_ms": 78.0,
+              "stderr_tail": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event": "shooting-simple-2v2",
+      "passed": true,
+      "check": "short",
+      "matches": [
+        {
+          "seat": 0,
+          "seed": 12,
+          "scores": [
+            0,
+            0
+          ],
+          "ticks": 8,
+          "stats": [
+            {
+              "name": "candidate",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 8,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 62,
+              "cpu_ms": 62.5,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "avg_ms": 11.63,
+              "max_ms": 93.0,
+              "stderr_tail": []
+            },
+            {
+              "name": "baseline",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 8,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 109,
+              "cpu_ms": 109.375,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "avg_ms": 17.5,
+              "max_ms": 140.0,
+              "stderr_tail": []
+            }
+          ]
+        },
+        {
+          "seat": 1,
+          "seed": 12,
+          "scores": [
+            0,
+            0
+          ],
+          "ticks": 8,
+          "stats": [
+            {
+              "name": "baseline",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 8,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 78,
+              "cpu_ms": 78.125,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "avg_ms": 11.63,
+              "max_ms": 93.0,
+              "stderr_tail": []
+            },
+            {
+              "name": "candidate",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 8,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 109,
+              "cpu_ms": 109.375,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "avg_ms": 11.63,
+              "max_ms": 93.0,
+              "stderr_tail": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "event": "travelers",
+      "passed": true,
+      "check": "short",
+      "matches": [
+        {
+          "seat": 0,
+          "seed": 12,
+          "scores": [
+            0,
+            1
+          ],
+          "ticks": 26,
+          "stats": [
+            {
+              "name": "candidate",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 26,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 125,
+              "avg_ms": 4.23,
+              "max_ms": 78.0,
+              "cpu_ms": 125.0,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "stderr_tail": []
+            },
+            {
+              "name": "baseline",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 26,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 94,
+              "avg_ms": 5.42,
+              "max_ms": 110.0,
+              "cpu_ms": 93.75,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "stderr_tail": []
+            }
+          ]
+        },
+        {
+          "seat": 1,
+          "seed": 12,
+          "scores": [
+            0,
+            1
+          ],
+          "ticks": 26,
+          "stats": [
+            {
+              "name": "baseline",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 26,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 125,
+              "avg_ms": 5.42,
+              "max_ms": 125.0,
+              "cpu_ms": 125.0,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "stderr_tail": []
+            },
+            {
+              "name": "candidate",
+              "timeouts": 0,
+              "invalid_lines": 0,
+              "initialized": true,
+              "accepted_turns": 26,
+              "crashed": false,
+              "crash_reason": "",
+              "used_ms": 94,
+              "avg_ms": 6.04,
+              "max_ms": 125.0,
+              "cpu_ms": 93.75,
+              "cpu_backend": "GetProcessTimes(user+kernel)",
+              "stderr_tail": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

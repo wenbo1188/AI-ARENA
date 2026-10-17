@@ -51,16 +51,15 @@ class ResourceTimingTests(unittest.TestCase):
         self.assertIn('CPU', r.stats[0]['crash_reason'])
         self.assertEqual(r.stats[0]['timeouts'], 0)
 
-    def test_single_wall_timeout_is_fatal(self):
+    def test_single_wall_timeout_is_recoverable(self):
         r = self.match(strategy(turn='time.sleep(1.2)'))
-        self.assertTrue(r.stats[0]['crashed'])
-        self.assertEqual(r.stats[0]['timeouts'], 1)
-        self.assertIn('tick 0', r.stats[0]['crash_reason'])
+        self.assertFalse(r.stats[0]['crashed'])
+        self.assertGreater(r.stats[0]['timeouts'], 0)
         self.assertFalse(r.stats[1]['crashed'], r.stats)
 
     def test_initialization_and_first_turn_share_window(self):
         r = self.match(strategy(init='time.sleep(.6)', turn='time.sleep(.6)'))
-        self.assertTrue(r.stats[0]['crashed'])
+        self.assertFalse(r.stats[0]['crashed'])
         self.assertEqual(r.stats[0]['timeouts'], 1)
         self.assertFalse(r.stats[1]['crashed'], r.stats)
 
@@ -73,20 +72,21 @@ class ResourceTimingTests(unittest.TestCase):
         r = self.match(strategy(init='exec("while True: pass")'), total_time_ms=150)
         self.assertIn('CPU', r.stats[0]['crash_reason'])
 
-    def test_protocol_error_is_fatal_without_waiting_for_timeout(self):
+    def test_protocol_error_defaults_without_stopping(self):
         r = self.match(strategy(turn="print('broken json',flush=True)"))
-        self.assertTrue(r.stats[0]['crashed'])
-        self.assertEqual(r.stats[0]['invalid_lines'], 1)
+        self.assertFalse(r.stats[0]['crashed'])
+        self.assertGreater(r.stats[0]['invalid_lines'], 0)
         self.assertEqual(r.stats[0]['timeouts'], 0)
 
     def test_total_budget_is_per_process_in_two_unit_team(self):
         r = self.match(strategy(), stage='finals')
         self.assertEqual(r.replay['total_time_ms'], 20080)
 
-    def test_malformed_actions_crash_bot_without_crashing_referee(self):
+    def test_malformed_actions_default_without_crashing_referee(self):
         code = strategy().replace("'actions':{}", "'actions':[]")
         r = self.match(code)
-        self.assertIn('协议错误', r.stats[0]['crash_reason'])
+        self.assertFalse(r.stats[0]['crashed'])
+        self.assertGreater(r.stats[0]['invalid_lines'], 0)
         self.assertFalse(r.stats[1]['crashed'])
 
     def test_monitor_counts_background_cpu_outside_receive(self):

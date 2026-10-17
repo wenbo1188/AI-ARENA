@@ -2,12 +2,12 @@
 
 协议（每行一个 JSON 对象）：
   arena -> bot  {"type": "init", ...游戏信息}
-  bot  -> arena {"ready": true}                      （可选，任何一行都视为就绪）
+  bot  -> arena {"ready": true}                      （必须回复 ready:true）
   arena -> bot  {"type": "turn", "tick": t, ...观测}
   bot  -> arena {"tick": t, ...动作}                 （必须回显 tick）
   arena -> bot  {"type": "end", "scores": [...]}
 
-严格规则下初始化必须回 ready:true，超时、非法JSON、tick不匹配会停止策略。
+初始化失败停止策略；普通 tick 超时或协议错误仅本 tick 默认，后续可以恢复。
 整局计时口径、每步上限和内存限制由游戏规则指定。
 机器人写到 stderr 的内容会被收集到日志里，便于调试。
 """
@@ -70,13 +70,15 @@ class BotStats:
     cpu_ms: float = 0.0
     used_ms: float = 0.0      # 整局占用的思考时间（含超时），用于总时间预算；严格规则下是进程 CPU 时间
     turns: int = 0
+    initialized: bool = False
+    last_error: str = ""
     crashed: bool = False
     crash_reason: str = ""
     stderr_tail: list[str] = field(default_factory=list)
 
 
 #: 机器人进程的内存上限（字节），0 表示不限制
-MEMORY_LIMIT = int(os.environ.get("ARENA_BOT_MEMORY_MB", "1024")) * 1024 * 1024
+MEMORY_LIMIT = 256 * 1024 * 1024
 
 
 def _bot_env() -> dict:
@@ -84,6 +86,7 @@ def _bot_env() -> dict:
     keep = ("PATH", "LANG", "LC_ALL", "HOME", "SYSTEMROOT", "TMPDIR", "TEMP", "TMP")
     env = {k: os.environ[k] for k in keep if k in os.environ}
     env["PYTHONUNBUFFERED"] = "1"
+    env["PYTHONUTF8"] = "1"
     env["PYTHONDONTWRITEBYTECODE"] = "1"
     return env
 
@@ -101,9 +104,9 @@ def _limit_resources(pid: int) -> None:
 
 class BotProcess:
     """strict=False 是原来的宽松规则；strict=True 时 total_time_ms 按进程 CPU 时间监控（后台线程每 5 ms 采样一次），
-    协议错误直接终止进程，stdout 单行和收发队列有上限，内存上限是 memory_bytes。"""
+    普通 tick 协议错误只影响当前动作，stdout 单行和收发队列有上限，内存上限是 memory_bytes。"""
 
-    def __init__(self, spec: BotSpec, seat: int, strict: bool = False, total_time_ms: float | None = None,
+    def __init__(self, spec: BotSpec, seat: int, strict: bool = True, total_time_ms: float | None = None,
                  memory_bytes: int | None = None):
         self.spec = spec
         self.seat = seat
@@ -122,6 +125,7 @@ class BotProcess:
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,
+            encoding='utf-8',
             bufsize=1,
             cwd=spec.cwd,
             env=_bot_env(),
@@ -235,16 +239,15 @@ class BotProcess:
             self.stats.crashed = True
         return start
 
-    def _protocol_error(self, reason: str) -> None:
-        self.stats.invalid += 1
-        if self.strict:
-            self.kill("协议错误：" + reason)
-
     def receive(self, deadline: float, tick: int | None) -> dict | None:
-        """返回 deadline（time.monotonic 时间）之前到达、tick 匹配的回复；没有则返回 None。"""
+        """One bad current reply defaults this tick; stale replies never poison recovery.
+
+        Initialization errors are terminal. Arrival timestamps, rather than the
+        referee's receive order, determine whether a reply was on time.
+        """
+        self.stats.last_error = ""
         while not self.stats.crashed:
             try:
-                # 等另一位选手时，这位选手的回复可能早已按时到达：先取已经在队列里的
                 line, arrived = self._lines.get_nowait()
             except queue.Empty:
                 remaining = deadline - time.monotonic()
@@ -257,31 +260,40 @@ class BotProcess:
             if line is None:
                 self.kill(self.stats.crash_reason or "进程退出")
                 return None
-            if arrived > deadline:
-                return None  # 迟到；宽松规则下这一行算作丢弃
-            line = line.strip()
-            if not line:
-                continue
             try:
-                msg = json.loads(line, parse_constant=lambda value: (_ for _ in ()).throw(ValueError("non-finite JSON")))
+                msg = json.loads(line, parse_constant=lambda v: (_ for _ in ()).throw(ValueError(v)))
+                if not isinstance(msg, dict):
+                    raise ValueError("回复必须为对象")
             except (ValueError, RecursionError):
-                self._protocol_error("stdout 不是合法 JSON")
-                continue
-            if not isinstance(msg, dict):
-                self._protocol_error("回复必须为 JSON 对象")
-                continue
-            if self.strict:
-                if tick is None and msg.get("ready") is not True:
-                    self._protocol_error("init 回复缺少 ready:true")
+                # A malformed line has no tick; only penalize the current window.
+                if arrived > deadline:
                     return None
-                if tick is not None and not (type(msg.get("tick")) is int and msg["tick"] == tick):
-                    self._protocol_error("tick 缺失或不匹配")
+                self.stats.invalid += 1
+                self.stats.last_error = "stdout 不是合法 JSON 对象"
+                if tick is None:
+                    self.kill("初始化协议错误")
+                return None
+            reply_tick = msg.get("tick")
+            if tick is not None and type(reply_tick) is int and reply_tick < tick:
+                continue  # discard even if this stale reply arrived in a later window
+            if arrived > deadline:
+                # Preserve a future tick so it cannot be lost to receive ordering.
+                # Future responses are illegal; they never control the current tick.
+                return None
+            if tick is None:
+                if msg.get("ready") is not True:
+                    self.stats.invalid += 1
+                    self.stats.last_error = "init 回复缺少 ready:true"
+                    self.kill("初始化协议错误")
                     return None
-                self.sample_cpu()
-                if self.stats.crashed:
-                    return None
-            elif tick is not None and msg.get("tick") != tick:
-                continue  # 上一回合迟到的回复，丢弃
+                self.stats.initialized = True
+            elif type(reply_tick) is not int or reply_tick != tick:
+                self.stats.invalid += 1
+                self.stats.last_error = "tick 缺失或不匹配"
+                return None
+            self.sample_cpu()
+            if self.stats.crashed:
+                return None
             self.last_arrival = arrived
             return msg
         return None

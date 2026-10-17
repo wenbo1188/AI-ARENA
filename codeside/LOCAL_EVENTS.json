@@ -1,0 +1,29 @@
+{
+  "round1": {
+    "event": "shooting-simple-1v1",
+    "title": "平台射击 Simple 1v1",
+    "project": "codeside",
+    "game": "codeside",
+    "stage": "round1",
+    "ticks": 3600,
+    "baseline": "bots/codeside/quickstart_bot.py"
+  },
+  "round2": {
+    "event": "shooting-simple-2v2",
+    "title": "平台射击 Simple 2v2",
+    "project": "codeside",
+    "game": "codeside",
+    "stage": "round2",
+    "ticks": 3600,
+    "baseline": "bots/codeside/quickstart_bot.py"
+  },
+  "finals": {
+    "event": "shooting-complex-2v2",
+    "title": "平台射击 Complex 2v2",
+    "project": "codeside",
+    "game": "codeside",
+    "stage": "finals",
+    "ticks": 3600,
+    "baseline": "bots/codeside/quickstart_bot.py"
+  }
+}

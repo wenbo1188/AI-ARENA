@@ -9,43 +9,12 @@ from unittest.mock import patch
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT))
 import kit
-from standings import aggregate
 from arena.bot import BotSpec
 from arena.games import get_game
 from arena.runner import run_match
 
-GAME=kit.GAME
+GAME='football'
 CLS=get_game(GAME)
-
-class ScheduleTests(unittest.TestCase):
-    def manifest(self,names=('A','B','C')):
-        return {'game':GAME,'seed':500,'participants':dict.fromkeys(names,{}),
-                'competition_sha256':kit.sha(ROOT/'COMPETITION.json'),'fixtures':kit.fixtures(list(names),500)}
-    def results(self,m): return [{**f,'scores':[0,0]} for f in m['fixtures']]
-    def test_counts_and_sides(self):
-        fs=kit.fixtures(['A','B','C','D'],500)
-        self.assertEqual(len(fs),36 if GAME=='football' else 30)
-        pair=[f for f in fs if set(f['bots'])=={'A','B'} and f['stage']==kit.CFG['stages'][0]]
-        self.assertEqual(len(pair),2 if GAME=='football' else 5)
-        self.assertNotEqual(pair[0]['bots'][0],pair[1]['bots'][0])
-        if GAME=='football': self.assertEqual(pair[0]['seed'],pair[1]['seed'])
-    def test_shared_rank(self):
-        m=self.manifest();r=aggregate(m,self.results(m))['leaderboard']
-        self.assertEqual([x['rank'] for x in r],[1,1,1]);self.assertTrue(all(x['total']==1 for x in r))
-    def test_missing_rejected(self):
-        m=self.manifest()
-        with self.assertRaises(ValueError): aggregate(m,self.results(m)[:-1])
-    def test_duplicates_rejected(self):
-        m=self.manifest();rr=self.results(m);rr[-1]=rr[0]
-        with self.assertRaises(ValueError): aggregate(m,rr)
-    def test_wrong_seed_rejected(self):
-        m=self.manifest();rr=self.results(m);rr[0]['seed']+=1
-        with self.assertRaises(ValueError): aggregate(m,rr)
-    def test_points(self):
-        m=self.manifest(('A','B'));rr=self.results(m)
-        for r in rr: r['scores']=[2 if n=='A' else 0 for n in r['bots']]
-        rank=aggregate(m,rr)['leaderboard']
-        self.assertEqual([(x['bot'],x['total']) for x in rank],[('A',3),('B',0)])
 
 class RuntimeTests(unittest.TestCase):
     def run_case(self,mode,**kwargs):
@@ -71,11 +40,11 @@ for line in sys.stdin:
   if m['phase']=='pick': r['pick']=m['available'][:m['pick_count']]
   elif m['phase']=='loadout': r['loadout']=[]
   else: r['action']={'skill':'attack'}
- if MODE=='tick': r['tick']=-1
+ if MODE=='tick': r['tick']=m['tick']+1
  print(json.dumps(r),flush=True)
 '''.replace('MODE',repr(mode))
             path.write_text(code,encoding='utf-8')
-            bots=[BotSpec('candidate',[sys.executable,'-u',str(path)],tmp),kit.spec(ROOT/kit.CFG['baseline'],'baseline')]
+            bots=[BotSpec('candidate',[sys.executable,'-u',str(path)],tmp),kit.spec(ROOT/('bots/quickstart_bot.py' if GAME=='football' else 'bots/octopath/quickstart_bot.py'),'baseline')]
             opts={'ticks':60,'stage':'round1'} if GAME=='football' else {'max_rounds':3}
             return run_match(GAME,bots,**opts,**kwargs)
     def test_game_budget(self):
@@ -88,8 +57,8 @@ for line in sys.stdin:
         r=self.run_case('nan');self.assertTrue(r.stats[0]['crashed'])
     def test_memory_limit(self):
         r=self.run_case('memory');self.assertTrue(r.stats[0]['crashed'])
-    def test_wrong_tick_stops(self):
-        r=self.run_case('tick');self.assertTrue(r.stats[0]['crashed'])
+    def test_wrong_tick_defaults_without_stopping(self):
+        r=self.run_case('tick');self.assertFalse(r.stats[0]['crashed']);self.assertGreater(r.stats[0]['invalid_lines'],0)
     def test_timeout_stops(self):
         r=self.run_case('sleep',time_limit_ms=100);self.assertTrue(r.stats[0]['crashed']);self.assertEqual(r.stats[0]['timeouts'],1)
     def test_exit_continues(self):

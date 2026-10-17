@@ -6,7 +6,7 @@ from unittest.mock import patch
 
 from arena.bot import BotProcess, BotSpec, BotStats
 from arena.runner import MatchResult, run_tournament
-from kit import action_errors
+from arena.protocol import action_errors
 
 
 class TimingTests(unittest.TestCase):
@@ -35,11 +35,11 @@ class TimingTests(unittest.TestCase):
         b = self.receiver([({"tick": 7}, now - 0.05)])
         self.assertIsNone(b.receive(now - 0.1, 7))
 
-    def test_wrong_tick_is_protocol_crash(self):
+    def test_old_tick_is_discarded_and_current_reply_recovers(self):
         now = time.monotonic()
         b = self.receiver([({"tick": 6}, now - 0.3), ({"tick": 7}, now - 0.2)])
-        self.assertIsNone(b.receive(now - 0.1, 7))
-        self.assertTrue(b.stats.crashed)
+        self.assertEqual(b.receive(now - 0.1, 7)["tick"],7)
+        self.assertFalse(b.stats.crashed)
 
     def test_empty_queue_returns_at_expired_deadline(self):
         self.assertIsNone(self.receiver([]).receive(time.monotonic() - 1, 1))

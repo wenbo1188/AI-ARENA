@@ -1,0 +1,51 @@
+[1/12] A 0 : 0 B
+[2/12] A 0 : 0 C
+[3/12] B 0 : 0 A
+[4/12] B 0 : 0 C
+[5/12] C 0 : 0 A
+[6/12] C 0 : 0 B
+[7/12] A 0 : 0 B
+[8/12] A 0 : 0 C
+[9/12] B 0 : 0 A
+[10/12] B 0 : 0 C
+[11/12] C 0 : 0 A
+[12/12] C 0 : 0 B
+test_changed_roster_rejected (test_overall_standings.OverallTests.test_changed_roster_rejected) ... ok
+test_duplicate_match_and_nan_rejected (test_overall_standings.OverallTests.test_duplicate_match_and_nan_rejected) ... ok
+test_game_score_magnitude_is_not_tournament_points (test_overall_standings.OverallTests.test_game_score_magnitude_is_not_tournament_points) ... ok
+test_missing_stage_or_fixture_rejected (test_overall_standings.OverallTests.test_missing_stage_or_fixture_rejected) ... ok
+test_shared_competition_ranks (test_overall_standings.OverallTests.test_shared_competition_ranks) ... ok
+test_stage_means_have_equal_weight (test_overall_standings.OverallTests.test_stage_means_have_equal_weight) ... ok
+test_unequal_or_unfinished_round_counts_rejected (test_overall_standings.OverallTests.test_unequal_or_unfinished_round_counts_rejected) ... ok
+test_crash_does_not_restart (test_recovery.RecoveryTests.test_crash_does_not_restart) ... ok
+test_invalid_action_types_recover (test_recovery.RecoveryTests.test_invalid_action_types_recover) ... ok
+test_late_reply_does_not_stop_or_poison_next_tick (test_recovery.RecoveryTests.test_late_reply_does_not_stop_or_poison_next_tick) ... ok
+test_malformed_json_recovers (test_recovery.RecoveryTests.test_malformed_json_recovers) ... ok
+test_blocked_stdin_does_not_block_send_or_close (test_resource_timing.ResourceTimingTests.test_blocked_stdin_does_not_block_send_or_close) ... ok
+test_busy_cpu_exhausts_budget_before_wall_limit (test_resource_timing.ResourceTimingTests.test_busy_cpu_exhausts_budget_before_wall_limit) ... ok
+test_cannot_restore_separate_init_grace (test_resource_timing.ResourceTimingTests.test_cannot_restore_separate_init_grace) ... ok
+test_default_budget_uses_maximum_ticks (test_resource_timing.ResourceTimingTests.test_default_budget_uses_maximum_ticks) ... ok
+test_initialization_and_first_turn_share_window (test_resource_timing.ResourceTimingTests.test_initialization_and_first_turn_share_window) ... ok
+test_initialization_cpu_is_in_budget (test_resource_timing.ResourceTimingTests.test_initialization_cpu_is_in_budget) ... ok
+test_linux_cpu_stat_parser_with_unusual_process_name (test_resource_timing.ResourceTimingTests.test_linux_cpu_stat_parser_with_unusual_process_name) ... ok
+test_malformed_actions_default_without_crashing_referee (test_resource_timing.ResourceTimingTests.test_malformed_actions_default_without_crashing_referee) ... ok
+test_memory_ceiling_prevents_large_allocation (test_resource_timing.ResourceTimingTests.test_memory_ceiling_prevents_large_allocation) ... ok
+test_monitor_counts_background_cpu_outside_receive (test_resource_timing.ResourceTimingTests.test_monitor_counts_background_cpu_outside_receive) ... ok
+test_oversize_stdout_is_bounded (test_resource_timing.ResourceTimingTests.test_oversize_stdout_is_bounded) ... ok
+test_protocol_error_defaults_without_stopping (test_resource_timing.ResourceTimingTests.test_protocol_error_defaults_without_stopping) ... ok
+test_single_wall_timeout_is_recoverable (test_resource_timing.ResourceTimingTests.test_single_wall_timeout_is_recoverable) ... ok
+test_sleep_is_wall_time_but_not_cpu_budget (test_resource_timing.ResourceTimingTests.test_sleep_is_wall_time_but_not_cpu_budget) ... ok
+test_slow_initialization_does_not_penalize_opponent (test_resource_timing.ResourceTimingTests.test_slow_initialization_does_not_penalize_opponent) ... ok
+test_total_budget_is_per_process_in_two_unit_team (test_resource_timing.ResourceTimingTests.test_total_budget_is_per_process_in_two_unit_team) ... ok
+test_duplicate_names_and_invalid_field_rejected (test_tournament_tools.FixtureTests.test_duplicate_names_and_invalid_field_rejected) ... ok
+test_same_map_for_all_pairs_and_reversed_seats_per_round (test_tournament_tools.FixtureTests.test_same_map_for_all_pairs_and_reversed_seats_per_round) ... ok
+test_semantic_protocol_errors (test_tournament_tools.FixtureTests.test_semantic_protocol_errors) ... ok
+test_empty_queue_returns_at_expired_deadline (test_tournament_tools.TimingTests.test_empty_queue_returns_at_expired_deadline) ... ok
+test_late_reply_is_rejected_even_when_queued (test_tournament_tools.TimingTests.test_late_reply_is_rejected_even_when_queued) ... ok
+test_old_tick_is_discarded_and_current_reply_recovers (test_tournament_tools.TimingTests.test_old_tick_is_discarded_and_current_reply_recovers) ... ok
+test_on_time_reply_is_read_after_other_bot_wait (test_tournament_tools.TimingTests.test_on_time_reply_is_read_after_other_bot_wait) ... ok
+
+----------------------------------------------------------------------
+Ran 34 tests in 14.205s
+
+OK

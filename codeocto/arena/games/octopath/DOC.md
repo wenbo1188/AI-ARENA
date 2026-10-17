@@ -1,25 +1,14 @@
-# 旅人对决 AI 竞赛：参赛规则与接口
+# 游戏机制与接口源文档
 
-规则版本：v1.1。
+正式规则由根目录 RULES.md 统一生成；本文件只维护游戏机制、协议与数值。
 
 ## 本届HP与奥义规则
 
-全员99级，无装备和坚果。每名角色先按基础属性、副职百分比加成和支援技能计算最大HP，最后固定增加 **{{ARENA_HP_BONUS}} HP**，并以这个最终最大HP满血开局；此项不占JP、金钱或支援技能槽位。固定增加值不再乘副职百分比，不限制HP为9999。
+全员99级，无装备和坚果。每名角色先按基础属性、副职百分比加成和支援技能计算最大HP，最后固定增加 **1000 HP**，并以这个最终最大HP满血开局；此项不占JP、金钱或支援技能槽位。固定增加值不再乘副职百分比，不限制HP为9999。
 
 `init.travelers[*].hp` 和旅人属性表中的HP是未配置的基础HP，不包含这项固定增加值。`init.arena_rules.hp_bonus` 公布固定增加值；战斗观测中的 `max_hp`、回放中的 `unit_max` 是配置和固定增加后的最终值。
 
 满足SP、BP及技能条件时，**第一回合即可使用职业奥义**。奥义需要3 BP；开局满潜力支援保持满潜力。第一回合按正常伤害公式结算。按最大HP比例计算的恢复、复活、中毒、潜力增长和回合上限判定均使用最终最大HP。
-
-## 提交要求
-- 每位AI只提交一个最终版本，比赛期间不修改代码。模型API只用于赛前生成代码，比赛中的策略不得调用API。
-- 自测使用 `python kit.py check`；主办方会独立复测，选手自测报告不等同于正式准入。
-
-
-- 提交**一个 Python 3 源文件**（Python 3.9+），只能使用标准库（`json`、`math`、`sys`、`random`、`itertools` 等）。不能联网、不能读写文件、不能启动子进程。
-- 程序通过**标准输入**逐行接收 JSON 消息，通过**标准输出**逐行回复 JSON，每条回复后必须 `flush`（`print(..., flush=True)`）。
-- 标准输出**只能**写协议消息；调试信息写到标准错误 `sys.stderr`。
-- **每一步都要回复，包括非行动方**；非行动方回复 `{"tick": t}`。每个策略每步最多1秒现实时间；整局CPU时间预算60秒，包含用户态和内核态计算，睡眠等待不计CPU时间，但仍受每步1秒限制。 内存上限256 MiB。init与第一次turn共用首个响应窗口，无额外3秒准备时间。整支队伍共享一个策略进程及其预算。
-- 任意超时、协议错误或崩溃后停止该策略；剩余选人由引擎随机补齐、缺少配置使用空配置、战斗使用引擎默认行动。比赛继续按战况判胜负，故障不直接判负或平局。
 
 ## 对局流程
 
@@ -27,7 +16,6 @@
 
 1. **选人阶段**：从 8 名旅人中选 `team_size`（默认 4）人。
    - `pick_mode = "blind"`（默认）：tick 0 双方**同时**一次选完 4 人，看不到对方选了谁，**两队可以选相同的旅人**（同一队内不能重复）。
-   - `pick_mode = "draft"`：蛇形轮流，每步一方选 1 人，顺序 A B B A A B B A，被任意一方选过的旅人不能再选。
    - 你选的顺序就是队员 id（0、1、2、3）。
 2. **赛前配置阶段**（一步）：双方**同时**提交配置：每人的副职业、用 JP 学的副职技能、支援技能，以及全队带进战斗的道具。
    两队的**预算完全相同**（全队共用的 JP 和金钱），提交时**看不到对手的配置**（blind 选人时连对手选了谁也看不到），战斗开始时双方配置公开。
@@ -44,7 +32,7 @@
 ```json
 {"type": "init", "time_limit_ms": 1000, "total_time_ms": 60000, "time_budget_type": "cpu_user_system", "game": "octopath", "you": 0, "team_size": 4, "pick_mode": "blind",
  "max_rounds": 30, "max_bp": 5, "max_boost": 3,
- "arena_rules": {"hp_bonus": {{ARENA_HP_BONUS}}, "hp_bonus_order": "after_loadout", "divine_first_round": true},
+ "arena_rules": {"hp_bonus": 1000, "hp_bonus_order": "after_loadout", "divine_first_round": true},
  "travelers": {"hikari": {"name": "光", "name_en": "Hikari", "job": "剑士", "job_en": "Warrior", "hp": 5781, "sp": 145, "pa": 342, "pd": 313,
                           "ea": 256, "ed": 228, "acc": 313, "eva": 228, "crit": 285, "spd": 285,
                           "weapons": ["sword", "polearm"], "shields": 7, "weak": ["axe", "bow", "ice", "wind"],
@@ -56,7 +44,7 @@
  "types": ["sword", "polearm", "dagger", "axe", "bow", "staff", "fire", "ice", "lightning", "wind", "light", "dark"],
  "constants": {"level_multiplier": 1.36328125, "weak_mult": 1.3, "break_mult": 2.0, "crit_mult": 1.25, "defend_mult": 0.5, "...": "..."},
  "loadout_enabled": true,
- "loadout_rules": {"budget": {"jp": 12000, "gold": GOLD},
+ "loadout_rules": {"budget": {"jp": 12000, "gold": 6000},
                    "jp_costs": [30, 100, 500, 1000, 3000, 5000], "free_skills": 2, "support_unlock": [4, 5, 6, 7],
                    "support_slots": 4, "licenses": 3,
                    "jobs": {"Warrior": {"zh": "剑士", "bonus_pct": {"hp": 18, "pa": 5, "pd": 5}, "weapons": ["sword", "polearm"],
@@ -67,7 +55,7 @@
                    "item_stack": 99}}
 ```
 
-必须回复 `{"ready": true}`。下文所有数值都以这条消息里的为准（比赛可能用 `-o` 调整了常数）。
+必须回复 `{"ready": true}`。init 传递已冻结的正式参数；与正式参赛说明不一致时按评测异常复核，不得临时调整玩法。
 
 ### 2. 选人阶段的每一步
 
@@ -83,13 +71,13 @@
 {"tick": 0, "pick": ["temenos", "osvald", "hikari", "throne"]}
 ```
 
-选人名单数量、类型或ID错误属于协议错误，停止策略；引擎随后随机分配。
+选人名单数量、类型或 ID 错误属于当前 tick 协议错误；本步引擎随机补齐，后续合法回复可继续控制。
 
 ### 3. 赛前配置（选人结束后的一步）
 
 ```json
 {"type": "turn", "tick": 1, "phase": "loadout", "your_turn": true, "my_picks": ["temenos", "osvald", "hikari", "throne"],
- "opponent_picks": [], "budget": {"jp": 12000, "gold": GOLD}}
+ "opponent_picks": [], "budget": {"jp": 12000, "gold": 6000}}
 ```
 
 `opponent_picks` 只在 draft 选人时有内容（blind 时你不知道对手是谁）。回复 `loadout`（按队员 id 顺序的列表，也可以用 `{"0": {...}, "1": {...}}`，每人一份）和 `items`（全队的道具袋）：
@@ -111,7 +99,7 @@
 
 **不合法时**：单个条目不合法（未知 id、栏位已满、支援技能没解锁等）只忽略那一条；JP 或金钱的**全队总花费超预算，全队这一项全部作废**（JP 超了没有副职技能，金钱超了不带道具）；不回复或超时，全队都没有配置。被忽略的内容会出现在事件 `loadout` 的 `notes` 里。
 
-**属性怎么算**：`最终属性 = 基础属性 × (1 + 副职加成%) + 支援技能固定加值`。本竞技场**没有装备和坚果**。
+**属性怎么算**：`配置属性 = 基础属性 × (1 + 副职加成%) + 支援技能固定加值`；最大 HP 在此后再固定增加 1000。本竞技场**没有装备和坚果**。
 
 ### 4. 战斗阶段的每一步
 
@@ -140,7 +128,7 @@
 
 ```json
 {"id": 1, "traveler": "osvald", "name": "奥兹巴尔多", "alive": true,
- "hp": 3557, "max_hp": 3557, "sp": 218, "max_sp": 218, "bp": 1,
+ "hp": 4557, "max_hp": 4557, "sp": 218, "max_sp": 218, "bp": 1,
  "shields": 5, "max_shields": 5, "weaknesses": ["sword", "dagger", "fire", "lightning"],
  "broken": false, "broken_until_round": null,
  "latent": 35.5, "latent_ready": false, "weapons": ["staff"],
@@ -175,7 +163,7 @@
 | `recipe` | 只对调合有效：`elixir` / `phoenix` / `toxin` / `firebomb` |
 | `item` | 只对 `"skill": "item"` 有效：道具 id，必须在 `usable_items` 里 |
 
-**默认行动**：超时、回复格式错误、技能不存在/不属于该角色/SP 不够、道具没有或现在不能用时，按**普通攻击**处理（目标优先用你给的 `target`，否则打对方第一个活着的角色），加成照常按 `boost` 处理。
+**默认行动**：当前 tick 超时或协议格式错误时，引擎普通攻击对方第一个活着的角色，不采纳非法回复的 target 或 boost；下个 tick 可恢复控制。回复结构合法但技能不存在、不属于角色、SP 不够或道具不可用时，按引擎游戏规则回退普通攻击，合法 target 与 boost 依引擎处理。崩溃、初始化失败或整局预算耗尽后，本局持续默认接管、不重启。
 
 ### 5. 结束（end）
 
@@ -263,7 +251,12 @@
 
 `"skill": "concoct"` 消耗 1 份材料（开局 `materials` 份，默认 4），不消耗 SP，可以加成（威力 ×(1+BP)）：
 
-{{CONCOCT_TABLE}}
+| recipe | 名称 | 效果 |
+|---|---|---|
+| `elixir` | 复苏药 | 全体队友恢复最大 HP 15%×(1+BP) |
+| `phoenix` | 还魂药 | 复活一名倒下的队友（target 填队友 id），恢复最大 HP 25%×(1+BP)；没有倒下队友时改为治疗该队友 |
+| `toxin` | 毒雾 | 全体敌人受到 0.5×(1+BP) 倍威力的无属性伤害，并中毒 3 回合 |
+| `firebomb` | 火焰瓶 | 全体敌人受到 0.9×(1+BP) 倍威力的火属性伤害（削护盾） |
 
 ### 道具
 
@@ -308,30 +301,211 @@
 
 ### 职业（副职）
 
-{{JOBS_TABLE}}
+| 职业 | 副职加成 | 武器 | 初始技能（免费） | 神技 | 对战里无效果的技能 | 支援技能（第 1～4 个） |
+|---|---|---|---|---|---|---|
+| `Warrior` 剑士 | HP+18%，物攻+5%，物防+5% | sword, polearm | `aggressive_slash`, `piercing_thrust` | `brands_blade` | — | `bolstering_break`, `summon_strength`, `latent_power_plus`, `deal_more_damage` |
+| `Merchant` 商人 | HP+8%，SP+8%，物攻+3%，物防+3%，属攻+3%，属防+3% | polearm, bow | `arrow_of_fortune`, `rest` | `bifelgans_bounty` | `collect` 收集金钱, `hire_help` 雇佣帮手 | `grows_on_trees`, `boost_start`, `hang_tough`, `full_power` |
+| `Thief` 盗贼 | 物攻+2%，命中+5%，速度+8%，暴击+5%，回避+8% | dagger, sword | `steal`（无效果）, `darkest_night` | `aebers_reckoning` | `steal` 偷窃 | `incidental_attack`, `fleetfoot`, `ensnare`, `life_in_the_shadows` |
+| `Apothecary` 药师 | HP+20%，物攻+2%，物防+2%，属攻+2%，暴击+2% | axe | `healing_touch`, `icicle` | `dohters_charity` | — | `vigorous_victor`, `hale_and_hearty`, `inspiriting_break`, `preventative_measures` |
+| `Hunter` 猎人 | 物攻+8%，命中+6%，速度+5%，暴击+6%，回避+3% | bow, axe | `precise_shot`, `thunderbird` | `draefendis_bow` | — | `heighten_senses`, `eagle_eye`, `more_rare_monsters`, `salt_the_wound` |
+| `Cleric` 神官 | SP+18%，属攻+5%，属防+5% | staff | `heal_wounds`, `holy_light` | `aelfrics_blessing` | — | `resilience`, `inner_strength`, `evil_ward`, `rise_again` |
+| `Scholar` 学者 | SP+13%，属攻+10%，属防+5% | staff | `fireball`, `icewind` | `alephans_wisdom` | `analyze` 分析 | `evasive_maneuvers`, `elemental_augmentation`, `extra_experience`, `advanced_magic_master` |
+| `Dancer` 舞娘 | 属攻+8%，速度+10%，回避+10% | dagger | `lion_dance`, `ruinous_kick` | `sealticges_seduction` | — | `the_show_goes_on`, `ever_evasive`, `hard_worker`, `invigorate_and_inspire` |
 
 ### 支援技能
 
-{{SUPPORTS_TABLE}}
+| id | 职业 | 第几个 | 名称 | 效果 |
+|---|---|---|---|---|
+| `bolstering_break` | 剑士 | 1 | 令敌人破防提升物攻 Bolstering Break | 自己击破敌人时，自身物攻上升 2 回合 |
+| `summon_strength` | 剑士 | 2 | 物攻+50 Summon Strength | 物攻 +50 |
+| `latent_power_plus` | 剑士 | 3 | 提升潜力上升量 Latent Power Plus | 潜力能量积累速度 ×1.2 |
+| `deal_more_damage` | 剑士 | 4 | 突破伤害界限 Deal More Damage | 自己造成的伤害上限从 9999 提高到 99999 |
+| `the_show_goes_on` | 舞娘 | 1 | 强化回合数增加 The Show Goes On | 自己施加的属性上升多持续 1 回合 |
+| `ever_evasive` | 舞娘 | 2 | 回避率上升 Ever Evasive | 被物理攻击时的落空率 +20%（直接加在落空率上） |
+| `hard_worker` | 舞娘 | 3 | 获得JP上升 Hard Worker | ~~战斗后获得的 JP ×1.1（探索用，竞技场无效）~~ 不能装备 |
+| `invigorate_and_inspire` | 舞娘 | 4 | 暖场高手 Invigorate and Inspire | 自己施加属性上升时，获得增益的角色潜力能量 +5/10/15/20（按这次行动花的 BP 0/1/2/3） |
+| `grows_on_trees` | 商人 | 1 | 获取金额上升 Grows on Trees | ~~战斗后获得的金钱 ×1.1（探索用，竞技场无效）~~ 不能装备 |
+| `boost_start` | 商人 | 2 | BP加成 Boost-Start | 开战时 BP +1 |
+| `hang_tough` | 商人 | 3 | 坚持到底 Hang Tough | 受到致命的一击时，如果这一击之前 HP 在 25% 以上，剩 1 HP 撑住（多段攻击每一击单独判断） |
+| `full_power` | 商人 | 4 | 潜力爆发MAX Full Power | 开战时潜力能量全满 |
+| `evasive_maneuvers` | 学者 | 1 | 遇敌概率减半 Evasive Maneuvers | ~~遇敌率减半（探索用，竞技场无效）~~ 不能装备 |
+| `elemental_augmentation` | 学者 | 2 | 属攻+50 Elemental Augmentation | 属攻 +50 |
+| `extra_experience` | 学者 | 3 | 获得EXP提升 Extra Experience | ~~战斗后获得的经验 ×1.1（探索用，竞技场无效）~~ 不能装备 |
+| `advanced_magic_master` | 学者 | 4 | 魔法强化加成 Advanced Magic Master | 自己施放大魔法化 / 硕学王的知识时，强化次数 +1 |
+| `incidental_attack` | 盗贼 | 1 | 顺便战斗 Incidental Attack | 使用不造成伤害的技能后，50% 概率再普通攻击 1 次 |
+| `fleetfoot` | 盗贼 | 2 | 行动速度+50 Fleetfoot | 速度 +50 |
+| `ensnare` | 盗贼 | 3 | 陷阱 Ensnare | 受到物理伤害时，50% 概率让攻击者随机一项属性下降 2 回合 |
+| `life_in_the_shadows` | 盗贼 | 4 | 存于黑暗 Life in the Shadows | ~~夜晚战斗后经验和 JP ×1.5（探索用，竞技场无效）~~ 不能装备 |
+| `resilience` | 神官 | 1 | HP恢复量上升 Resilience | 自己技能的 HP 恢复量 ×1.3 |
+| `inner_strength` | 神官 | 2 | 最大SP+50 Inner Strength | 最大 SP +50 |
+| `evil_ward` | 神官 | 3 | 逃跑成功率上升 Evil Ward | ~~逃跑成功率上升（竞技场无效）~~ 不能装备 |
+| `rise_again` | 神官 | 4 | 自动复活 Rise Again | 每场一次，倒下时立刻以 25% HP 复活 |
+| `heighten_senses` | 猎人 | 1 | 先制攻击的概率上升 Heighten Senses | ~~先制攻击概率上升（探索用，竞技场无效）~~ 不能装备 |
+| `eagle_eye` | 猎人 | 2 | 暴击+50 Eagle Eye | 暴击 +50 |
+| `more_rare_monsters` | 猎人 | 3 | 稀有怪物遭遇率上升 More Rare Monsters | ~~稀有怪遭遇率上升（探索用，竞技场无效）~~ 不能装备 |
+| `salt_the_wound` | 猎人 | 4 | 破防追击 Salt the Wound | 自己击破敌人时，50% 概率立刻再行动一次（不会连续触发） |
+| `vigorous_victor` | 药师 | 1 | 战斗后恢复 Vigorous Victor | ~~战斗胜利后恢复 30% HP/SP（竞技场无效）~~ 不能装备 |
+| `hale_and_hearty` | 药师 | 2 | 最大HP+500 Hale and Hearty | 最大 HP +500 |
+| `inspiriting_break` | 药师 | 3 | 令敌人破防恢复SP Inspiriting Break | 自己击破敌人时，恢复固定 20 SP |
+| `preventative_measures` | 药师 | 4 | 预防药 Preventative Measures | 开战时获得 3 次属性下降无效（每挡掉一次减 1；按次数算，日文资料和玩家实测一致） |
 
 ### 道具
 
-{{ITEMS_NOTE}}
+效果和价格为原作数据；价格是原作商店的售价（精灵石只在新德尔斯塔平原的黑市卖），标 *内部价值* 的原作商店不卖，用原作数据表里的道具价值代替。原作资料没写、本竞技场自己定的：道具不能加成；精灵石的固定伤害不乘弱点、击破、防御倍率（圣盾照样减伤），但打中弱点会削 1 护盾；药师的「HP恢复量上升」等支援技能不影响道具。
 
-{{ITEMS_TABLE}}
+| id | 名称 | 目标 | 效果 | 价格 |
+|---|---|---|---|---|
+| `healing_grape` | 恢复HP的葡萄 Healing Grape | 单个己方 | 恢复 HP 500 | 50 |
+| `healing_grape_m` | 恢复HP的葡萄(大) Healing Grape (M) | 单个己方 | 恢复 HP 1250 | 260 |
+| `healing_grape_bunch` | 恢复全体HP的葡萄 Healing Grape Bunch | 全体己方 | 全体恢复 HP 900 | 720（*内部价值*） |
+| `inspiriting_plum` | 恢复SP的李子 Inspiriting Plum | 单个己方 | 恢复 SP 40 | 240 |
+| `inspiriting_plum_m` | 恢复SP的李子(大) Inspiriting Plum (M) | 单个己方 | 恢复 SP 100 | 900 |
+| `energizing_pomegranate` | 恢复BP的石榴 Energizing Pomegranate | 单个己方 | BP +1 | 300（*内部价值*） |
+| `olive_of_life` | 复活的橄榄 Olive of Life | 倒下的己方 | 复活倒下的队友，HP 500 | 500 |
+| `olive_of_life_m` | 复活的橄榄(大) Olive of Life (M) | 倒下的己方 | 复活倒下的队友，HP 2000 | 3000 |
+| `herb_of_serenity` | 包治百病的药草 Herb of Serenity | 单个己方 | 治疗中毒（原作是治疗全部异常状态，本竞技场只有中毒和弱毒） | 600 |
+| `fire_soulstone` | 火之精灵石 Fire Soulstone | 全体敌人 | 全体敌人受到 200 点火属性固定伤害 | 700 |
+| `fire_soulstone_m` | 火之精灵石(大) Fire Soulstone (M) | 全体敌人 | 全体敌人受到 1100 点火属性固定伤害 | 1700 |
+| `ice_soulstone` | 冰之精灵石 Ice Soulstone | 全体敌人 | 全体敌人受到 200 点冰属性固定伤害 | 700 |
+| `ice_soulstone_m` | 冰之精灵石(大) Ice Soulstone (M) | 全体敌人 | 全体敌人受到 1100 点冰属性固定伤害 | 1700 |
+| `lightning_soulstone` | 雷之精灵石 Thunder Soulstone | 全体敌人 | 全体敌人受到 200 点雷属性固定伤害 | 700 |
+| `lightning_soulstone_m` | 雷之精灵石(大) Thunder Soulstone (M) | 全体敌人 | 全体敌人受到 1100 点雷属性固定伤害 | 1700 |
+| `wind_soulstone` | 风之精灵石 Wind Soulstone | 全体敌人 | 全体敌人受到 200 点风属性固定伤害 | 700 |
+| `wind_soulstone_m` | 风之精灵石(大) Wind Soulstone (M) | 全体敌人 | 全体敌人受到 1100 点风属性固定伤害 | 1700 |
+| `light_soulstone` | 光之精灵石 Light Soulstone | 全体敌人 | 全体敌人受到 200 点光属性固定伤害 | 700 |
+| `light_soulstone_m` | 光之精灵石(大) Light Soulstone (M) | 全体敌人 | 全体敌人受到 1100 点光属性固定伤害 | 1700 |
+| `dark_soulstone` | 暗之精灵石 Shadow Soulstone | 全体敌人 | 全体敌人受到 200 点暗属性固定伤害 | 700 |
+| `dark_soulstone_m` | 暗之精灵石(大) Shadow Soulstone (M) | 全体敌人 | 全体敌人受到 1100 点暗属性固定伤害 | 1700 |
 
 ## 旅人数据
 
 属性为原作 99 级、不带装备的基础值（本竞技场没有装备）。护盾和弱点为本竞技场设计。
 
-{{TRAVELERS_TABLE}}
+| key | 旅人 | 职业 | hp | sp | pa | pd | ea | ed | acc | eva | crit | spd | 武器 | 护盾 | 弱点 | 技能 |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| `hikari` | 光 | 剑士 Warrior | 5781 | 145 | 342 | 313 | 256 | 228 | 313 | 228 | 285 | 285 | sword, polearm | 7 | axe, bow, ice, wind | `aggressive_slash`, `piercing_thrust`, `abide`, `enervating_slash`, `stout_wall`, `incite`, `vengeful_blade`, `brands_blade` |
+| `agnea` | 爱格妮娅 | 舞娘 Dancer | 4002 | 182 | 285 | 199 | 342 | 228 | 285 | 313 | 285 | 370 | dagger | 5 | sword, polearm, lightning, dark | `lion_dance`, `ruinous_kick`, `peacock_strut`, `sweeping_gale`, `stimulate`, `dagger_dance`, `bewildering_grace`, `sealticges_seduction` |
+| `partitio` | 帕特提欧 | 商人 Merchant | 4891 | 182 | 313 | 285 | 313 | 285 | 285 | 256 | 256 | 256 | polearm, bow | 6 | dagger, axe, wind, dark | `arrow_of_fortune`, `rest`, `ember`, `donate_bp`, `sidestep`, `bifelgans_bounty` |
+| `osvald` | 奥兹巴尔多 | 学者 Scholar | 3557 | 218 | 256 | 256 | 370 | 342 | 285 | 285 | 228 | 256 | staff | 5 | sword, dagger, fire, lightning | `fireball`, `icewind`, `lightning_bolt`, `stroke_of_genius`, `elemental_barrage`, `advance_magic`, `alephans_wisdom` |
+| `temenos` | 提米诺斯 | 神官 Cleric | 4002 | 236 | 285 | 285 | 342 | 370 | 285 | 228 | 199 | 228 | staff | 6 | polearm, wind, ice, dark | `heal_wounds`, `holy_light`, `prayer_to_the_flame`, `mystical_staff`, `luminescence`, `sacred_shield`, `revive`, `aelfrics_blessing` |
+| `throne` | 斯洛妮 | 盗贼 Thief | 4447 | 145 | 313 | 228 | 285 | 228 | 313 | 342 | 285 | 342 | dagger, sword | 5 | staff, bow, fire, light | `darkest_night`, `hp_thief`, `surprise_attack`, `swift_step`, `armor_corrosive`, `shackle_foe`, `aebers_reckoning` |
+| `ochette` | 欧修缇 | 猎人 Hunter | 4447 | 145 | 342 | 228 | 285 | 228 | 342 | 313 | 313 | 285 | bow, axe | 6 | sword, staff, fire, ice | `precise_shot`, `thunderbird`, `cleaving_blow`, `mercy_strike`, `take_aim`, `leghold_trap`, `abating_orb`, `draefendis_bow` |
+| `castti` | 卡斯蒂 | 药师 Apothecary | 5336 | 182 | 313 | 285 | 285 | 285 | 285 | 256 | 285 | 228 | axe | 6 | polearm, staff, lightning, light | `healing_touch`, `icicle`, `rehabilitate`, `sweeping_cleave`, `poison_axe`, `replenish_health`, `weak_to_poison`, `dohters_charity`, `concoct` |
 
 ## 技能表
 
 `target`：`enemy` 单个敌人，`enemies` 全体敌人，`random` 随机敌人（每击单独随机），`chosen` 每一击的目标由你在 `targets` 里指定，`ally` 单个己方（可以是自己），`ally_other` 自己以外的单个己方，`ally_any` 单个己方（可以是倒下的），`allies` 全体己方，`self` 自己。
 `power` 是基础档位的便捷字段；实际伤害使用invocation_values和ability_ratios，不应只按power推算，`hits` 是固定打击次数。技能中文名保留当前工程用语，SP消耗按核对表，伤害档位使用随包核对参数。神技（★）必须花 3 BP 发动。
 
-{{SKILLS_TABLE}}
+
+**光（剑士）**
+
+| id | 名称 | SP | target | 参数 | 说明 |
+|---|---|---|---|---|---|
+| `aggressive_slash` | Aggressive Slash 五月雨斩 | 9 | random | kind=phys; type=sword; power=0.5599999999999999; boost=hits; levels=[3, 4, 5, 6]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[0.8, 1.1, 1.4, 1.7]; invocation_values=[0.7, 0.7, 0.7, 0.7] | 剑，随机攻击敌人 3/4/5/6 次 |
+| `piercing_thrust` | Piercing Thrust 会心之枪 | 12 | enemy | kind=phys; type=polearm; power=1.25; boost=crit; levels=[25, 50, 75, 100]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 2.0, 3.0, 4.0]; invocation_values=[1.25, 1.25, 1.25, 1.25] | 枪，单体强力攻击，暴击率 25/50/75/100% |
+| `abide` | Abide 蓄力 | 4 | self | boost=dur; levels=[3, 5, 7, 9]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 自身物攻上升 3/5/7/9 回合 |
+| `enervating_slash` | Enervating Slash 无心长刀 | 7 | enemy | kind=phys; type=sword; power=0.9; boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 2.0, 3.0, 4.0]; invocation_values=[0.9, 0.9, 0.9, 0.9] | 消除目标的正面效果，按消除数量提高此次攻击伤害 |
+| `stout_wall` | Stout Wall 铁壁 | 4 | self | boost=dur; levels=[3, 5, 7, 9]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 自身物防上升 3/5/7/9 回合 |
+| `incite` | Incite 挑衅 | 4 | self | boost=dur; levels=[3, 5, 7, 9]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 敌人的单体攻击全部打向自己，3 回合（加成延长） |
+| `vengeful_blade` | Vengeful Blade 反击长刀 | 6 | self | boost=count; levels=[2, 3, 4, 5]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 受到物理攻击时用剑反击，2/3/4/5 次 |
+| `brands_blade` | ★Brand's Blade 雷剑将布兰德的刚剑 | 30 | enemy | kind=phys; type=sword; power=10.2; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 6.0]; invocation_values=[1.7, 1.7, 1.7, 1.7] | 神技：剑，单体极强攻击 |
+| `tenretsu` | Tenretsu 天裂斩 | 0 | enemy | kind=phys; type=sword; power=2.1; boost=power; hit_ratios=[999.0, 999.0, 999.0, 999.0]; ability_ratios=[1.2, 2.4, 3.6, 4.8]; invocation_values=[1.75, 1.75, 1.75, 1.75] | 潜力专属：剑，单体 1 次强力斩击 |
+| `hien` | Hien 飞燕华 | 0 | enemy | kind=phys; type=sword; power=1.4; hits=2; boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 2.0, 3.0, 4.0]; invocation_values=[1.4, 1.4, 1.4, 1.4] | 潜力专属：单体两次剑攻击，在本回合末追加一次行动；每回合最多追加一次 |
+| `sougetsu` | Sougetsu 双月闪 | 0 | enemies | kind=phys; type=sword; power=1.1; hits=2; boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.9, 2.8, 3.7]; invocation_values=[1.1, 1.1, 1.1, 1.1] | 潜力专属：全体先受一次剑攻击，再受一次长柄武器攻击 |
+
+**爱格妮娅（舞娘）**
+
+| id | 名称 | SP | target | 参数 | 说明 |
+|---|---|---|---|---|---|
+| `lion_dance` | Lion Dance 狮子之舞 | 4 | ally | boost=dur; levels=[2, 4, 6, 8]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 单个队友物攻上升 2/4/6/8 回合 |
+| `ruinous_kick` | Ruinous Kick 猛踢要害 | 10 | enemy | kind=phys; power=1.5; boost=power; shield_break=1; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 2.0, 3.0, 4.0]; invocation_values=[1.5, 1.5, 1.5, 1.5] | 无属性物理单体强力攻击，无视弱点削减 1 护盾 |
+| `peacock_strut` | Peacock Strut 孔雀之舞 | 4 | ally | boost=dur; levels=[2, 4, 6, 8]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 单个队友属攻上升 2/4/6/8 回合 |
+| `sweeping_gale` | Sweeping Gale 旋风 | 7 | enemy | kind=elem; type=wind; power=1.3; boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 2.0, 3.0, 4.0]; invocation_values=[1.3, 1.3, 1.3, 1.3] | 风，单体 |
+| `stimulate` | Stimulate 推波助澜 | 5 | ally_other | boost=count; levels=[1, 2, 3, 99]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 让一名其他队友的下一次行动提前 1/2/3 位/最先 |
+| `dagger_dance` | Dagger Dance 短刀之舞 | 9 | enemies | kind=phys; type=dagger; power=1.1; boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.9, 2.8, 3.7]; invocation_values=[1.1, 1.1, 1.1, 1.1] | 短剑，全体 |
+| `bewildering_grace` | Bewildering Grace 百思不解之舞 | 25 | self | boost=count; levels=[1, 2, 3, 4] | 随机触发 1/2/3/4 个奇妙效果（有好有坏） |
+| `sealticges_seduction` | ★Sealticge's Seduction 舞姬希尔缇吉的话 | 30 | ally | hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 神技：3 回合内，该队友的单体技能改为作用于全体（神技和只作用于自己的技能除外） |
+
+**帕特提欧（商人）**
+
+| id | 名称 | SP | target | 参数 | 说明 |
+|---|---|---|---|---|---|
+| `arrow_of_fortune` | Arrow of Fortune 幸运之箭 | 12 | enemy | kind=phys; type=bow; power=1.4; boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.8, 2.6, 3.4]; invocation_values=[1.4, 1.4, 1.4, 1.4] | 弓，单体强力攻击 |
+| `rest` | Rest 稍作休息 | 0 | self | boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.7, 2.5, 3.3, 4.1]; invocation_values=[0, 0, 0, 0] | 按施术者基础属防、恢复系数和等级系数恢复HP；恢复25/50/75/100 SP，解除中毒 |
+| `ember` | Ember 火花 | 7 | enemy | kind=elem; type=fire; power=1.3; boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 2.0, 3.0, 4.0]; invocation_values=[1.3, 1.3, 1.3, 1.3] | 火，单体 |
+| `donate_bp` | Donate BP BP传递 | 6 | ally_other | boost=count; levels=[1, 2, 3, 4]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 给一名其他队友 1/2/3/4 BP |
+| `sidestep` | Sidestep 紧急回避 | 10 | self | boost=count; levels=[1, 2, 3, 4]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 必定闪避接下来 1/2/3/4 次物理攻击 |
+| `bifelgans_bounty` | ★Bifelgan's Bounty 绅商伯比菲尔根的心眼 | 30 | enemy | kind=elem; power=7.800000000000001; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 6.0]; invocation_values=[1.3, 1.3, 1.3, 1.3] | 神技：无属性单体魔法伤害；本赛事战斗中不增加赛前金钱 |
+
+**奥兹巴尔多（学者）**
+
+| id | 名称 | SP | target | 参数 | 说明 |
+|---|---|---|---|---|---|
+| `fireball` | Fireball 火焰魔法 | 14 | enemies | kind=elem; type=fire; power=1.05; boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.9, 2.8, 3.7]; invocation_values=[1.05, 1.05, 1.05, 1.05]; tier_parameters=[[{'ratio': 1.0, 'invocation': 1.05}, {'ratio': 1.9, 'invocation': 1.05}, {'ratio': 2.8, 'invocation': 1.05}, {'ratio': 3.7, 'invocation': 1.05}], [{'ratio': 0.85, 'invocation': 1.05}, {'ratio': 1.5, 'invocation': 1.05}, {'ratio': 2.15, 'invocation': 1.05}, {'ratio': 2.8, 'invocation': 1.05}], [{'ratio': 0.75, 'invocation': 1.05}, {'ratio': 1.3, 'invocation': 1.05}, {'ratio': 1.85, 'invocation': 1.05}, {'ratio': 2.4, 'invocation': 1.05}]]; spell | 火，全体 |
+| `icewind` | Icewind 冰冻魔法 | 14 | enemies | kind=elem; type=ice; power=1.05; boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.9, 2.8, 3.7]; invocation_values=[1.05, 1.05, 1.05, 1.05]; tier_parameters=[[{'ratio': 1.0, 'invocation': 1.05}, {'ratio': 1.9, 'invocation': 1.05}, {'ratio': 2.8, 'invocation': 1.05}, {'ratio': 3.7, 'invocation': 1.05}], [{'ratio': 0.85, 'invocation': 1.05}, {'ratio': 1.5, 'invocation': 1.05}, {'ratio': 2.15, 'invocation': 1.05}, {'ratio': 2.8, 'invocation': 1.05}], [{'ratio': 0.75, 'invocation': 1.05}, {'ratio': 1.3, 'invocation': 1.05}, {'ratio': 1.85, 'invocation': 1.05}, {'ratio': 2.4, 'invocation': 1.05}]]; spell | 冰，全体 |
+| `lightning_bolt` | Lightning Bolt 雷击魔法 | 14 | enemies | kind=elem; type=lightning; power=1.05; boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.9, 2.8, 3.7]; invocation_values=[1.05, 1.05, 1.05, 1.05]; tier_parameters=[[{'ratio': 1.0, 'invocation': 1.05}, {'ratio': 1.9, 'invocation': 1.05}, {'ratio': 2.8, 'invocation': 1.05}, {'ratio': 3.7, 'invocation': 1.05}], [{'ratio': 0.85, 'invocation': 1.05}, {'ratio': 1.5, 'invocation': 1.05}, {'ratio': 2.15, 'invocation': 1.05}, {'ratio': 2.8, 'invocation': 1.05}], [{'ratio': 0.75, 'invocation': 1.05}, {'ratio': 1.3, 'invocation': 1.05}, {'ratio': 1.85, 'invocation': 1.05}, {'ratio': 2.4, 'invocation': 1.05}]]; spell | 雷，全体 |
+| `stroke_of_genius` | Stroke of Genius 灵光一闪 | 5 | self | boost=count; levels=[2, 3, 4, 5]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 随机获得 2/3/4/5 个属性上升（3 回合，重复则延长） |
+| `elemental_barrage` | Elemental Barrage 属性混乱 | 10 | random | kind=elem; type=random_fil; power=0.6400000000000001; boost=hits; levels=[[3, 5], [4, 6], [5, 7], [6, 8]]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[0.8, 1.1, 1.4, 1.7]; invocation_values=[0.8, 0.8, 0.8, 0.8] | 火/冰/雷随机，随机攻击敌人 3-5/4-6/5-7/6-8 次 |
+| `advance_magic` | Advanced Magic 大魔法化 | 15 | ally | boost=count; levels=[2, 3, 4, 5]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 使一名队友接下来2/3/4/5次适用魔法强化为二阶；魔法强化加成另加1次 |
+| `alephans_wisdom` | ★Alephan's Wisdom 硕学王阿雷芬的知识 | 30 | ally | hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 使一名队友接下来3次适用魔法强化为三阶；魔法强化加成另加1次 |
+
+**提米诺斯（神官）**
+
+| id | 名称 | SP | target | 参数 | 说明 |
+|---|---|---|---|---|---|
+| `heal_wounds` | Heal Wounds 恢复魔法 | 15 | allies | boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.4, 2.1, 2.8, 3.5]; invocation_values=[0, 0, 0, 0]; tier_parameters=[[{'ratio': 1.4, 'invocation': 1.2}, {'ratio': 2.1, 'invocation': 1.2}, {'ratio': 2.8, 'invocation': 1.2}, {'ratio': 3.5, 'invocation': 1.2}], [{'ratio': 1.4, 'invocation': 1.8}, {'ratio': 2.1, 'invocation': 1.8}, {'ratio': 2.8, 'invocation': 1.8}, {'ratio': 3.5, 'invocation': 1.8}], [{'ratio': 1.4, 'invocation': 2.4}, {'ratio': 2.1, 'invocation': 2.4}, {'ratio': 2.8, 'invocation': 2.4}, {'ratio': 3.5, 'invocation': 2.4}]]; spell; heal=按属防与技能档位计算 | 全体队友恢复 HP |
+| `holy_light` | Holy Light 圣光 | 6 | enemy | kind=elem; type=light; power=1.3; boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 2.0, 3.0, 4.0]; invocation_values=[1.3, 1.3, 1.3, 1.3] | 光，单体 |
+| `prayer_to_the_flame` | Prayer to the Flame 圣火的祈祷 | 8 | ally | boost=dur; levels=[2, 4, 6, 8]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 一名队友物防与属防上升2/4/6/8回合 |
+| `mystical_staff` | Mystical Staff 吸魔杖击 | 6 | enemy | kind=phys; type=staff; power=1.1; hits=2; boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.8, 2.6, 3.4]; invocation_values=[1.1, 1.1, 1.1, 1.1] | 杖，单体 2 次，回复相当于伤害 10% 的 SP |
+| `luminescence` | Luminescence 光明魔法 | 14 | enemies | kind=elem; type=light; power=1.05; boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.9, 2.8, 3.7]; invocation_values=[1.05, 1.05, 1.05, 1.05]; tier_parameters=[[{'ratio': 1.0, 'invocation': 1.05}, {'ratio': 1.9, 'invocation': 1.05}, {'ratio': 2.8, 'invocation': 1.05}, {'ratio': 3.7, 'invocation': 1.05}], [{'ratio': 0.85, 'invocation': 1.05}, {'ratio': 1.5, 'invocation': 1.05}, {'ratio': 2.15, 'invocation': 1.05}, {'ratio': 2.8, 'invocation': 1.05}], [{'ratio': 0.75, 'invocation': 1.05}, {'ratio': 1.3, 'invocation': 1.05}, {'ratio': 1.85, 'invocation': 1.05}, {'ratio': 2.4, 'invocation': 1.05}]]; spell | 光，全体 |
+| `sacred_shield` | Sacred Shield 守护之圣盾 | 10 | ally | boost=count; levels=[50, 65, 80, 100]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0.5, 0.65, 0.8, 1.0] | 单个队友下一次受到的伤害减少 50/65/80/100% |
+| `revive` | Revive 复活魔法 | 40 | allies | boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.4, 2.1, 2.8, 3.5]; invocation_values=[0, 0, 0, 0]; tier_parameters=[[{'ratio': 1.4, 'invocation': 0.0}, {'ratio': 2.1, 'invocation': 1.2}, {'ratio': 2.8, 'invocation': 1.2}, {'ratio': 3.5, 'invocation': 1.2}], [{'ratio': 1.4, 'invocation': 1.8}, {'ratio': 2.1, 'invocation': 1.8}, {'ratio': 2.8, 'invocation': 1.8}, {'ratio': 3.5, 'invocation': 1.8}], [{'ratio': 1.4, 'invocation': 2.4}, {'ratio': 2.1, 'invocation': 2.4}, {'ratio': 2.8, 'invocation': 2.4}, {'ratio': 3.5, 'invocation': 2.4}]]; spell | 复活全体倒下队友；恢复量按属防、档位与魔法阶数计算，零BP一阶复活仅恢复1 HP |
+| `aelfrics_blessing` | ★Aelfric's Blessing 圣火神爱尔福林克的指引 | 30 | ally | hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 神技：3 回合内，该队友每回合末尾额外行动一次 |
+
+**斯洛妮（盗贼）**
+
+| id | 名称 | SP | target | 参数 | 说明 |
+|---|---|---|---|---|---|
+| `darkest_night` | Darkest Night 暗夜 | 7 | enemy | kind=elem; type=dark; power=1.3; boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 2.0, 3.0, 4.0]; invocation_values=[1.3, 1.3, 1.3, 1.3] | 暗，单体 |
+| `hp_thief` | HP Thief 吸血匕首 | 6 | enemy | kind=phys; type=dagger; power=1.1; hits=2; boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.8, 2.6, 3.4]; invocation_values=[1.1, 1.1, 1.1, 1.1] | 短剑，单体 2 次，吸取伤害一半的 HP |
+| `surprise_attack` | Surprise Attack 突然袭击 | 12 | enemy | kind=phys; type=sword; power=1.25; boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 2.0, 3.0, 4.0]; invocation_values=[1.25, 1.25, 1.25, 1.25] | 剑，单体；本回合越早行动威力越高（第 1 个行动 2.6 倍，往后每个顺位 -0.15，最低 1.4） |
+| `swift_step` | Swift Step 瞬间移动 | 4 | self | boost=dur; levels=[3, 5, 7, 9]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 自身速度上升 3 回合（加成延长） |
+| `armor_corrosive` | Armor Corrosive 猫头鹰 | 4 | enemy | boost=dur; levels=[2, 4, 6, 8]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 单个敌人物防下降 2/4/6/8 回合 |
+| `shackle_foe` | Shackle Foe 蝙蝠 | 4 | enemy | boost=dur; levels=[2, 4, 6, 8]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 单个敌人物攻下降 2/4/6/8 回合 |
+| `aebers_reckoning` | ★Aeber's Reckoning 盗公子埃伯尔的钩爪 | 30 | enemies | kind=phys; type=dagger; power=7.5; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 5.0]; invocation_values=[1.5, 1.5, 1.5, 1.5] | 全体短剑攻击；以物攻计算基础伤害，再乘 (0.84 + 当前速度/500) |
+
+**欧修缇（猎人）**
+
+| id | 名称 | SP | target | 参数 | 说明 |
+|---|---|---|---|---|---|
+| `precise_shot` | Precise Shot 狙击 | 6 | chosen | kind=phys; type=bow; power=0.9; boost=hits; levels=[2, 3, 4, 5]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[0.9, 0.9, 0.9, 0.9]; invocation_values=[1.0, 1.0, 1.0, 1.0] | 弓，攻击 2/3/4/5 次，每次的目标由你指定（targets 列表，不足的重复最后一个） |
+| `thunderbird` | Thunderbird 雷鸟 | 7 | enemy | kind=elem; type=lightning; power=1.3; boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 2.0, 3.0, 4.0]; invocation_values=[1.3, 1.3, 1.3, 1.3] | 雷，单体较强攻击 |
+| `cleaving_blow` | Cleaving Blow 瓦解 | 12 | enemy | kind=phys; type=axe; power=1.4; boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 2.0, 3.0, 4.0]; invocation_values=[1.4, 1.4, 1.4, 1.4] | 斧，单体强力攻击；自身物攻上升 3 回合，并按对手类型获得物防（物攻≥属攻）或属防上升 |
+| `mercy_strike` | Mercy Strike 点到为止 | 4 | enemy | kind=phys; type=bow; power=0.01; boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 2.0, 3.0, 4.0]; invocation_values=[0.01, 0.01, 0.01, 0.01] | 弓，单体；不会击倒对手（至少留 1 HP） |
+| `take_aim` | Take Aim 瞄准目标 | 8 | allies | boost=dur; levels=[2, 4, 6, 8]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 全体队友暴击率和命中上升 2/4/6/8 回合 |
+| `leghold_trap` | Leghold Trap 黏着捕网 | 10 | enemy | boost=dur; levels=[2, 4, 6, 8]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 单个敌人 2/4/6/8 回合内总在回合最后行动 |
+| `abating_orb` | Abating Orb 化解弹 | 9 | enemy | boost=count; levels=[1, 2, 3, 4]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 清除单个敌人 1/2/3/4 个增益效果 |
+| `draefendis_bow` | ★Draefendi's Bow 狩猎女王德雷芳朵的猛追 | 30 | enemies | kind=phys; type=bow; power=2.38; hits=3; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.7]; invocation_values=[1.3, 1.3, 1.3, 1.4] | 神技：弓，全体攻击 3 次 |
+| `beast_claw` | Beast Claw 兽之爪 | 0 | enemies | kind=phys; power=1.8; hits=1; boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 2.0, 3.0, 4.0]; invocation_values=[1.8, 1.8, 1.8, 1.8] | 潜力专属：全体一次无武器属性物理伤害 |
+| `beast_fang` | Beast Fang 兽之牙 | 0 | enemy | kind=phys; power=2.4; hits=1; boost=power; shield_break=0; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.2, 2.4, 3.6, 4.8]; invocation_values=[2.0, 2.0, 2.0, 2.0] | 潜力专属：单体一次无武器属性物理伤害 |
+| `beast_roar` | Beast Roar 兽之咆哮 | 0 | enemies | boost=dur; levels=[3, 4, 5, 6]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 全体敌人物防、属防下降3/4/5/6回合，并无视弱点削1盾；不造成HP伤害 |
+
+**卡斯蒂（药师）**
+
+| id | 名称 | SP | target | 参数 | 说明 |
+|---|---|---|---|---|---|
+| `healing_touch` | Healing Touch 治疗术 | 6 | ally_any | boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[2.0, 2.7, 3.4, 4.1]; invocation_values=[0, 0, 0, 0]; heal=按属防与技能档位计算 | 单个队友恢复 HP，可复活倒下的队友 |
+| `icicle` | Icicle 冰柱 | 7 | enemy | kind=elem; type=ice; power=1.3; boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 2.0, 3.0, 4.0]; invocation_values=[1.3, 1.3, 1.3, 1.3] | 冰，单体 |
+| `rehabilitate` | Rehabilitate 健全化 | 10 | ally | boost=dur; levels=[2, 4, 6, 8]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 单个队友免疫异常状态（中毒）2/4/6/8 回合，并解毒 |
+| `sweeping_cleave` | Sweeping Cleave 斧一闪 | 9 | enemies | kind=phys; type=axe; power=1.1; boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.9, 2.8, 3.7]; invocation_values=[1.1, 1.1, 1.1, 1.1] | 斧，全体 |
+| `poison_axe` | Poison Axe 毒断击 | 12 | enemy | kind=phys; type=axe; power=1.4; boost=power; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 2.0, 3.0, 4.0]; invocation_values=[1.4, 1.4, 1.4, 1.4] | 斧，单体强力攻击，并使其中毒 2 回合 |
+| `replenish_health` | Replenish Health 继续疗伤 | 9 | ally | boost=dur; levels=[3, 5, 7, 9]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 单个队友每次行动后恢复最大 HP 的 20%，3/5/7/9 回合 |
+| `weak_to_poison` | Weak to Poison 施加中毒弱点 | 4 | enemy | boost=dur; levels=[2, 4, 6, 8]; hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 单个敌人 2/4/6/8 回合内弱毒：中毒结算伤害时削 1 护盾 |
+| `dohters_charity` | ★Dohter's Charity 灵药公德塔的恩惠 | 30 | ally | hit_ratios=[0.0, 0.0, 0.0, 0.0]; ability_ratios=[1.0, 1.0, 1.0, 1.0]; invocation_values=[0, 0, 0, 0] | 神技：3 回合内，该队友的单体恢复技能和调合作用于全体队友 |
+
+所有旅人通用：`attack` 普通攻击（物理，所用武器类型，威力 1.0，每 1 BP 多打 1 下），`defend` 防御。
+潜力专用招式（光的 tenretsu / hien / sougetsu，欧修缇的 beast_claw / beast_fang / beast_roar）只能在同一次行动发动潜力时使用，不消耗 SP。
 
 
 ## 本届固定的对战适配
