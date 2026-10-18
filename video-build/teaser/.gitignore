@@ -1,0 +1,7 @@
+film/node_modules/
+film/out/
+film/public/footage/
+film/dist/
+*.f32
+*.wav
+*.mp4
